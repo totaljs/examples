@@ -4,5 +4,6 @@ exports.install = function(framework) {
 
 function view_homepage() {
 	var self = this;
+	process.send('Response framework ID: ' + self.framework.id);
 	self.view('homepage');
 }
