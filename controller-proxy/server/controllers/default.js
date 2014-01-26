@@ -12,7 +12,7 @@ function view_homepage() {
 	};
 	
 	self.async.await(function(next) {
-		self.proxy('http://127.0.0.1:8005', { age: 25 }, function(error, data) {
+		self.proxy('http://127.0.0.1:8001', { age: 25 }, function(error, data) {
 
 			if (error)
 				self.error(error);
@@ -23,7 +23,7 @@ function view_homepage() {
 	});
 
 	self.async.await(function(next) {
-		self.proxy('http://127.0.0.1:8006', {}, function(error, data) {			
+		self.proxy('http://127.0.0.1:8002', {}, function(error, data) {			
 
 			if (error)
 				self.error(error);
