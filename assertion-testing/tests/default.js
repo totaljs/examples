@@ -7,6 +7,10 @@ exports.run = function(framework, name) {
 
 	// Documentation: http://docs.totaljs.com/Framework/#framework.assert
 	
+	framework.assert('Test methods', function(name) {		
+		assert.ok(framework.controller('default').functions.increment(1) === 2, name + ' default controller: increment()');
+	});
+	
 	framework.assert('Test URL 1', '/1/', function(error, data, name, code, headers) {
 		assert.ok(code === 200 && data === '1', name);
 		console.log('1');
@@ -22,4 +26,5 @@ exports.run = function(framework, name) {
 		assert.ok(code === 200 && data === '3', name);
 		console.log('3');
 	});
+
 };

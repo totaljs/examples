@@ -4,6 +4,12 @@ exports.install = function(framework) {
 	framework.route('/3/', test3);
 };
 
+exports.functions = {
+	increment: function(num) {
+		return num + 1;
+	}
+};
+
 function test1() {
 	this.plain('1');
 }
