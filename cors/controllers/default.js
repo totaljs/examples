@@ -1,6 +1,19 @@
 exports.install = function(framework) {
+	framework.route('/time/', cors_time_preflight, ['options']);
 	framework.route('/time/', cors_time);
 };
+
+function cors_time_preflight() {
+
+	var self = this;
+
+	if (!self.cors('*', ['GET'])) {
+		self.plain('Not allowed');
+		return;
+	}
+
+	self.empty();
+}
 
 function cors_time() {
 
@@ -23,10 +36,10 @@ function cors_time() {
 	// OR
 
 	/*
-	
+
 	// @allow, [@method], [@header], [@credentials]
 	// true == with credentials
-	
+
 	if (!self.cors(['totaljs.com', 'google.com'], true)) {
 		self.plain('Not allowed');
 		return;
@@ -34,4 +47,4 @@ function cors_time() {
 	*/
 
 	self.plain(new Date().toString());
-};
+}
