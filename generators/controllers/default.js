@@ -33,6 +33,8 @@ function view_homepage() {
 
 		self.plain('==== index.js\n\n' + a.toString('utf8') + '\n\n==== controllers/default.js\n\n' + b.toString('utf8') + '\n\n==== custom function\n\n' + c);
 
-	})();
+		// async(*, [callback/controller])
+		// if the async throws an error then controller executes view500(error)
+	})(self);
 
 }
