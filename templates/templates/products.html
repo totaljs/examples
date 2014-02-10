@@ -1,0 +1,10 @@
+<div class="list @{if index % 2 === 0}even@{else}odd@{endif}">
+	<div>@{model.name}</div>
+	<div>Max 5 chars: @{model.name.max(5)}</div>
+	<div>@{model.price.format('### ###.##')}</div>
+	<div>@{model.date.format('dd.MM.yyyy - HH:mm')}</div>
+	<div>Child: @{model.example.name}</div>
+	<div>Function: @{model.fn()}</div>
+	<div>Current record index (index in array): @{index}</div>
+	<div>@{template('products-tags', model.tags)}</div>
+</div>

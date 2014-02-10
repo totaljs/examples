@@ -13,4 +13,4 @@
 @{template('array', [], 'empty')}
 <br />
 <h2>Dynamic template</h2>
-@{template('<div><b>{name}</b></div>', global.database.items)}
+@{template('<div><b>@{model.name}</b></div>', global.database.items)}
