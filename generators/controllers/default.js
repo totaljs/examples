@@ -20,13 +20,16 @@ function view_homepage() {
 	// utils.async(fn)([callback]);
 
 	// Prepare function to async
-	// sync(fn)
-	// utils.sync(fn);
+	// sync(fn, [owner/context])
+	// utils.sync(fn, [owner/context]);
 
 	async(function *() {
 
 		var a = yield sync(fs.readFile)(self.path.root('index.js'));
 		var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));
+
+		// Example MySQL connection:
+		// var c = yield sync(connection.query, connection)('SELECT * FROM USER LIMIT 0, 10');
 
 		// custom function
 		var c = yield sync(custom)(1, 2);
