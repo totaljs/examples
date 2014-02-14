@@ -4,5 +4,5 @@
 	return {String}
 */
 exports.usage = function(detailed) {
-	return 'module usage';
+	return { description: 'test module usage' };
 };
