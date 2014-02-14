@@ -59,7 +59,7 @@
 
 		$('button[name="open"]').attr('disabled', true);
 		$('button[name="close"],button[name="send"],button[name="rename"]').attr('disabled', false);
-		socket = new WebSocket('ws://127.0.0.1:8004/');
+		socket = new WebSocket('ws://127.0.0.1:8000/');
 
 	    socket.onopen = function() {
 	        console.log('open');
