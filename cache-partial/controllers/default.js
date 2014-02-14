@@ -41,9 +41,7 @@ function view_fn_cached() {
 
 		var dt = new Date();
 
-		// Save to cache
-		// @value {Object}
-		// @expire {Date}
+		// Documentation: http://docs.totaljs.com/FrameworkCache/#framework.cache.fn
 		fnSave(dt.format('dd.MM.yyyy - HH:mm:ss'), dt.add('m', 2));
 
 	}, fnCallback);
