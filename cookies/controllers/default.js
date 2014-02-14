@@ -5,12 +5,14 @@ exports.install = function(framework) {
 
 function cookieRead() {
 	var self = this;
+	// Documentation: http://docs.totaljs.com/Request.prototype/#Request.prototype.cookie
 	self.plain('Cookie example\nread test1: ' + (self.req.cookie('test1') || 'null') + '\nread test2: ' + (self.req.cookie('test2') || 'null'));
 }
 
 function cookieWrite() {
 	var self = this;
 
+	// Documentation: http://docs.totaljs.com/Response.prototype/#Response.prototype.cookie
 	self.res.cookie('test1', 'value 1', new Date().add('day', 1));
 	self.res.cookie('test2', 'value 2', new Date().add('day', 1));
 
