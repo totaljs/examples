@@ -7,9 +7,7 @@ framework.run(http, debug);
 // if debug == true
 // 	  framework load config-debug
 // else
-//    frmaework load config-release
-//
-// config will refresh every 20 minutes
+//    framework load config-release
 //
 // or
 //

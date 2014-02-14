@@ -1,4 +1,4 @@
-name							: partial.js (RELEASE)
+name							: total.js (RELEASE)
 version 						: 1.01
 secret							: secret-key-for-web
 etag-version					:

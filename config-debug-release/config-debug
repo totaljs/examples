@@ -1,4 +1,4 @@
-name							: partial.js (DEBUG)
+name							: total.js (DEBUG)
 version 						: 1.01
 secret							: secret-key-for-web
 etag-version					:
