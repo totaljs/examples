@@ -8,7 +8,7 @@ function authorization() {
 	var user = self.baa('This is secure area');
 
 	if (user === null) {
-		// self.baa() automatically will send response to an authentication
+		// self.baa() automatically will send a response to an authentication.
 		return;
 	}
 
