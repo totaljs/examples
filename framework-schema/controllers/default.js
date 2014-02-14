@@ -37,7 +37,7 @@ function post_order() {
 	console.log('Model:\n', model);
 	console.log('');
 
-	console.log('Create default contactform schema:\n', builders.defaults('contactform'));
+	console.log('Create a default schema - contactform:\n', builders.defaults('contactform'));
 	console.log('');
 
 	self.empty();
