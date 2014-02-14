@@ -11,7 +11,7 @@ exports.install = function(framework) {
 
 function view_homepage() {
     var self = this;
-	self.plain('http://{0}:{1}/1388185217985mspuv7vi.png'.format(self.framework.ip, self.framework.port));
+	self.plain('http://{0}:{1}/1392394046499rjdobt9.png'.format(self.framework.ip, self.framework.port));
 }
 
 // Serve image from database products
