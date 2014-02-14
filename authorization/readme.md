@@ -1,4 +1,4 @@
 ## This is the example
 
-Please use: authorization module for partial.js:
-https://github.com/petersirka/partial.js-modules/tree/master/authorization
+Please use: authorization module for total.js:
+https://github.com/totaljs/modules/tree/master/authorization
