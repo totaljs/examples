@@ -3,7 +3,7 @@ var http = require('http');
 var debug = true;
 
 framework.on('load', function() {
-	framework.injectModule('test', 'http://www.totaljs.com/inject-module.js');
+	framework.injectModel('user', 'http://www.totaljs.com/inject-model.js');
 });
 
 framework.run(http, debug);

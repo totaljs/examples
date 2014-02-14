@@ -6,5 +6,5 @@ exports.install = function(framework) {
 
 function plain_homepage() {
 	var self = this;
-	self.plain(self.module('test').hello());
+	self.plain(self.model('user').user());
 }
