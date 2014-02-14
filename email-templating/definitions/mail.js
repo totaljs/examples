@@ -1,5 +1,5 @@
 // Documentation: http://docs.totaljs.com/FrameworkMail/
-var mail = require('partial.js/mail');
+var mail = require('total.js/mail');
 
 framework.mail = function(email, name, params) {
 
@@ -22,7 +22,6 @@ framework.mail = function(email, name, params) {
 	var body = self.resource('en', 'mail-' + name, '');
 	var template = self.resource('en', 'mail', '').replace('{body}', body.params(params));
 
-	// partial.js +v1.2.4-4
 	var message = new mail.Message(subject, template);
 
 	// message.subject;
