@@ -9,7 +9,7 @@ exports.install = function(framework) {
 function view_auto() {
 	var self = this;
 	
-	var language = (self.req.headers['accept-language'].split(';')[0].split(',')[0] || 'en').toLowerCase();
+	var language = self.req.language;
 	var lng = '';
 
 	if (language.indexOf('sk') > -1)
