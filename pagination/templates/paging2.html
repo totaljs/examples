@@ -1,7 +1,7 @@
 <div class="mb5">Paging @{repository.page}/@{repository.count}:</div>
 <div class="paging">
 	<!--
-	<a href="@{model.url}"@{!model.selected}>@{model.name}</a>
+	<a href="@{model.url}"@{if model.selected} class="selected"@{endif}>@{model.page}</a>
 	-->
 	<div>@{repository.items.format('### ###')} items</div>
 </div>
