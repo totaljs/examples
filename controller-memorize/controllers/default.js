@@ -11,11 +11,31 @@ function view() {
 
 	// Save a rendered HTML into the cache (only the view - without layout, layout is not cached)
 	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.memorize
-	// Memorize uses standard internal FrameworkCache
+	// Memorize uses standard internal FrameworkCache	
 	self.memorize('view', new Date().add('minute', 2), function() {
 		// Here is cached output (without layout) + meta tags (title, description, keywords, image) + sitemap
 		self.view('homepage', self.repository.ticks);
 	});
+
+	// OR
+
+	/*
+	self.memorize('view', new Date().add('minute', 2),function() {
+		console.log('view -> to cache');
+		self.view('homepage', self.repository.ticks);
+	}, function() {
+		console.log('view -> from cache');	
+	});
+	*/
+
+	// OR
+
+	/*
+	self.memorize('view', new Date().add('minute', 2), self.isDebug, function() {
+		CACHE WILL SKIPPED IN DEBUG MODE
+		self.view('homepage', self.repository.ticks);
+	});
+	*/
 
 }
 
