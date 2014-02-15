@@ -13,6 +13,7 @@ function view() {
 	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.memorize
 	// Memorize uses standard internal FrameworkCache
 	self.memorize('view', new Date().add('minute', 2), function() {
+		// Here is cached output (without layout) + meta tags (title, description, keywords, image) + sitemap
 		self.view('homepage', self.repository.ticks);
 	});
 
