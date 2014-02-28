@@ -7,6 +7,11 @@ exports.install = function(framework) {
 	framework.route('/', view_homepage);
 	framework.route('/{category}/', view_homepage);
 
+	// this route has a lower priority and it will be executed when:
+	// url: /asterix/
+	// url: /asterix/bla/bla/bla/bla/
+	framework.route('/asterix/*', view_asterix);
+
 	// route: all txt files
 	// Documentation: http://docs.totaljs.com/Framework/#framework.file
 	// Try: http://127.0.0.4/test.txt
@@ -76,4 +81,9 @@ function view_products(category, subcategory) {
 		subcategory = ' -> ' + subcategory;
 
 	this.plain('products{0}{1}'.format(category, subcategory));
+}
+
+function view_asterix() {
+	var self = this;
+	self.plain('asterix -> ' + self.uri.pathname);
 }
