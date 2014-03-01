@@ -1,0 +1,25 @@
+/*auto*/
+
+body { padding:20px; margin:0; font:normal 12px Arial; background-color: #F0F0F0; }
+form { padding: 0; margin: 0; }
+
+.users { float: left; width: 200px; padding-right: 25px; }
+.chat { float: left; width: 550px; border-left: 1px solid #E0E0E0; min-height: 500px; padding-left: 20px; }
+.users ul { list-style-type: none; margin: 10px 0 0 0; padding: 0; }
+.users li { border-bottom: 1px dotted #E0E0E0; padding: 4px 0; font-size: 11px; }
+
+.content { width: 800px; border: 1px solid #E0E0E0; margin: 0 auto; padding: 30px; border-radius: 4px; background-color: white; }
+input { border: 1px solid #E0E0E0; border-radius: 20px; background-color: white; outline: 0; background-color: #F0F0F0; font: normal normal 12px Arial; padding: 5px 10px; color: #505050; }
+input:focus { background-color: white; border: 1px solid silver; }
+input:disabled { color: silver; background-color: #E0E0E0; }
+
+.cl { clear: both; }
+.form-description { font-size: 11px; color: #AAB2BD; }
+
+.logoff { outline: 0; cursor: pointer; padding: 2px 5px; border-radius: 4px; font: normal 11px Arial; color: white; background-color: #EB3F46; border: 0; display: block; width: 50px; margin: 10px 0 0 0; }
+.logoff:hover { background-color: #EB4B36; }
+
+.messages { margin: 0; padding: 0; list-style-type: none; }
+.messages li { padding: 14px; border-radius: 4px; font-size: 11px; color: gray; }
+.messages li:nth-child(odd) { background-color: #F5F5F5; }
+.messages span { display: block; margin-bottom: 4px; font-size: 12px; font-weight: bold; color: #505050; }
