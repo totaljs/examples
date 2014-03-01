@@ -1,0 +1,19 @@
+@{meta('Angular.js routing', 'description', 'keywords')}
+
+<!-- /app/css/ -->
+@{ngStyle('app')}
+
+<!-- /app/controllers/ -->
+@{ngController('home', 'users', 'products')}
+
+<ul>
+	<li><a href="/">Homepage</a></li>
+	<li><a href="/users/">Users</a></li>
+	<li><a href="/products/">Products</a></li>
+</ul>
+<br />
+<hr />
+<br />
+<div ng-view>
+	<!-- VIEW -->
+</div>
