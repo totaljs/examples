@@ -50,7 +50,9 @@ function json_user_save(id) {
 	var User = self.model('user');
 
 	console.log('save ->', id);
-	self.change('user: updated, id: ' + id);
+
+	// What is it? https://github.com/totaljs/examples/tree/master/changes
+	self.change('user: save, id: ' + id);
 
 	User.findById(id, function(err, doc) {
 		// Please do not save a document (THANKS :-))
@@ -71,6 +73,8 @@ function json_user_delete(id) {
 	var User = self.model('user');
 
 	console.log('delete ->', id);
+
+	// What is it? https://github.com/totaljs/examples/tree/master/changes
 	self.change('user: deleted, id: ' + id);
 
 	User.findById(id, function(err, doc) {
