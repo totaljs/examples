@@ -27,8 +27,7 @@ exports.install = function(framework) {
 	framework.route('/myflag/', myflag_example, ['!myflag']);
 
 	// https://github.com/petersirka/total.js/tree/master/examples/authorization
-	// framework.route('/user/registration/', user_registration, ['unlogged']);
-	// framework.route('/user/profile/', user_profile, ['logged']);
+	// framework.route('/user/profile/', user_profile, ['authorize']);
 };
 
 // flags: !myflag
