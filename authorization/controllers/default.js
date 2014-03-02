@@ -1,8 +1,8 @@
 exports.install = function(framework) {
-	framework.route('/', view_logged, ['logged']);
-	framework.route('/', view_homepage, ['unlogged']);
-	framework.route('/', json_homepage, ['unlogged', 'xhr', 'post']);
-	framework.route('/logout/', logout, ['logged', 'get']);
+	framework.route('/', view_logged, ['authorize']);
+	framework.route('/', view_homepage);
+	framework.route('/', json_homepage, ['xhr', 'post']);
+	framework.route('/logout/', logout, ['authorize', 'get']);
 };
 
 function view_logged() {
@@ -19,6 +19,9 @@ function json_homepage() {
 
 	var self = this;
 	var errorBuilder = self.validate(self.post, ['LoginName', 'LoginPassword']);
+
+	if (self.user !== null)
+		errorBuilder.add('Logged');
 
 	if (errorBuilder.hasError()) {
 		self.json(errorBuilder);
