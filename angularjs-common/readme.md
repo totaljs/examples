@@ -4,7 +4,6 @@
 
 ```
 npm install total.js
-npm install mongoose
 ```
 
 ## Second step
