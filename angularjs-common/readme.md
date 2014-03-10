@@ -1,5 +1,4 @@
 ![TOTALSTACK logo](http://www.totaljs.com/img/totalstack.png)
-
 # How to run it?
 
 ## First step
