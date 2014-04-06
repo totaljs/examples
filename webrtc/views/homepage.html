@@ -1,0 +1,23 @@
+@{meta('WebRTC Example')}
+@{layout('')}
+
+<!DOCTYPE html>
+<html>
+<head>
+    @{meta}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=1024, user-scalable=yes" />
+    <meta name="robots" content="all,follow" />
+    @{js('webrtc.io.min.js')}
+    @{js('default.js')}
+</head>
+<body>
+	<div id="videos">
+		<a href="https://github.com/webRTC"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+		<video id="you" class="flip" autoplay width="263" height="200" style="position: absolute; left: 0px; bottom: 0px;"></video>
+	</div>
+	<script type="text/javascript">init();</script>
+</body>
+</html>

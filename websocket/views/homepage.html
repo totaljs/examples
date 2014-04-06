@@ -71,7 +71,8 @@
 			el.val(m + '\n' + el.val());
 		};
 
-	    socket.onclose = function() {
+	    socket.onclose = function(e) {
+	    	// e.reason ==> total.js client.close('reason message');
 	        console.log('close');
 	    };
 	}

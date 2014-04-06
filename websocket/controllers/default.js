@@ -82,7 +82,7 @@ function socket_homepage() {
 
     // client.cookie(name)	   : value
     // client.send(value)      : send message
-    // client.close()          : disconnect client
+    // client.close([message]) : disconnect client
 
 	controller.on('open', function(client) {
 
