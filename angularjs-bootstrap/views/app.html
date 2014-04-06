@@ -1,0 +1,20 @@
+@{meta('title', 'description', 'keywords')}
+
+<!-- /app/css/ -->
+@{ngStyle('app')}
+
+<!-- cdnjs -->
+@{ngLocale('en-us')}
+
+<!-- /app/controllers/ -->
+@{ngController('home', 'user')}
+
+<div ng-controller="HomeCtrl">
+	<h1>{{ name }}</h1>
+	<br />
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="user in users">{{ user.name }}</li>
+	</ul>
+</div>
+
+@{ngTemplate('list')}
