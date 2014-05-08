@@ -6,6 +6,6 @@ exports.install = function(framework) {
 
 function file_download() {
 	var self = this;
-	// Documentation: http://docs.totaljs.com/Framework/#framework.responseStream
-	self.stream('application/pdf', fs.createReadStream(self.path.public('company-profile.pdf')), 'about-us.pdf');
+	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.stream
+	self.stream('application/pdf', fs.createReadStream(self.path.public('totaljs.pdf')), 'logo.pdf');
 }

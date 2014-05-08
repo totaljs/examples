@@ -5,7 +5,7 @@ exports.install = function(framework) {
 
 function file_download() {
 	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.file
-	this.file('company-profile.pdf', 'about-us.pdf');
+	this.file('totaljs.pdf', 'logo.pdf');
 }
 
 function image_download() {
