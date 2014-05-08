@@ -1,6 +1,10 @@
-name							: total.js (DEBUG)
-version 						: 1.01
-secret							: secret-key-for-web
-etag-version					:
-custom-value-1					: custom 1
-custom-value-2					: custom 2
+default-ip                      : 127.0.0.1
+default-port                    : 8000
+
+name                            : total.js (DEBUG)
+version                         : 1.01
+secret                          : secret-key-for-web
+etag-version                    :
+
+custom-value-1                  : custom 1
+custom-value-2                  : custom 2
