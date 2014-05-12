@@ -14,7 +14,7 @@ exports.install = function(framework) {
 
 function view_homepage() {
 	var self = this;
-	self.plain(self.req.hostname('/company-profile.pdf') + '\n\nDownload count: ' + counter);
+	self.plain(self.req.hostname('/totaljs.pdf') + '\n\nDownload count: ' + counter);
 };
 
 function file_download(req, res, isValidation) {

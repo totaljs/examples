@@ -102,6 +102,8 @@ function socket_homepage() {
 
 	controller.on('message', function(client, message) {
 
+        console.log(message);
+
 		if (typeof(message.username) !== 'undefined') {
 			var old = client.id;
 			client.id = message.username;

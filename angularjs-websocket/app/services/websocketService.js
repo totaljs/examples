@@ -6,7 +6,7 @@ app.factory('websocketService', ['$rootScope', '$timeout', function($rootScope, 
 	var users = [];
 
 	function onMessage(e) {
-		var data = JSON.parse(decodeURIComponent(e.data));
+		var data = JSON.parse(e.data);
 		$rootScope.$apply(function() {
 
 			if (data.type === 'users') {
@@ -27,7 +27,7 @@ app.factory('websocketService', ['$rootScope', '$timeout', function($rootScope, 
 			_ws.onmessage = onMessage;
 			_username = username;
 			$timeout(function() {
-				_ws.send(encodeURIComponent(JSON.stringify({ type: 'change', message: _username })));
+				_ws.send(JSON.stringify({ type: 'change', message: _username }));
 			}, 500);
 		},
 
@@ -40,7 +40,7 @@ app.factory('websocketService', ['$rootScope', '$timeout', function($rootScope, 
 		},
 
 		send: function(message) {
-			_ws.send(encodeURIComponent(JSON.stringify({ type: 'message', message: message })));
+			_ws.send(JSON.stringify({ type: 'message', message: message }));
 		}
 	};
 
