@@ -3,7 +3,7 @@ exports.index = function view_index() {
     var self = this;
     
     var model = {
-        pagetitle: 'FIREPOWER FIREWORKS',
+        pagetitle: 'Total.js',
     }
 
     self.layout('_sitelayout');
