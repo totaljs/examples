@@ -12,7 +12,7 @@ function RTC() {
 RTC.prototype.init = function(room) {
 
 	var self = this;
-	
+
 	if (self.ws !== null)
 		self.ws.close();
 
@@ -20,7 +20,7 @@ RTC.prototype.init = function(room) {
 
 	self.ws.onmessage = function (e) {
 
-		var obj = JSON.parse(e.data);
+		var obj = JSON.parse(decodeURIComponent(e.data));
 
 		console.log('websocket --->', obj);
 
@@ -124,7 +124,7 @@ RTC.prototype.send = function(force) {
 	if (typeof(item) === 'undefined')
 		return;
 
-	self.ws.send(JSON.stringify(item));
+	self.ws.send(encodeURIComponent(JSON.stringify(item)));
 
 	setTimeout(function() {
 		self.send(true);
@@ -164,7 +164,7 @@ RTC.prototype.flush = function() {
 				console.log('receiver.connection.setRemoteDescription');
 				self.receiver.connection.setRemoteDescription(new RTCSessionDescription(obj.data));
 				self.receiver.connection.createAnswer(function(desc) {
-					
+
 					console.log('CREATE ANSWER');
 					self.receiver.connection.setLocalDescription(desc);
 					self.receiver.local.push({ type: 'sdp', from: 'receiver', desc: 'answer', data: desc });
