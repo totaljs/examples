@@ -1,10 +1,16 @@
-<div>
-	<strong>@{greeting}</strong>
-</div>
+@{helper test(max)}
+    @{foreach m in new Array(max)}
+        <div>@{index}</div>
+    @{end}
+@{end}
+
 <br />
 <br />
+@{helper('say', '<b>WARNING: XSS</b>')}
 <br />
-@{say('<b>WARNING: XSS</b>')}
 <br />
+@{helper('say', '<b>WARNING: XSS</b>', true)}
 <br />
-@{say('<b>WARNING: XSS</b>', true)}
+<h2>Inline helper</h2>
+<br />
+@{test(10)}

@@ -1,4 +1,4 @@
-var framework = require('total.js');
+ var framework = require('total.js');
 var http = require('http');
 var debug = true;
 

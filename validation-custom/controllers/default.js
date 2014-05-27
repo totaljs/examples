@@ -5,7 +5,7 @@ exports.install = function(framework) {
 
 function view_homepage() {
 	var self = this;
-	
+
 	if (!self.xhr) {
 		self.view('homepage', { LoginName: '@' });
 		return;

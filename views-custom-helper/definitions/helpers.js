@@ -15,5 +15,3 @@ framework.helpers.say = function(what, raw) {
 		return what.toString().encode();
 	return what;
 };
-
-framework.helpers.greeting = 'Hello World!';

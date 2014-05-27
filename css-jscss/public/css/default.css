@@ -1,0 +1,25 @@
+/*auto*/
+
+/*
+    var color = 'red';
+    var arial = 'font:normal 12px Arial';
+
+    function generate(content) {
+        var arr = ['p', 'i', 'b'];
+        var builder = [];
+
+        for (var i = 0; i < arr.length; i++)
+            builder.push(arr[i] +' { display:block; ' + arial + ';}' + arr[i] + ':before{content:\''+content+'\';color:blue;margin-right:10px;}');
+
+        return builder.join('\n');
+    }
+*/
+
+body { margin:50px; background-color: #E0E0E0; }
+div { $arial; color: $color; background-color: white; padding:10px; }
+
+$generate('total.js')
+
+span { color: $color; }
+
+$generate('super')

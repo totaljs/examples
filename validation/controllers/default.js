@@ -12,7 +12,7 @@ function view_homepage() {
 		return;
 	}
 
-	// Look here: https://github.com/petersirka/total.js/tree/master/examples/framework-schema
+	// Look here: https://github.com/totaljs/examples/tree/master/framework-schema-validation
 	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.validate
 	var result = self.validate(self.post, ['FirstName', 'LastName', 'Age', 'Email', 'Terms'], 'Form');
 

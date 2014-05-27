@@ -1,7 +1,7 @@
 <div class="mb5">Paging:</div>
-<div class="paging">	
-	<!--
+<div class="paging">
+	@{foreach}
 	<a href="@{model.url}">@{model.name}</a>
-	-->
+	@{end}
 	<div>@{repository.items} items</div>
 </div>

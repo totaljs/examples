@@ -1,3 +1,10 @@
+@{helper address(city, street)}
+    <address>
+        @{city}<br />
+        @{street}
+    </address>
+@{end}
+
 <div><strong>Welcome!</strong></div>
 <div>partial.html in view &rarr; @{view('partial')}</div>
 
@@ -14,8 +21,23 @@
 
 @{endif}
 
-<H2>Dynamic view</h2>
+<h2>Dynamic view</h2>
+
 @{view('Current date: @{model.format(\'dd.MM.yyyy HH:mm\')}', new Date())}
+
+<h2>Foreach</h2>
+
+@{foreach m in [1, 2, 3, 4]}
+    <div>@{m} - @{index}</div>
+@{end}
 
 <br />
 <br />
+
+<h2>Inline helper</h2>
+<br />
+<div>Address 1:</div>
+@{address('Slovakia', 'Teplicka')}
+<br />
+<div>Address 2:</div>
+@{address('Germany', 'Berlin')}
