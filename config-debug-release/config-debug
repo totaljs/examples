@@ -1,8 +1,8 @@
+version                         : DEBUG
+
 default-ip                      : 127.0.0.1
 default-port                    : 8000
 
-name                            : total.js (DEBUG)
-version                         : 1.01
 secret                          : secret-key-for-web
 etag-version                    :
 

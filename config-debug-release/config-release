@@ -1,9 +1,9 @@
+version                         : RELEASE
+
 // Example: Heroku PORT/IP configuration
 default-ip                      : auto
 default-port                    : auto
 
-name                            : total.js (RELEASE)
-version                         : 1.01
 secret                          : secret-key-for-web
 etag-version                    :
 
