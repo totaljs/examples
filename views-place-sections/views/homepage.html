@@ -1,3 +1,9 @@
+<!-- IMPORTANT: -->
+<!-- A place can be modified in the controller. This is the different between a place and section. -->
+
+@{section header}
+    <div>SECTION: header</div>
+@{end}
 
 @{place('scripts', '<script>alert("FROM VIEW");</script>')}
 
@@ -9,3 +15,7 @@
 </div>
 
 @{place('header', '<h1>PLACE HOLDER</h1>')}
+
+@{section footer}
+    <div>SECTION: footer</div>
+@{end}

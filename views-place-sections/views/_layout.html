@@ -6,11 +6,14 @@
 	<meta name="format-detection" content="telephone=no"/>
 	<meta name="viewport" content="width=1024, user-scalable=yes" />
 	<meta name="robots" content="all,follow" />
-	
+
 	@{head}
 
 </head>
 <body>
+
+	<!-- RENDER HEADER -->
+	@{section('header')}
 
 	@{place('header')}
 
@@ -18,6 +21,9 @@
 
 	<!-- RENDER CONTENT -->
 	@{place('scripts')}
+
+	<!-- RENDER SECTION -->
+	@{section('footer')}
 
 </body>
 </html>
