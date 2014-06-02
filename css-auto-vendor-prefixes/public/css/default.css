@@ -1,4 +1,5 @@
-@#auto-vendor-prefix#@
+/*auto*/
+
 body { margin:50px; background-color: #E0E0E0; }
 
 div { color: red; box-shadow: 10px 10px 5px silver; border-radius: 10px 10px 10px 10px; background-color: white; padding:10px; }

@@ -1,8 +1,8 @@
 var configuration = { class: 'grid' };
 
 exports.install = function(framework) {
-	// @#auto-vendor-prefix#@ = framework automatically adds prefixes
-	framework.fs.create.css('grid', '@#auto-vendor-prefix#@\n.grid{width:100%;border:1px solid #E0E0E0;border-right:0;border-bottom:0;font:normal 11px Arial;color:gray}.grid td{border:1px solid #E0E0E0;border-left:0;border-top:0;padding:5px 8px}', true);
+	// /*auto*/ = framework automatically adds vendor prefixes
+	framework.fs.create.css('grid', '/*auto*/\n.grid{width:100%;border:1px solid #E0E0E0;border-right:0;border-bottom:0;font:normal 11px Arial;color:gray}.grid td{border:1px solid #E0E0E0;border-left:0;border-top:0;padding:5px 8px}', true);
 };
 
 exports.configure = function(obj) {

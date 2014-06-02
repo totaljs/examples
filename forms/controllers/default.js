@@ -6,8 +6,6 @@ exports.install = function(framework) {
 function view_registration() {
 	var self = this;
 
-	self.repository.title = 'Registration';	
-
 	var model = {
 		type: 0,
 		name: '',
@@ -36,7 +34,7 @@ function json_registration() {
 	var self = this;
 
 	self.repository.country = ['', 'SK', 'CZ', 'EN', 'DE', 'AU', 'HU', 'PL', 'FR'];
-	
+
 	self.repository.type = [
 		{ id: 0, name: '' },
 		{ id: 1, name: 'Developer' },

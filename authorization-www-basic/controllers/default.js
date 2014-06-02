@@ -5,7 +5,7 @@ exports.install = function(framework) {
 function authorization() {
 
 	var self = this;
-	var user = self.baa('This is secure area');
+	var user = self.baa('This is secured area');
 
 	if (user === null) {
 		// self.baa() automatically will send a response to an authentication.

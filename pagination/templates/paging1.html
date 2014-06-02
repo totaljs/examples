@@ -1,6 +1,6 @@
 <div class="mb5">Paging:</div>
 <div class="paging">
-	<!--
-	<a href="@{model.url}">@{model.page}</a>
-	-->
+	@{foreach}
+    	<a href="@{model.url}">@{model.page}</a>
+	@{end}
 </div>

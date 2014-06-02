@@ -1,5 +1,5 @@
 <ul>
-	<!--
-	<li><a href="{url}">{name}</a></li>
-	-->
+	@{foreach}
+	<li><a href="@{model.url}">@{model.name}</a></li>
+	@{end}
 </ul>

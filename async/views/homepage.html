@@ -18,7 +18,9 @@
 </head>
 <body>
 
-	@{!model.join('<br />')}
+	@{foreach m in model}
+		<div>@{m}</div>
+	@{end}
 
 </body>
 </html>

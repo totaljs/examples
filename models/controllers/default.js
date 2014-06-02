@@ -4,6 +4,6 @@ exports.install = function(framework) {
 
 function json_homepage() {
 	var self = this;
-	var user = self.model('user');
+	var user = MODEL('user');
 	self.json(user, true);
 }

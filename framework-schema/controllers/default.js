@@ -9,7 +9,7 @@ function plain_homepage() {
 	var self = this;
 
 	// send test request to /order/
-	utils.request(self.host('/order/'), 'POST', 'firstname=Peter&lastname=Sirka&email=petersirka@gmail.com&telephone=0903163302&address=&inject=1&inject=2&param=custom');
+	utils.request(self.host('/order/'), ['post'], { firstname: 'Peter', lastname: 'Sirka', email: 'petersirka@gmail.com', telephone: '0903163302', address: '', inject1: '', inject2: '', param: 'custom' });
 
 	self.plain('Show node.js console');
 }

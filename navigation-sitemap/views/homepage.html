@@ -16,5 +16,14 @@
 
 	@{template('sitemap', sitemap())}
 
+	<br />
+	<!-- OR -->
+	<br />
+
+	@{foreach m in sitemap()}
+		<div>@{m.name}, relative url: @{m.url}</div>
+	@{end}
+
+
 </body>
 </html>
