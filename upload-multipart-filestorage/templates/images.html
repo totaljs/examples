@@ -1,8 +1,8 @@
 <div><b>UPLOADED PICTURES:</b></div>
 <div>
-	<!--
-	<img src="/upload/{id}.{extension}" width="{width}" height="{height}" alt="{name}" />
-	-->
+	@{foreach}
+	<img src="/upload/@{model.id}.@{model.extension}" width="@{model.width}" height="@{model.height}" alt="@{model.name}" />
+	@{end}
 </div>
 <br />
 <hr />
