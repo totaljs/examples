@@ -1,4 +1,4 @@
 # Installation
 
 - `npm install passport`
-- `npm install passport-twitter'
+- `npm install passport-twitter`
