@@ -8,15 +8,15 @@ function TodoApp(){
 	var self = this;
 	self.todos = ko.observableArray([]);
 	self.newTodo = ko.observable("");
-	self.saveTodo = function (data, event) { 
+	self.saveTodo = function (data, event) {
         //if enter was pressed then save
         if (event.keyCode == 13) {
             self.todos.push(new Todo(self.newTodo()));
             self.newTodo("");
         }
         return true;
-    }   
+    };
 	self.clearCompleted = function(){
-    	self.todos.remove(function(todo) { return todo.completed() })
-    }
+    	self.todos.remove(function(todo) { return todo.completed() });
+    };
 }
