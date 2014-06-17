@@ -1,11 +1,12 @@
 exports.install = function(framework) {
+	framework.route('/users/', json_users);
 	framework.route('/', json_users, ['proxy']);
 };
 
 function json_users() {
-	
+
 	var self = this;
-	
+
 	var users = [
 		{ name: 'Peter', age: 30 },
 		{ name: 'Jano', age: 23 },
@@ -22,5 +23,5 @@ function json_users() {
 	});
 
 	self.json(output);
-	
+
 };

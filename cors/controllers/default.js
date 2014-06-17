@@ -8,7 +8,7 @@ function cors_time_preflight() {
 	var self = this;
 
 	if (!self.cors('*', ['GET'])) {
-		self.plain('Not allowed');
+		self.plain('NOT ALLOWED - OPTIONS - PREFLIGHT');
 		return;
 	}
 
