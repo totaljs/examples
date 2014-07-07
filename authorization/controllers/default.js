@@ -7,7 +7,7 @@ exports.install = function(framework) {
 
 function view_logged() {
 	var self = this;
-	self.plain('You are logged as {0}. To unlogged remove cookie __user or click http://{1}:{2}/logout/'.format(self.user.email, self.framework.ip, self.framework.port));
+	self.plain('You are logged as {0}. To unlogged remove cookie __user or click http://{1}:{2}/logout/'.format(self.user.email, framework.ip, framework.port));
 }
 
 function view_homepage() {
@@ -42,7 +42,7 @@ function json_homepage() {
 		self.database('users-logs').insert({ id: user.id, email: user.email, ip: self.req.ip, date: new Date() });
 
 		// save to cookie
-		self.res.cookie(self.config.cookie, self.framework.encrypt({ id: user.id, ip: self.req.ip }, 'user'), new Date().add('m', 5));
+		self.res.cookie(self.config.cookie, framework.encrypt({ id: user.id, ip: self.req.ip }, 'user'), new Date().add('m', 5));
 
 		// return result
 		self.json({ r: true });
