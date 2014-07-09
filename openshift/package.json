@@ -1,0 +1,28 @@
+{
+  "name": "OpenShift-Sample-App",
+  "version": "1.0.0",
+  "description": "OpenShift Sample Application",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "total.js",
+    "application",
+    "openshift"
+  ],
+  "author": {
+    "name": "Joe Conley",
+    "email": "josephpconley@gmail.com",
+    "url": "http://www.josephpconley.com"
+  },
+  "engines": {
+    "node": ">= 0.10.0",
+    "npm": ">= 1.3.0"
+  },
+  "dependencies": {
+	"total.js": "~1.5.3"
+  },
+  "scripts": {
+	"start": "node index.js $OPENSHIFT_NODEJS_PORT $OPENSHIFT_NODEJS_IP"
+  },
+  "main": "index.js"
+}
