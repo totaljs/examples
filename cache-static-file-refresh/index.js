@@ -1,7 +1,9 @@
-var framework = require('total.js');
-var http = require('http');
+// ===================================================
+// IMPORTANT: only for development
+// total.js - web application framework for node.js
+// http://www.totaljs.com
+// ===================================================
 
 // static cache works in release mode
-var debug = false;
 
-framework.run(http, debug);
+require('total.js').http('release');

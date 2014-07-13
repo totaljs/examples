@@ -4,15 +4,13 @@ exports.install = function(framework) {
 	framework.route('/', view_homepage);
 
 	// the number is maximum data receive
-	framework.route('/', view_homepage, ['upload'], 1024 * 1000 * 1000);
+	framework.route('/', view_homepage, { flags: ['upload'], length: 1024 * 1000 * 1000 });
 };
 
 function view_homepage() {
 
 	var self = this;
 	var model = { info: '...' };
-
-	self.repository.title = 'Templates';
 
 	var file = self.files[0];
 

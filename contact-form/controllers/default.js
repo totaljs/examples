@@ -9,11 +9,11 @@ function view_form() {
 
 function json_form() {
 
-	var self = this;	
+	var self = this;
 	var model = self.post;
 
 	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.validate
-	var error = self.validate(model, 'contactform');
+	var error = self.validate('contactform', model);
 
 	if (error.hasError()) {
 		self.json(error);

@@ -1,4 +1,9 @@
-@{!model.url}
+@{meta('Upload example')}
+
+@{if model.url}
+    @{!model.url}
+@{endif}
+
 <div style="background-color:#F0F0F0;padding:3px 10px">
 	Uploaded: <b style="color:black">@{model.info}</b>
 </div>

@@ -1,2 +1,3 @@
-twitter-key              : YOUR-KEY
-twitter-secret           : YOUR-SECRET
+twitter-key              : YOUR-API-KEY
+twitter-secret           : YOUR-API-SECRET
+twitter-callback         : http://127.0.0.1/login/twitter/callback/

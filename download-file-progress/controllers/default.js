@@ -3,7 +3,7 @@ var progress = {};
 
 exports.install = function(framework) {
 	framework.route('/', view_homepage);
-    framework.route('/', ['xhr'], json_percentage);
+    framework.route('/', json_percentage, ['xhr']);
     framework.route('/download/', file_download);
 };
 

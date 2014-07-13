@@ -42,7 +42,7 @@ function view_fn_cached() {
 		var dt = new Date();
 
 		// Documentation: http://docs.totaljs.com/FrameworkCache/#framework.cache.fn
-		fnSave(dt.format('dd.MM.yyyy - HH:mm:ss'), dt.add('m', 2));
+		fnSave(dt.format('dd.MM.yyyy - HH:mm:ss'), '2 minutes');
 
 	}, fnCallback);
 }

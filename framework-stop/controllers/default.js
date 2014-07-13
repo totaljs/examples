@@ -6,5 +6,5 @@ function view_stop() {
 	var self = this;
 
 	// stop server
-	self.framework.stop();
+	framework.stop();
 }

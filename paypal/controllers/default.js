@@ -9,22 +9,20 @@ exports.install = function(framework) {
 
 function view_homepage() {
 	var self = this;
-	self.layout('');
-	self.repository.title = 'Node.js PayPal Express Checkout';
 	self.view('homepage');
 }
 
 function redirect_payment() {
 	var self = this;
-	var payment = paypal.init(self.config['paypal-user'], self.config['paypal-password'], self.config['paypal-signature'], self.config['paypal-return'], self.config['paypal-cancel'], self.config.debug);
+	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), framework.isDebug);
 
 	var orderNumber = 100;
 	var price = 12.23;
 
 	payment.pay(orderNumber, price, 'support', 'EUR', function(err, url) {
-		
+
 		if (err) {
-			self.view500(err);
+			self.throw500(err);
 			return;
 		}
 
@@ -34,12 +32,12 @@ function redirect_payment() {
 
 function view_payment() {
 	var self = this;
-	var payment = paypal.init(self.config['paypal-user'], self.config['paypal-password'], self.config['paypal-signature'], self.config['paypal-return'], self.config['paypal-cancel'], self.config.debug);
-	
+	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), framework.isDebug);
+
 	payment.detail(self, function(err, data) {
-		
+
 		if (err) {
-			self.view500(err);
+			self.throw500(err);
 			return;
 		}
 

@@ -17,7 +17,7 @@ builders.schema('order', { products: '[product]', firstname: 'string(30)', lastn
 
 // Create schema validation
 // OR ... look into builders.schema('product') - alternative implementation
-builders.validation('order', function(name, value) {
+builders.validation('order', ['email', 'price', 'firstname', 'lastname', 'telephone', 'address', 'name'], function(name, value) {
 
 	switch (name) {
 		case 'email':
@@ -46,7 +46,7 @@ builders.schema('product', { name: 'string(30)', price: 'number' }, null, functi
 
 // builders.schema(name, definitions, [defaults], [validation])
 builders.schema('contactform', { name: 'string(30)', email: 'string(120)', message: 'string(8000)', ip: 'string', created: Date }, function(name) {
-	
+
 	if (name === 'created')
 		return new Date();
 
@@ -60,4 +60,5 @@ builders.schema('contactform', { name: 'string(30)', email: 'string(120)', messa
 	}
 });
 
-// Serve for controller.validation()
+// Valid only this properties for 'contactform'
+builders.validation('contactform', ['name', 'message', 'email']);

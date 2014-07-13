@@ -4,7 +4,7 @@ framework.onAuthorization = function(req, res, flags, callback) {
 	// or
 	// http://localhost:8000/?user=moderator
 
-	var get = req.data.get;
+	var get = req.query;
 
 	if (get.user === 'admin' || get.user === 'moderator') {
 

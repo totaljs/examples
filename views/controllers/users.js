@@ -5,7 +5,7 @@ exports.install = function(framework) {
 
 function view_users() {
 	var self = this;
-	self.repository.title = 'Users';
+    self.meta('Users');
 
 	// this view is loaded by the controller name: /views/users/index.html
 	self.view('index');
@@ -13,6 +13,6 @@ function view_users() {
 
 function view_users_admin() {
 	var self = this;
-	self.repository.title = 'Admin';
+    self.meta('Admin');
 	self.view('~admin');
 }

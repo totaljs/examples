@@ -1,7 +1,7 @@
-    var framework = require('total.js');
-var http = require('http');
+// ===================================================
+// IMPORTANT: only for development
+// total.js - web application framework for node.js
+// http://www.totaljs.com
+// ===================================================
 
-var port = 8000;
-var debug = true;
-
-framework.run(http, debug, port, '127.0.0.1');
+require('total.js').http('debug');

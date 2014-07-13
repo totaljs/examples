@@ -5,7 +5,7 @@ exports.install = function(framework) {
 function viewHomepage() {
 	var self = this;
 	var builder = [];
-	
+
 	// Documentation: http://docs.totaljs.com/Async/
 	self.await(function(complete) {
 
@@ -20,7 +20,7 @@ function viewHomepage() {
 	self.await(function(complete) {
 
 		// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.request
-		utils.request('https://www.expressjs.com', 'GET', null, function(err, data) {
+		utils.request('http://www.expressjs.com', 'GET', null, function(err, data) {
 			var output = err ? 'error' : data.length.toString();
 			builder.push('www.expressjs.com -> ' + output);
 			complete();
@@ -46,7 +46,7 @@ function viewHomepage() {
 			complete();
 		});
 	});
-	
+
 	// waiting for await('partial')
 	self.wait('waiting 1', 'partial', function(complete) {
 		console.log('waiting 1 complete');
@@ -61,7 +61,7 @@ function viewHomepage() {
 		setTimeout(function() {
 			complete();
 		}, 1000);
-	});	
+	});
 
 	/*
 		self.complete(function() {

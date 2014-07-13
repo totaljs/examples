@@ -1,8 +1,8 @@
-exports.init = function(framework) {
+exports.install = function(framework, options) {
 	framework.route('/', view_homepage);
 }
 
 function view_homepage() {
 	var self = this;
-	self.json(self.global.weather);
+	self.json(framework.global.weather);
 }

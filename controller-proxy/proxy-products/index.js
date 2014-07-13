@@ -1,5 +1,7 @@
-var framework = require('total.js');
-var http = require('http');
-var debug = true;
+// ===================================================
+// IMPORTANT: only for development
+// total.js - web application framework for node.js
+// http://www.totaljs.com
+// ===================================================
 
-framework.run(http, debug, 8002);
+require('total.js').http('debug');

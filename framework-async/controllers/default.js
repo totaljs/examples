@@ -1,7 +1,7 @@
 exports.install = function(framework) {
-	
+
 	framework.route('/', view_homepage);
-	framework.route('/', xhr_percentage, ['xhr']);	
+	framework.route('/', xhr_percentage, ['xhr']);
 	framework.file('*.jpg', static_file);
 };
 
@@ -13,7 +13,7 @@ function view_homepage() {
 function xhr_percentage() {
 
 	var self = this;
-	self.json({ percentage: self.framework.async.percentage });
+	self.json({ percentage: framework.async.percentage });
 
 }
 
@@ -23,11 +23,11 @@ function static_file(req, res, isValidation) {
 		return req.url.indexOf('pic') !== -1;
 
 	var self = this;
-	
+
 	self.async.await(function(next) {
-		
+
 		setTimeout(function() {
-		
+
 			self.responseFile(req, res, self.path.public('img/picture.jpg'));
 			next();
 

@@ -3,8 +3,6 @@
 // Look here: https://github.com/petersirka/total.js/tree/master/examples/framework-schema
 framework.onValidation = function(name, value) {
 
-	// this == controller
-
 	switch (name) {
 		case 'Email':
 			return utils.isEmail(value);

@@ -10,5 +10,5 @@ function viewHomepage() {
 	var self = this;
 
 	// self.framework.usage([detailed:bool default false])
-	self.json(self.framework.usage(true), true);
+	self.json(framework.usage(true), true);
 }

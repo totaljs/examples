@@ -11,7 +11,7 @@ function view_homepage() {
     self.database('test', function(err, client, done) {
 
         if(err != null) {
-            self.view500(err);
+            self.throw500(err);
             return;
         }
 
@@ -22,7 +22,7 @@ function view_homepage() {
             done();
 
             if (err != null) {
-                self.view500(err);
+                self.throw500(err);
                 return;
             }
 

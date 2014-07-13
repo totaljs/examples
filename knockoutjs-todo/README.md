@@ -1,4 +1,4 @@
-##knockout.js/total.js
+## knockout.js/total.js
 
 The obligatory TODO app featuring Knockout.js and total.js.
 

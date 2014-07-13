@@ -1,7 +1,7 @@
-// run in terminal: $ sudo node index
+// ===================================================
+// IMPORTANT: only for development
+// total.js - web application framework for node.js
+// http://www.totaljs.com
+// ===================================================
 
-var framework = require('total.js');
-var http = require('http');
-var debug = true;
-
-framework.run(http, debug);
+require('total.js').http('debug');

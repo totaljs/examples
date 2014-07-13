@@ -1,4 +1,5 @@
 // Documentation: http://docs.totaljs.com/Builders.SchemaBuilder/#builders.schema
+// builders.schema('schema name', { 'declaration' }, default_or_prepare_function_optional, [validation_function]);
 builders.schema('contactform', { Email: 'string(200)', Phone: 'string(40)', Message: 'string(10000)', Ip: 'string(60)', Created: 'date' }, function(name, isDefault) {
 	switch (name) {
 		case 'Email':
@@ -9,4 +10,14 @@ builders.schema('contactform', { Email: 'string(200)', Phone: 'string(40)', Mess
 });
 
 // Documentation: http://docs.totaljs.com/Builders.SchemaBuilder/#builders.validation
-builders.validation('contactform', ['Email', 'Message']);
+// builders.validateion('schema name', ['properties to validating'], validation_function);
+builders.validation('contactform', ['Email', 'Message'], function(name, value, path) {
+
+    switch (name) {
+        case 'Email':
+            return value.isEmail();
+        case 'Message':
+            return value.length > 0;
+    }
+
+});

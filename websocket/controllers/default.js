@@ -79,6 +79,8 @@ function socket_homepage() {
     // client.uri              : URI
     // client.ip               : IP
     // client.session          : empty object, you can modify this property
+    // client.user             : empty object, you can modify this property
+    // client.query            : get URL query parameters
 
     // client.cookie(name)	   : value
     // client.send(value)      : send message
@@ -90,6 +92,14 @@ function socket_homepage() {
 
 		client.send({ message: 'Hello {0}'.format(client.id) });
 		controller.send({ message: 'Connect new user: {0}\nOnline: {1}'.format(client.id, controller.online) }, [], [client.id]);
+
+        // or
+        /*
+        controller.send({ message: 'Some message' }, [], function(user) {
+            // filter
+            return user.id === client.id;
+        });
+        */
 
 	});
 
@@ -113,6 +123,7 @@ function socket_homepage() {
 
 		// send to all without this client
 		message.message = client.id + ': ' + message.message;
+        console.log(message);
 		controller.send(message);
 
 	});

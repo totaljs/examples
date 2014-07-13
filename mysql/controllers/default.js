@@ -11,7 +11,7 @@ function view_homepage() {
     self.database(function(err, connection){
 
         if(err != null) {
-            self.view500(err);
+            self.throw500(err);
             return;
         }
 

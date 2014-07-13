@@ -1,7 +1,0 @@
-<div class="mb5">Paging @{repository.page}/@{repository.count}:</div>
-<div class="paging">
-    @{foreach m in model}
-	   <a href="@{m.url}"@{if m.selected} class="selected"@{endif}>@{m.page}</a>
-	@{end}
-	<div>@{repository.items.format('### ###')} items</div>
-</div>

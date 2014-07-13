@@ -4,7 +4,7 @@ exports.install = function(framework) {
 
 function view_products() {
 	var self = this;
-	self.repository.title = 'Products';
+	self.meta('Products');
 
 	// this view is loaded by the controller name: /views/products/index.html
 	self.view('index');

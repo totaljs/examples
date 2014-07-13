@@ -1,10 +1,10 @@
 exports.install = function(framework) {
 	// Documentation: http://docs.totaljs.com/Framework/#framework.route
+	framework.route('/', view_homepage);
 	framework.route('/contact/', view_contact);
 	framework.route('/products/', view_products);
 	framework.route('/products/{category}/', view_products);
 	framework.route('/products/{category}/{subcategory}/', view_products);
-	framework.route('/', view_homepage);
 	framework.route('/{category}/', view_homepage);
 
 	// this route has a lower priority and it will be executed when:

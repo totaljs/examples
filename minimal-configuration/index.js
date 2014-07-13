@@ -1,21 +1,12 @@
-var framework = require('total.js');
-var http = require('http');
-var debug = true;
+// ===================================================
+// IMPORTANT: only for development
+// total.js - web application framework for node.js
+// http://www.totaljs.com
+// ===================================================
 
-framework.controller('test', function() {
+var framework = require('total.js').http('debug');
 
-	var controller = {
-		install: function(framework) {
-			framework.route('/', plain_homepage);
-		}
-	};
-
-	function plain_homepage() {
-		this.plain('THIS IS HOMEPAGE');
-	}
-
-	return controller;
-
+framework.route('/', function() {
+    var self = this;
+    self.plain('HOMEPAGE');
 });
-
-framework.run(http, debug);

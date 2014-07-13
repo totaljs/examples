@@ -4,9 +4,12 @@ exports.install = function(framework) {
 
 function plain_homepage() {
 	var self = this;
-	
+
 	var now = framework.functions.now();
-	var hello = framework.functions.hello();
+
+    // or
+
+    var hello = FUNCTION('hello')();
 
 	self.plain(now.format('dd.MM.yyyy - HH:mm:ss') + ' - ' + hello);
 }

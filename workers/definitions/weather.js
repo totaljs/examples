@@ -11,6 +11,7 @@ function refresh() {
 		framework.global.weather = obj;
 	});
 
+
 }
 
 setInterval(refresh, 5000);

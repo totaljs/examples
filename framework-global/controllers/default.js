@@ -5,6 +5,7 @@ exports.install = function(framework) {
 function view_homepage() {
 	var self = this;
 
+    // in some view: @{global.name}
 	self.json(self.global);
 
 	// or

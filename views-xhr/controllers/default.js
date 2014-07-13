@@ -10,5 +10,5 @@ function view_homepage() {
 
 function xhr_panel() {
 	var self = this;
-	self.view(self.post.choice);
+	self.view(self.body.choice);
 }

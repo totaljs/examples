@@ -1,7 +1,7 @@
 exports.install = function(framework) {
 	framework.route('/1/', test1);
 	framework.route('/2/', test2);
-	framework.route('/3/', test3);
+	framework.route('/3/', test3, ['post', 'json']);
 };
 
 exports.functions = {
@@ -24,5 +24,6 @@ function test2() {
 
 function test3() {
 	// throw error
-	this.plain('4');
+	var self = this;
+	self.json(self.body);
 }

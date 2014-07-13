@@ -15,7 +15,7 @@ function image_resize(req, res, isValidation) {
 	// generate response
 	// this === framework
 	// Documentation: http://docs.totaljs.com/Framework/#framework.responseImage
-	this.responseImage(req, res, this.path.public(req.url), function (image) {
+	framework.responseImage(req, res, this.path.public(req.url), function (image) {
 
 		// image === FrameworkImage
 		// http://docs.totaljs.com/FrameworkImage/

@@ -8,7 +8,7 @@ exports.install = function(framework) {
 
 function view_auto() {
 	var self = this;
-	
+
 	var language = self.req.language;
 	var lng = '';
 
@@ -25,23 +25,23 @@ function view_auto() {
 
 function view_SK() {
 	var self = this;
-	self.repository.title = 'Vitajte';
+	self.meta('Vitajte');
 	self.view('homepage-sk');
 }
 
 function view_CZ() {
 	var self = this;
-	self.repository.title = 'Vítejte';
+	self.meta('Vítejte');
 	self.view('homepage-cz');
 }
 
 function view_EN() {
 	var self = this;
-	self.repository.title = 'Welcome';
+	self.meta('Welcome');
 	self.view('homepage-en');
 }
 
 function view_message(language) {
 	var self = this;
-	self.json({ message: self.resource(language, 'message') });
+	self.json({ message: RESOURCE(language, 'message') });
 }

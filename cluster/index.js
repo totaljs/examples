@@ -16,8 +16,7 @@ if (!cluster.isMaster) {
 			framework.id = message.id;
 	});
 
-	framework.run(http, debug);	
-	console.log("http://{0}:{1}/".format(framework.ip, framework.port));
+    framework.http('debug');
 	return;
 }
 
@@ -27,7 +26,7 @@ for (var i = 0; i < numCPUs; i++) {
 
 	// Run framework
     var fork = cluster.fork();
-    
+
     fork.on('message', onMessage);
 
     // Send ID
@@ -39,4 +38,4 @@ function onMessage(message) {
 }
 
 // Use a terminal for testing:
-// $ siege -b -r 10 http://127.0.0.1:8004/
+// $ siege -b -r 10 http://127.0.0.1:8000/

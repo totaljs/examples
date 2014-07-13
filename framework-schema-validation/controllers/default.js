@@ -18,8 +18,11 @@ function post_order() {
 	var self = this;
 
 	// prepare request data into the model
-	var model = builders.prepare('order', self.post);
-	var validation = builders.validate('order', model);
+	var model = Builders.prepare('order', self.post);
+	var validation = Builders.validate('order', model);
+
+	// or
+	// var validation = self.validate('order', model);
 
 	validation.resource('default', 'prefix_');
 

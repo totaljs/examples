@@ -1,51 +1,34 @@
 framework.on('load', function() {
 
-	var self = this;
+	framework.middleware('A', function(req, res, next, options, controller) {
 
-	// middleware - global
-	self.middleware(function(complete) {
+		if (controller)
+			controller.repository.A = 'middleware - private - A';
 
-		// this middleware will be executed every request to the controller
-		// this === controller
+		next();
 
-		var self = this;
-
-		// self.req = Request
-		// self.res = Response
-
-		self.repository.A = 'middleware - global';
-
-		complete();
 	});
 
-	// middleware - private
-	self.middleware('B', function(complete) {
+	framework.middleware('B', function(req, res, next, options, controller) {
 
-		// this middleware will be executed if "controller route" will contains @middleware ['B']
-		// this === controller
-		var self = this;
+		console.log('B');
 
-		// self.req = Request
-		// self.res = Response
+		if (controller)
+			controller.repository.B = 'middleware - private - B';
 
-		self.repository.B = 'middleware - private - B';
+		next();
 
-		complete();
 	});
 
-	// middleware - private
-	self.middleware('C', function(complete) {
+	framework.middleware('C', function(req, res, next, options, controller) {
 
-		// this middleware will be executed if "controller route" will contains @middleware ['C']
-		// this === controller
-		var self = this;
+		console.log('C');
 
-		// self.req = Request
-		// self.res = Response
+		if (controller)
+			controller.repository.C = 'middleware - private - C';
 
-		self.repository.C = 'middleware - private - C';
+		next();
 
-		complete();
 	});
 
 });

@@ -4,7 +4,7 @@ exports.install = function(framework) {
 
 	// [+xhr] - you can execute "view_subpage" with request type: XMLHttpRequest or classic GET/HTTP
 	framework.route('/sub/', view_subpage, ['+xhr']);
-	
+
 	framework.route('/xhr/', xhr_example, ['xhr']);
 	framework.route('/xhr/post/', xhr_example, ['xhr', 'post']);
 
@@ -18,11 +18,8 @@ exports.install = function(framework) {
 	// Disable XSS protection
 	framework.route('/xss/', xss_example, ['xss']);
 
-	// This route is enabled in debug mode 
+	// This route is enabled in debug mode
 	framework.route('/debug/', debug_example, ['debug']);
-
-	// Prefix as the flag
-	framework.route('/', android_example, ['#android']);
 
 	framework.route('/myflag/', myflag_example, ['!myflag']);
 
@@ -60,7 +57,7 @@ function form_example() {
 // flags: xhr
 // Request header must contains XMLHttpRequest
 function xhr_example() {
-	this.plain('XHR - homepage');	
+	this.plain('XHR - homepage');
 }
 
 // flags: json
@@ -78,11 +75,6 @@ function upload_example() {
 // flags: debug
 function debug_example() {
 	this.plain('DEBUG MODE');
-}
-
-// flags: #android
-function android_example() {
-	this.plain('ANDROID');	
 }
 
 // flags: delete

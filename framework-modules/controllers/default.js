@@ -6,9 +6,12 @@ function view_homepage() {
 
 	var self = this;
 
-	// call module
+	// call a module
 	var now = self.module('utils').now();
-	var greeting = self.module('feedback').greeting('Thanks');
+
+    // or
+
+    var greeting = MODULE('feedback').greeting('Thanks');
 
 	self.plain('From module utils -> {0} ({1})'.format(now, greeting));
 }

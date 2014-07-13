@@ -19,7 +19,7 @@ function view_homepage() {
 	var errorBuilder = new builders.ErrorBuilder(resource);
 
 	// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.validate
-	if (utils.validate(self.post, ['FirstName', 'LastName', 'Age', 'Email', 'Terms'], onValidation, errorBuilder).hasError()) {
+	if (utils.validate(self.body, ['FirstName', 'LastName', 'Age', 'Email', 'Terms'], onValidation, errorBuilder).hasError()) {
 		self.json(errorBuilder);
 		return;
 	}

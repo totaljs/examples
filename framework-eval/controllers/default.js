@@ -12,6 +12,6 @@ function view_homepage() {
 
 function post_eval() {
 	var self = this;
-	self.framework.eval(self.post.text);
+	framework.eval(self.body.text);
 	self.json({ r: true });
 }

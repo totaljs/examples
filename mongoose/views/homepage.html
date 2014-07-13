@@ -20,7 +20,12 @@
 	<h1>Users</h1>
 	<br />
 	<div id="users">
-		@{template('users', model, 'empty')}
+		<ul>
+		@{foreach var m in model}
+			<li>@{model.alias} (@{model.created.format('dd.MM.yyyy')})</li>
+		@{end}
+		</ul>
+		<div>@{model.length} @{model.length.pluralize('users', 'user', 'users', 'users')}</div>
 	</div>
 	<br />
 	<hr />
@@ -39,14 +44,14 @@
 			if (e.keyCode === 13)
 				$('button').trigger('click');
 		});
-	
+
 		// CLICK
 		$('button').bind('click', function() {
 
 			var value = input.val();
-			
+
 			if (value.length === 0)
-				return;			
+				return;
 
 			$.post('/', { alias: value }, function(html) {
 				input.val('');
