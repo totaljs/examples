@@ -1,8 +1,13 @@
 var greeting = '';
 
-exports.install = function (framework) {
+exports.name = 'feedback';
+exports.version = '1.01';
+
+exports.install = function(framework, options) {
 
     framework.route('/feedback/', feedback);
+
+    // INSTALL('view', 'feedback-view', 'http://www.some-url.com/some-view.html');
 
     // create client side JavaScript
     // framework.fs.create.js('feedback.js', 'func' + 'tion feedback() { alert("I am feedback"); }');
@@ -15,12 +20,6 @@ exports.install = function (framework) {
 
     // create resource (must exists Resources directory)
     // framework.fs.create.resource('feedback', 'hello  : welcome in feedback resource');
-
-    // remove files
-    // framework.fs.rm.css('feedback');
-    // framework.fs.rm.js('feedback');
-    // framework.fs.rm.view('feedback');
-    // framework.fs.rm.resource('feedback');
 
     // get directory path
     // framework.path.public('image.jpg');
@@ -39,8 +38,19 @@ exports.install = function (framework) {
         // every request to controller call this event
         console.log(controller.req.ip);
     });
-
     */
+
+};
+
+exports.uninstall = function(framework, options) {
+
+    // routes are removed automatically
+
+    // remove files
+    // framework.fs.rm.css('feedback');
+    // framework.fs.rm.js('feedback');
+    // framework.fs.rm.view('feedback');
+    // framework.fs.rm.resource('feedback');
 
 };
 
