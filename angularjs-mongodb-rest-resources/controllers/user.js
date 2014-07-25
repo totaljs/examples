@@ -11,8 +11,12 @@ exports.install = function(framework) {
 	Output: JSON
 */
 function json_user_query() {
+
 	var self = this;
-	var User = self.model('user');
+
+	// self.model('user').Schema;
+	// framework.model('user').Schema;
+	var User = MODEL('user').Schema;
 
 	console.log('query -> all');
 
@@ -29,7 +33,10 @@ function json_user_query() {
 function json_user_get(id) {
 
 	var self = this;
-	var User = self.model('user');
+
+	// self.model('user').Schema;
+	// framework.model('user').Schema;
+	var User = MODEL('user').Schema;
 
 	console.log('get ->', id);
 
@@ -47,7 +54,10 @@ function json_user_get(id) {
 function json_user_save(id) {
 
 	var self = this;
-	var User = self.model('user');
+
+	// self.model('user').Schema;
+	// framework.model('user').Schema;
+	var User = MODEL('user').Schema;
 
 	console.log('save ->', id);
 
@@ -70,7 +80,10 @@ function json_user_save(id) {
 function json_user_delete(id) {
 
 	var self = this;
-	var User = self.model('user');
+
+	// self.model('user').Schema;
+	// framework.model('user').Schema;
+	var User = MODEL('user').Schema;
 
 	console.log('delete ->', id);
 
