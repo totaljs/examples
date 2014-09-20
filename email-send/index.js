@@ -18,6 +18,7 @@ mail.on('error', function (err) {
 
 // SEND via GMAIL
 // message.send('smtp.gmail.com', { port: 465, secure: true, user: 'ENTER_YOUR_EMAIL', password: 'ENTER_YOUR_PASSWORD' });
+// SOLUTION [Error: SELF_SIGNED_CERT_IN_CHAIN]: message.send('smtp.gmail.com', { port: 465, secure: true, user: 'ENTER_YOUR_EMAIL', password: 'ENTER_YOUR_PASSWORD', rejectUnauthorized: true });
 
 // SEND via AUTH BASIC SMTP
 // message.send('smtp.yourdomain.com', { user: 'ENTER_YOUR_EMAIL', password: 'ENTER_YOUR_PASSWORD' });
