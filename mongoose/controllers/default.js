@@ -22,7 +22,10 @@ function json_homepage() {
 	var User = MODEL('user').schema;
 	var model = self.body;
 
-	var user = new User({ alias: model.alias, created: new Date() }).save(function() {
+	var user = new User({ alias: model.alias, created: new Date() }).save(function(err) {
+
+		if (err)
+			return self.throw500(err);
 
 		// Read all users
 		User.find(function(err, users) {
