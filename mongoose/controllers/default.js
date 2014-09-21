@@ -7,7 +7,7 @@ exports.install = function(framework) {
 function view_homepage() {
 
 	var self = this;
-	var User = self.model('user');
+	var User = MODEL('user').schema;
 
 	User.find(function(err, users) {
 		self.view('homepage', users);
@@ -19,13 +19,14 @@ function view_homepage() {
 function json_homepage() {
 
 	var self = this;
-	var User = self.model('user');
-	var model = self.post;
+	var User = MODEL('user').schema;
+	var model = self.body;
 
 	var user = new User({ alias: model.alias, created: new Date() }).save(function() {
 
 		// Read all users
 		User.find(function(err, users) {
+
 			self.content(self.template('users', users), 'text/html');
 		});
 

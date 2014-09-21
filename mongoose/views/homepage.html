@@ -21,8 +21,10 @@
 	<br />
 	<div id="users">
 		<ul>
-		@{foreach var m in model}
-			<li>@{model.alias} (@{model.created.format('dd.MM.yyyy')})</li>
+		@{foreach m in model}
+			@{if m.alias}
+				<li>@{m.alias}</li>
+			@{endif}
 		@{end}
 		</ul>
 		<div>@{model.length} @{model.length.pluralize('users', 'user', 'users', 'users')}</div>
