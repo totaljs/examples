@@ -25,14 +25,10 @@ function json_homepage() {
 	var user = new User({ alias: model.alias, created: new Date() }).save(function(err) {
 
 		if (err)
-			return self.throw500(err);
+			self.throw500(err);
 
 		// Read all users
-		User.find(function(err, users) {
-
-			self.content(self.template('users', users), 'text/html');
-		});
-
+		User.find(self.callback());
 	});
 
 }
