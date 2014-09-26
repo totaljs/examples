@@ -23,12 +23,15 @@ app.factory('websocketService', ['$rootScope', '$timeout', function($rootScope, 
 	return {
 
 		login: function(url, username) {
+
+			_username = username;
+
 			_ws = new WebSocket(url);
 			_ws.onmessage = onMessage;
-			_username = username;
-			$timeout(function() {
+			_ws.onopen = function () {
 				_ws.send(encodeURIComponent(JSON.stringify({ type: 'change', message: _username })));
-			}, 500);
+			};
+
 		},
 
 		logoff: function() {
