@@ -5,7 +5,7 @@ exports.install = function(framework) {
 function plain_homepage() {
 	var self = this;
 
-	var layer = SOURCe('test');
+	var layer = SOURCE('test');
     // or INCLUDE('test')
 
 	self.plain(layer.hello());
