@@ -1,29 +1,33 @@
 exports.install = function(framework) {
 
 	framework.route('/', plain_homepage);
-	framework.route('/order/', post_order, ['post']);
+	framework.route('/order/', plain_order, ['post']);
 
 };
 
 function plain_homepage() {
 	var self = this;
 
-	// send test request to /order/
+	// send "test" request to /order/
 	utils.request(self.host('/order/'), ['post'], { firstname: 'Peter', lastname: 'Sirka', email: 'petersirka@gmail.com', telephone: '0903163302', address: '', inject1: '', inject2: '', param: 'custom' });
-
 	self.plain('Show node.js console');
 }
 
-function post_order() {
+function plain_order() {
+
 	var self = this;
+	var group = SCHEMA('eshop');
+
+	var order_schema = group.get('order');
+	var contactform_schema = group.get('contactform');
 
 	// validate request data
-	var validation = self.validate(self.post, 'order', 'prefix_');
+	var validation = order_schema.validate(self.body, 'prefix_');
 
 	// prepare request data into the model
-	var model = builders.prepare('order', self.post);
+	var model = order_schema.prepare(self.body);
 
-	console.log('Request data:\n', self.post);
+	console.log('Request data:\n', self.body);
 	console.log('');
 
 	if (validation.hasError()) {
@@ -37,8 +41,8 @@ function post_order() {
 	console.log('Model:\n', model);
 	console.log('');
 
-	console.log('Create a default schema - contactform:\n', builders.defaults('contactform'));
+	console.log('Create a default schema - contactform:\n', contactform_schema.create());
 	console.log('');
 
-	self.empty();
+	self.plain();
 }
