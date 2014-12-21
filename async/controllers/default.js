@@ -1,16 +1,14 @@
 exports.install = function(framework) {
-	framework.route('/', viewHomepage, ['+xhr']);
+	framework.route('/', view_index);
 };
 
-function viewHomepage() {
+function view_index() {
+
 	var self = this;
 	var builder = [];
 
-	// Documentation: http://docs.totaljs.com/Async/
 	self.await(function(complete) {
-
-		// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.request
-		utils.request('https://www.google.com', 'GET', null, function(err, data) {
+		utils.request('https://www.google.com', ['get'], null, function(err, data) {
 			var output = err ? 'error' : data.length.toString();
 			builder.push('www.google.com -> ' + output);
 			complete();
@@ -18,9 +16,7 @@ function viewHomepage() {
 	});
 
 	self.await(function(complete) {
-
-		// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.request
-		utils.request('http://www.expressjs.com', 'GET', null, function(err, data) {
+		utils.request('http://www.expressjs.com', ['get'], null, function(err, data) {
 			var output = err ? 'error' : data.length.toString();
 			builder.push('www.expressjs.com -> ' + output);
 			complete();
@@ -28,9 +24,7 @@ function viewHomepage() {
 	});
 
 	self.await(function(complete) {
-
-		// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.request
-		utils.request('http://www.yahoo.com', 'GET', null, function(err, data) {
+		utils.request('http://www.yahoo.com', ['get'], null, function(err, data) {
 			var output = err ? 'error' : data.length.toString();
 			builder.push('www.yahoo.com -> ' + output);
 			complete();
@@ -38,9 +32,7 @@ function viewHomepage() {
 	});
 
 	self.await('partial', function(complete) {
-
-		// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.request
-		utils.request('http://www.totaljs.com', 'GET', null, function(err, data) {
+		utils.request('http://www.totaljs.com', ['get'], null, function(err, data) {
 			var output = err ? 'error' : data.length.toString();
 			builder.push('www.totaljs.com -> ' + output);
 			complete();
@@ -64,8 +56,8 @@ function viewHomepage() {
 	});
 
 	/*
-		self.complete(function() {
-			self.view('homepage', builder);
+		self.run(function() {
+			self.view('index', builder);
 		});
 
 		or ...
@@ -74,5 +66,5 @@ function viewHomepage() {
 	if (self.xhr)
 		self.jsonAsync(builder);
 	else
-		self.viewAsync('homepage', builder);
+		self.viewAsync('index', builder);
 }
