@@ -13,7 +13,7 @@ function cookieWrite() {
 	var self = this;
 
 	// Documentation: http://docs.totaljs.com/Response.prototype/#Response.prototype.cookie
-	self.res.cookie('test1', 'value 1', new Date().add('day', 1));
+	self.res.cookie('test1', 'value 1', '2 days');
 	self.res.cookie('test2', 'value 2', new Date().add('day', 1));
 
 	// options.domain

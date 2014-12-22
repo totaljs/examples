@@ -4,12 +4,10 @@ exports.install = function(framework) {
 };
 
 function file_download() {
-	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.file
 	this.file('totaljs.pdf', 'logo.pdf');
 }
 
 function image_download() {
-	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.image
 	this.image('slovakia.jpg', function(image) {
 		image.resize('50%');
 		image.minify();
