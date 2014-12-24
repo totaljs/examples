@@ -1,12 +1,11 @@
-exports.install = function(framework) {
-	framework.route('/', viewHomepage);
+exports.install = function() {
+	framework.route('/', view_homepage);
 };
 
-function viewHomepage() {
+function view_homepage() {
 	var self = this;
 
-	// append <script type="text/javascript" src="test.js"></script> to head
+	// Appends <script type="text/javascript" src="test.js"></script> to head
 	self.head('test.js');
-
-	self.view('homepage');
+	self.view('index');
 }

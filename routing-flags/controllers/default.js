@@ -1,6 +1,6 @@
 exports.install = function(framework) {
 
-	framework.route('/', view_homepage);
+	framework.route('/', view_index);
 
 	// [+xhr] - you can execute "view_subpage" with request type: XMLHttpRequest or classic GET/HTTP
 	framework.route('/sub/', view_subpage, ['+xhr']);
@@ -40,7 +40,7 @@ function myflag_example() {
 	self.view404();
 };
 
-function view_homepage() {
+function view_index() {
 	this.plain('GET - homepage');
 }
 

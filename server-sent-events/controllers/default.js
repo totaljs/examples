@@ -1,12 +1,7 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
+exports.install = function() {
+	framework.route('/');
 	framework.route('/one-way-messaging/', view_SSE, ['sse']);
 };
-
-function view_homepage() {
-	var self = this;
-	self.view('homepage');
-}
 
 function view_SSE() {
 

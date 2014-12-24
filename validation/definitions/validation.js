@@ -1,6 +1,4 @@
-
 // Global validation
-// Look here: https://github.com/petersirka/total.js/tree/master/examples/framework-schema
 framework.onValidation = function(name, value) {
 
 	switch (name) {

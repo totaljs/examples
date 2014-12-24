@@ -33,7 +33,7 @@ for (var i = 0; i < numCPUs; i++) {
     fork.send({ type: 'id', id: i });
 }
 
-console.log('Cluster is running.');
+console.log('The cluster is running.');
 
 function onMessage(message) {
 	console.log('Message ->', message);

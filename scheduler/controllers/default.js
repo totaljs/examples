@@ -1,7 +1,7 @@
 var counter = 0;
 
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
+exports.install = function() {
+	framework.route('/', plain_index);
 
 	// This event is triggered every 60 seconds.
 
@@ -12,14 +12,12 @@ exports.install = function(framework) {
 	// or
 
 	/*
-
 	setInterval(function() {
 		counter++;
 	}, 1000);
-
 	*/
 };
 
-function view_homepage() {
-	this.plain('Scheduler ran: ' + counter);
+function plain_index() {
+	this.plain('Scheduler run counter: ' + counter);
 }
