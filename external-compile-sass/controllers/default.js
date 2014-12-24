@@ -1,7 +1,3 @@
 exports.install = function(framework) {
-	framework.route('/', view_homepage);
+	framework.route('/');
 };
-
-function view_homepage() {
-	this.view('homepage');
-}

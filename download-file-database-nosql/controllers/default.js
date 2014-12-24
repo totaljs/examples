@@ -26,12 +26,15 @@ function static_image(req, res, isValidation) {
     var db = self.database('images');
     var id = req.uri.pathname.replace('/', '').replace('.png', '');
 
-    // check client cache via etag
+    // Check the client cache via etag
     // if not modified - framework send automatically 304
     // id === etag
-    //if (self.notModified(req, res, id))
-        //return;
-
+   
+    /*
+    if (self.notModified(req, res, id))
+        return;
+    */
+   
     db.binary.read(id, function(err, stream, header) {
 
         if (err) {
@@ -41,10 +44,7 @@ function static_image(req, res, isValidation) {
 
         // Set HTTP cache via etag
         // Documentation: http://docs.totaljs.com/Framework/#framework.setModified
-        //self.setModified(req, res, id);
-
-        // Documentation: http://docs.totaljs.com/Framework/#framework.responseStream
-        // self.responseStream(req, res, 'image/png', stream);
+        // self.setModified(req, res, id);
 
         // Documentation: http://docs.totaljs.com/Framework/#framework.responseImage
         self.responseImage(req, res, stream, function(image) {
@@ -52,5 +52,8 @@ function static_image(req, res, isValidation) {
             image.output('png');
             image.minify();
         });
+
+        // or
+        // self.responseStream(req, res, 'image/png', stream);
     });
 }

@@ -1,9 +1,8 @@
 exports.install = function(framework) {
-
-	framework.route('/', view_homepage);
+	framework.route('/', view_index);
 };
 
-function view_homepage() {
+function view_index() {
 	var self = this;
 
 	// This function does the same as require (only adds path to the source directory)
