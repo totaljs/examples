@@ -1,3 +1,3 @@
 framework.on('load', function() {
-	framework.install('config', 'http://www.totaljs.com/inject-config.txt');
+	framework.install('config', 'https://www.totaljs.com/examples/inject-config.txt');
 });

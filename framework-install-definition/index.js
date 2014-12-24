@@ -7,5 +7,5 @@
 var framework = require('total.js').http('debug');
 
 framework.on('load', function() {
-    framework.install('definition', 'http://www.totaljs.com/inject-definition.js');
+    framework.install('definition', 'https://www.totaljs.com/examples/inject-definition.js');
 });

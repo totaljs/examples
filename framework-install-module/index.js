@@ -7,5 +7,5 @@
 var framework = require('total.js').http('debug');
 
 framework.on('load', function() {
-    framework.install('module', 'http://www.totaljs.com/inject-module.js');
+    framework.install('module', 'https://www.totaljs.com/examples/inject-module.js');
 });
