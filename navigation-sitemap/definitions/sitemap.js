@@ -1,6 +1,6 @@
 
-framework.on('controller', function(self, name) {	
+framework.on('controller', function(controller, name) {	
 	// set default value for each request to controller
-	self.repository.sitemap = [{ url: '/', name: 'Homepage' }];
-	self.layout('');
+	controller.repository.sitemap = [{ url: '/', name: 'Homepage' }];
+	controller.layout('');
 });

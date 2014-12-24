@@ -1,16 +1,15 @@
 exports.install = function(framework) {
-	framework.route('/', view_homepage);
+	framework.route('/', view_index);
 };
 
-function view_homepage() {
-	var self = this;	
-	
+function view_index() {
+	var self = this;
+
 	var products = 1000;
-	var page = 10;
+	var page = (self.query.page || '10').parseInt();
 	var perpage = 20;
 
-	// Documentation: http://127.0.0.1:8001/Builders.Pagination/#Pagination
 	var pagination = new builders.Pagination(products, page, perpage, '?page={0}');
-	
-	self.view('homepage', pagination);
+
+	self.view('index', pagination);
 }

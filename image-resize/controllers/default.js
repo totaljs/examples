@@ -1,26 +1,20 @@
 var path = require('path');
 
 exports.install = function(framework) {
-	framework.route('/', view_homepage);
+	framework.route('/', view_index);
 
 	// the number is maximum data receive
-	framework.route('/', view_homepage, { flags: ['upload'], length: 1024 * 1000 * 1000 });
+	framework.route('/', view_index, ['upload'], 100); // max 100 kB
 };
 
-function view_homepage() {
+function view_index() {
 
 	var self = this;
 	var model = { info: '...' };
 
 	var file = self.files[0];
-
-	if (self.files.length === 0) {
-		self.view('homepage', model);
-		return;
-	}
-
-	if (!file.isImage()) {
-		self.view('homepage', model);
+	if (self.files.length === 0 || !file.isImage()) {
+		self.view('index', model);
 		return;
 	}
 
@@ -63,10 +57,8 @@ function view_homepage() {
 	// IMPORTANT: see here https://github.com/petersirka/total.js/tree/master/examples/routing
 
 	image.resizeCenter(300, 300).save(filename, function(err, filename) {
-
 		model.url = '<div><img src="/{0}?ts={1}" width="300" height="300" alt="Uploaded image" /></div><br />'.format(path.basename(filename), new Date().getTime());
-		self.view('homepage', model);
-
+		self.view('index', model);
 	});
 
 }

@@ -2,15 +2,10 @@
 var paypal = require('paypal-express-checkout');
 
 exports.install = function(framework) {
-	framework.route('/', view_homepage);
+	framework.route('/');
 	framework.route('/pay/', redirect_payment);
 	framework.route('/paypal/ok/', view_payment);
 };
-
-function view_homepage() {
-	var self = this;
-	self.view('homepage');
-}
 
 function redirect_payment() {
 	var self = this;

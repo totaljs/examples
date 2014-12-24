@@ -1,34 +1,12 @@
 exports.install = function(framework) {
-	framework.route('/', view_homepage);
-	framework.route('/', json_homepage, ['xhr', 'post']);
+	framework.route('/', view_index);
 };
 
 // Read all users
-function view_homepage() {
-
+function view_index() {
 	var self = this;
-	var User = self.model('user');
-
+	var User = MODEL('user');
 	User.find(function(err, users) {
-		self.view('homepage', users);
+		self.view('index', users);
 	});
-
-}
-
-// Add a new user
-function json_homepage() {
-
-	var self = this;
-	var User = self.model('user');
-	var model = self.post;
-
-	var user = new User({ alias: model.alias, created: new Date() }).save(function() {
-
-		// Read all users
-		User.find(function(err, users) {
-			self.content(self.template('users', users), 'text/html');
-		});
-
-	});
-
 }

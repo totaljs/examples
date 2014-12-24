@@ -1,7 +1,9 @@
+@{layout('')}
+
 <!DOCTYPE html>
 <html>
 <head>
-    @{meta}
+    <title>Users</title>
     <meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=10" />
 	<meta name="format-detection" content="telephone=no"/>
@@ -11,34 +13,14 @@
 	<style type="text/css">
 		body { padding: 50px; margin: 0; font:normal 12px Arial; color: gray }
 		a { float:left; margin: 0 5px 0 0; font-size: 13px; }
-		div { height: 20px; padding: 0 5px; font-size: 11px; }
 		p { background-color: #F0F0F0; padding: 5px; font:bold 15px Arial; }
 	</style>
 </head>
 <body>
-
-	<div>
-		<a href="/sk/">SK</a>
-		<a href="/cz/">CZ</a>
-		<a href="/en/">EN</a>
-	</div>
+	<h1>Users</h1>
 	<br />
-
-	<p>@{body}</p>
-
-	<div>Message: <span>&hellip;</span></div>
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-			setTimeout(function() {
-				$.get(window.location.pathname + 'message/', function(d) {
-					$('span').html(d.message);
-				});
-			}, 1000);
-
-		});
-	</script>
-
+	<div id="users">
+		@{view('users', model)}
+	</div>
 </body>
 </html>

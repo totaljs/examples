@@ -3,15 +3,15 @@
  * @version 1.0.1
  */
 
-exports.install = function(framework) {
-    framework.install('/', view_homepage);
+exports.install = function() {
+    framework.install('/', view_index);
 };
 
 /**
  * Homepage (GET)
  * @return {View}
  */
-function view_homepage() {
+function view_index() {
     var self = this;
 
     /** @todo: NOT IMPLEMENTED **/
