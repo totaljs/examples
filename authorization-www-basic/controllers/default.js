@@ -9,7 +9,7 @@ function authorization() {
 
 	if (auth.empty) {
 		self.baa('This is secured area');
-		// self.baa() sends the response automatically.
+		// It sends the response automatically.
 		return;
 	}
 
