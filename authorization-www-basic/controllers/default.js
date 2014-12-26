@@ -14,7 +14,8 @@ function authorization() {
 	}
 
 	if (auth.user !== 'peter' || auth.password !== '123456') {
-		self.view401();
+		self.baa('Wrong credentials, this is secured area:');
+		// or self.view401();
 		return;
 	}
 
