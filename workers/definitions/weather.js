@@ -1,7 +1,4 @@
-
 function refresh() {
-
-	// Documentation: http://docs.totaljs.com/Framework/#framework.worker
 	// workers/weather.js will runs in other process
 	var worker = framework.worker('weather', 'current', 5000);
 
@@ -10,8 +7,6 @@ function refresh() {
 		// console.log(obj);
 		framework.global.weather = obj;
 	});
-
-
 }
 
 setInterval(refresh, 5000);

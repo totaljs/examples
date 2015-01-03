@@ -3,6 +3,17 @@ exports.install = function(framework) {
 	framework.route('/', json_registration, ['post']);
 };
 
+function codelist(controller) {
+	controller.repository.country = ['', 'SK', 'CZ', 'EN', 'DE', 'AU', 'HU', 'PL', 'FR'];
+	controller.repository.type = [
+		{ id: 0, name: '' },
+		{ id: 1, name: 'Developer' },
+		{ id: 2, name: 'Webdesigner' },
+		{ id: 3, name: 'Copywriter' },
+		{ id: 4, name: 'Consultant' }
+	];
+}
+
 function view_registration() {
 	var self = this;
 
@@ -16,15 +27,7 @@ function view_registration() {
 		terms: true
 	};
 
-	self.repository.country = ['', 'SK', 'CZ', 'EN', 'DE', 'AU', 'HU', 'PL', 'FR'];
-	self.repository.type = [
-		{ id: 0, name: '' },
-		{ id: 1, name: 'Developer' },
-		{ id: 2, name: 'Webdesigner' },
-		{ id: 3, name: 'Copywriter' },
-		{ id: 4, name: 'Consultant' }
-	];
-
+	codelist(self);
 	self.view('registration', model);
 }
 
@@ -32,17 +35,7 @@ function view_registration() {
 // METHOD: POST
 function json_registration() {
 	var self = this;
-
-	self.repository.country = ['', 'SK', 'CZ', 'EN', 'DE', 'AU', 'HU', 'PL', 'FR'];
-
-	self.repository.type = [
-		{ id: 0, name: '' },
-		{ id: 1, name: 'Developer' },
-		{ id: 2, name: 'Webdesigner' },
-		{ id: 3, name: 'Copywriter' },
-		{ id: 4, name: 'Consultant' }
-	];
-
+	codelist(self);
 	self.repository.isSuccess = true;
-	self.view('registration', self.post);
+	self.view('registration', self.body);
 }

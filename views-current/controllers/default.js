@@ -1,12 +1,7 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
+exports.install = function() {
+	framework.route('/');
 	framework.route('/sub/', view_subpage);
 };
-
-function view_homepage() {
-	var self = this;
-	self.view('homepage');
-}
 
 function view_subpage() {
 

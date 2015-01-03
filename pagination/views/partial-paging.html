@@ -3,5 +3,5 @@
     @{foreach m in model.render()}
        <a href="@{m.url}"@{if m.selected} class="selected"@{endif}>@{m.page}</a>
     @{end}
-    <div>@{model.items.format('### ###')} items</div>
+    <div>@{model.items.format(0)} @{model.items.pluralize('pages', 'page', 'pages', 'pages')}</div>
 </div>

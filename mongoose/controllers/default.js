@@ -1,17 +1,20 @@
 exports.install = function(framework) {
-	framework.route('/', view_homepage);
-	framework.route('/', json_homepage, ['xhr', 'post']);
+	framework.route('/', view_index);
 };
 
 // Read all users
-function view_homepage() {
-
+function view_index() {
 	var self = this;
+<<<<<<< HEAD
 	var User = MODEL('user').schema;
 
+=======
+	var User = MODEL('user');
+>>>>>>> origin/v1.7.0
 	User.find(function(err, users) {
-		self.view('homepage', users);
+		self.view('index', users);
 	});
+<<<<<<< HEAD
 
 }
 
@@ -31,4 +34,6 @@ function json_homepage() {
 		User.find(self.callback());
 	});
 
+=======
+>>>>>>> origin/v1.7.0
 }

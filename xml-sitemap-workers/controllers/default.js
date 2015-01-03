@@ -1,12 +1,12 @@
 var isGenerating = false;
 var isGenerated = false;
 
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
+exports.install = function() {
+	framework.route('/', view_index);
 	framework.file('sitemap.xml', file_xml);
 }
 
-function view_homepage() {
+function view_index() {
 	var self = this;
 	self.plain(self.hostname('sitemap.xml'));
 }

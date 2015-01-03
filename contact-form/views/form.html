@@ -44,7 +44,7 @@
 			$('button').bind('click', function() {
 				$.post('/', $('#f').serialize(), function(d) {
 					var err = $('#error');
-				
+
 					if (d instanceof Array) {
 
 						err.empty();
@@ -58,7 +58,7 @@
 					$('#f').trigger('reset');
 					err.empty();
 					err.show().html('THANKS! Look to /databases/ directory')
-				
+
 				});
 			});
 		});

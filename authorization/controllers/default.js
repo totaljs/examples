@@ -1,4 +1,4 @@
-exports.install = function(framework) {
+exports.install = function() {
 	framework.route('/', view_logged, ['authorize']);
 	framework.route('/', view_homepage);
 	framework.route('/', json_homepage, ['xhr', 'post']);
@@ -41,10 +41,10 @@ function json_homepage() {
 
 		self.database('users-logs').insert({ id: user.id, email: user.email, ip: self.req.ip, date: new Date() });
 
-		// save to cookie
+		// Save to cookie
 		self.res.cookie(self.config.cookie, framework.encrypt({ id: user.id, ip: self.req.ip }, 'user'), new Date().add('m', 5));
 
-		// return result
+		// Return result
 		self.json({ r: true });
 	});
 }

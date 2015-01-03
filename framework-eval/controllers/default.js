@@ -1,13 +1,12 @@
 exports.install = function(framework) {
-
-	framework.route('/', view_homepage);
+	framework.route('/', view_index);
 	framework.route('/eval/', post_eval, ['post']);
 
 };
 
-function view_homepage() {
+function view_index() {
 	var self = this;
-	self.view('homepage', { text: 'console.log(\'from client side ...\');' });
+	self.view('index', { text: 'console.log(\'from client side ...\');' });
 }
 
 function post_eval() {

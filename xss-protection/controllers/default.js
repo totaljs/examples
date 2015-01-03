@@ -9,7 +9,7 @@ exports.install = function(framework) {
 function view400() {
 	var self = this;
 
-	if (self.flags.indexOf('xss') === -1) {
+	if (self.req.flags.indexOf('xss') === -1) {
 		self.plain('400');
 		return;
 	}

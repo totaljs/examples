@@ -1,8 +1,8 @@
 exports.install = function(framework) {
-	framework.route('/', plain_homepage);
+	framework.route('/', plain_index);
 };
 
-function plain_homepage() {
+function plain_index() {
 	var self = this;
 
 	var layer = SOURCE('test');

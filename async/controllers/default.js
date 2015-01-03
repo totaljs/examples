@@ -1,46 +1,39 @@
-exports.install = function(framework) {
-	framework.route('/', viewHomepage, ['+xhr']);
+exports.install = function() {
+	framework.route('/', view_index);
 };
 
-function viewHomepage() {
+function view_index() {
+
 	var self = this;
 	var builder = [];
+	var async = new Utils.Async();
 
-	// Documentation: http://docs.totaljs.com/Async/
-	self.await(function(complete) {
-
-		// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.request
-		utils.request('https://www.google.com', 'GET', null, function(err, data) {
+	async.await(function(complete) {
+		utils.request('https://www.google.com', ['get'], null, function(err, data) {
 			var output = err ? 'error' : data.length.toString();
 			builder.push('www.google.com -> ' + output);
 			complete();
 		});
 	});
 
-	self.await(function(complete) {
-
-		// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.request
-		utils.request('http://www.expressjs.com', 'GET', null, function(err, data) {
+	async.await(function(complete) {
+		utils.request('http://www.expressjs.com', ['get'], null, function(err, data) {
 			var output = err ? 'error' : data.length.toString();
 			builder.push('www.expressjs.com -> ' + output);
 			complete();
 		});
 	});
 
-	self.await(function(complete) {
-
-		// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.request
-		utils.request('http://www.yahoo.com', 'GET', null, function(err, data) {
+	async.await(function(complete) {
+		utils.request('http://www.yahoo.com', ['get'], null, function(err, data) {
 			var output = err ? 'error' : data.length.toString();
 			builder.push('www.yahoo.com -> ' + output);
 			complete();
 		});
 	});
 
-	self.await('partial', function(complete) {
-
-		// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.request
-		utils.request('http://www.totaljs.com', 'GET', null, function(err, data) {
+	async.await('partial', function(complete) {
+		utils.request('http://www.totaljs.com', ['get'], null, function(err, data) {
 			var output = err ? 'error' : data.length.toString();
 			builder.push('www.totaljs.com -> ' + output);
 			complete();
@@ -48,7 +41,7 @@ function viewHomepage() {
 	});
 
 	// waiting for await('partial')
-	self.wait('waiting 1', 'partial', function(complete) {
+	async.wait('waiting 1', 'partial', function(complete) {
 		console.log('waiting 1 complete');
 		setTimeout(function() {
 			complete();
@@ -56,23 +49,19 @@ function viewHomepage() {
 	});
 
 	// waiting for wait('waiting')
-	self.wait('waiting 2', 'waiting 1', function(complete) {
+	async.wait('waiting 2', 'waiting 1', function(complete) {
 		console.log('waiting 2 complete');
 		setTimeout(function() {
 			complete();
 		}, 1000);
 	});
 
-	/*
-		self.complete(function() {
-			self.view('homepage', builder);
-		});
 
-		or ...
-	*/
+	async.run(function() {
 
-	if (self.xhr)
-		self.jsonAsync(builder);
-	else
-		self.viewAsync('homepage', builder);
+		if (self.xhr)
+			return self.json(builder);
+		self.view('index', builder);
+	});
+
 }

@@ -1,4 +1,4 @@
-exports.install = function(framework) {
+exports.install = function() {
 	framework.route('/', view_homepage);
 	framework.route('/dynamic/date/', view_dynamic_modified);
 	framework.route('/dynamic/etag/', view_dynamic_etag);
@@ -24,8 +24,8 @@ function view_dynamic_modified() {
 	// Check header
 	//
 	// @date {Date} :: optional, default: new Date()
-	// @strict {Boolean} :: optional, default: false	
-	// 
+	// @strict {Boolean} :: optional, default: false
+	//
 	// if @strict === false then header['if-modified-since'] > @date return 304
 	// if @strict === true then header['if-modified-since'] === @date return 304
 	//
@@ -45,8 +45,8 @@ function view_modified() {
 	// Check header
 	//
 	// @date {Date} :: optional, default: new Date()
-	// @strict {Boolean} :: optional, default: false	
-	// 
+	// @strict {Boolean} :: optional, default: false
+	//
 	// if @strict === false then header['if-modified-since'] > @date return 304
 	// if @strict === true then header['if-modified-since'] === @date return 304
 	//

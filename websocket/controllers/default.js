@@ -1,27 +1,20 @@
 exports.install = function(framework) {
-	framework.route('/', view_homepage);
+	framework.route('/');
 	framework.route('/usage/', view_usage);
 
-	// Documentation: http://docs.totaljs.com/Framework/#framework.websocket
 	framework.websocket('/', socket_homepage, ['json']);
 
 	// framework.websocket('/chat/', socket_homepage, ['json'], ['chat']);
-
 	// framework.websocket('/chat/private/', socket_private_homepage, ['json'], ['privatechat'], ['*']);
 	// framework.websocket('/chat/private/sex/', socket_sex_homepage, ['json'], ['privatechat', 'sexchat'], ['www.totaljs.com', 'eshop.totaljs.com', 'blog.totaljs.com']);
 
-	// client side:
+	// On client side:
 	// new WebSocket('ws://127.0.0.1:8004/', 'privatechat');
 };
 
 function view_usage() {
 	var self = this;
 	self.plain(self.framework.usage(true));
-}
-
-function view_homepage() {
-	var self = this;
-	self.view('homepage');
 }
 
 function socket_homepage() {
@@ -128,12 +121,6 @@ function socket_homepage() {
 
 	});
 
-	controller.on('error', function(error, client) {
-
-		framework.error(error, 'websocket', controller.uri);
-
-	});
-
-	// how many connections?
+	// How many connections are opened?
 	// controller.online;
 }

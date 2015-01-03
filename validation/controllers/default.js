@@ -8,15 +8,14 @@ function view_homepage() {
 
 	if (!self.xhr) {
 		self.meta('Validation example');
-		self.view('homepage', { LoginName: '@' });
+		self.view('index', { LoginName: '@' });
 		return;
 	}
 
 	// Look here: https://github.com/totaljs/examples/tree/master/framework-schema-validation
-	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.validate
 	var result = self.validate(self.post, ['FirstName', 'LastName', 'Age', 'Email', 'Terms'], 'Form');
 
-	// Documentation: http://docs.totaljs.com/Builders.ErrorBuilder/
+	// Documentation: ErrorBuilder
 	if (result.hasError()) {
 		result.replace('@Email', self.post.Email);
 		self.json(result);

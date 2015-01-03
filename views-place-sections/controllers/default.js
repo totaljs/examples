@@ -1,11 +1,9 @@
-exports.install = function(framework) {
-	framework.route('/', viewHomepage);
+exports.install = function() {
+	framework.route('/', view_index);
 };
 
-function viewHomepage() {
+function view_index() {
 	var self = this;
-
 	self.place('scripts', '<script>alert("FROM CONTROLLER");</script>');
-	self.view('homepage');
-
+	self.view('index');
 }

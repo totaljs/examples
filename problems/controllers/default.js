@@ -8,7 +8,7 @@ framework.route('/', function () {
 	if (self.user === null)
 		self.problem('User is offline.');
 
-	self.plain('homepage');
+	self.plain('index');
 
 });
 

@@ -7,5 +7,9 @@
 var framework = require('total.js').http('debug');
 
 framework.on('load', function() {
+<<<<<<< HEAD
     framework.install('controller', 'https://www.totaljs.com/inject-controller.js');
+=======
+    framework.install('controller', 'https://www.totaljs.com/examples/inject-controller.js');
+>>>>>>> origin/v1.7.0
 });

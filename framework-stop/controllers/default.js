@@ -1,10 +1,8 @@
 exports.install = function(framework) {
-	framework.route('/', view_stop);
+	framework.route('/', stop);
 };
 
-function view_stop() {
-	var self = this;
-
+function stop() {
 	// stop server
 	framework.stop();
 }

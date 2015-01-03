@@ -1,23 +1,32 @@
-// Documentation: http://docs.totaljs.com/Builders.SchemaBuilder/#builders.schema
-// builders.schema('schema name', { 'declaration' }, default_or_prepare_function_optional, [validation_function]);
-builders.schema('contactform', { Email: 'string(200)', Phone: 'string(40)', Message: 'string(10000)', Ip: 'string(60)', Created: 'date' }, function(name, isDefault) {
-	switch (name) {
-		case 'Email':
-			return '@';
-		case 'Created':
-			return new Date();
-	}
+var ContactForm = Builders.schema('web').create('ContactForm');
+
+ContactForm.define('Email', 'string(200)', true);
+ContactForm.define('Phone', 'string(40)');
+ContactForm.define('Message', 'string(10000)', true);
+ContactForm.define('Ip', 'string(60)');
+ContactForm.define('Created', Date);
+
+ContactForm.setDefault(function(name) {
+    switch (name) {
+        case 'Email':
+            return '@';
+        case 'Phone':
+            return '+421';
+        case 'Created':
+            return new Date();
+    }
 });
 
-// Documentation: http://docs.totaljs.com/Builders.SchemaBuilder/#builders.validation
-// builders.validateion('schema name', ['properties to validating'], validation_function);
-builders.validation('contactform', ['Email', 'Message'], function(name, value, path) {
-
+ContactForm.setValidation(function(name, value) {
     switch (name) {
         case 'Email':
             return value.isEmail();
         case 'Message':
             return value.length > 0;
     }
+});
 
+ContactForm.setSave(function(error, model, helper, next) {
+    DATABASE('contactform').insert(model);
+    next({ r: true });
 });

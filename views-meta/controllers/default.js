@@ -1,21 +1,11 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
-	framework.route('/controller/', view_homepage_controller);
-	framework.route('/custom/', view_custom);
+exports.install = function() {
+	framework.route('/');
+	framework.route('/controller/', view_index_controller);
+	framework.route('/custom/');
 	framework.route('/controller/custom/', view_custom_controller);
 };
 
-function view_homepage() {
-	var self = this;
-	self.view('homepage');
-}
-
-function view_custom() {
-	var self = this;
-	self.view('custom');
-}
-
-function view_homepage_controller() {
+function view_index_controller() {
 	var self = this;
 
 	self.meta('title controller', 'description controller', 'keywords controller');
@@ -23,10 +13,10 @@ function view_homepage_controller() {
 	// self.meta('title controller', 'description controller', 'keywords', 'meta image_src');
 
 	// ===========================================================================
-	// look at example: framework-custom
+	// look into the example: framework-custom
 	// ===========================================================================
 
-	self.view('homepage-controller');
+	self.view('index-controller');
 }
 
 function view_custom_controller() {

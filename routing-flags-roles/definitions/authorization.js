@@ -10,7 +10,6 @@ framework.onAuthorization = function(req, res, flags, callback) {
 
 		// I add role flag
 		flags.push('@' + get.user);
-
 		callback(true);
 	}
 	else

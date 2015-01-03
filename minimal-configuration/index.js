@@ -7,6 +7,5 @@
 var framework = require('total.js').http('debug');
 
 framework.route('/', function() {
-    var self = this;
-    self.plain('HOMEPAGE');
+    this.plain('total.js');
 });

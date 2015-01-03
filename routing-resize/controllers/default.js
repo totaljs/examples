@@ -1,4 +1,3 @@
-framework.route('/', function() {
-	var self = this;
-	self.view('homepage');
-});
+exports.install = function() {
+	framework.route('/');
+};

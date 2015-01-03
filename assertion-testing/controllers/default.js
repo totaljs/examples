@@ -1,4 +1,4 @@
-exports.install = function(framework) {
+exports.install = function() {
 	framework.route('/1/', test1);
 	framework.route('/2/', test2);
 	framework.route('/3/', test3, ['post', 'json']);
@@ -16,7 +16,7 @@ function test1() {
 
 function test2() {
 	/*
-	if (this.isTest)
+	if (TEST)
 		console.log('IS TEST');
 	*/
 	this.plain('2');

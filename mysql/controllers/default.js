@@ -1,14 +1,14 @@
 exports.install = function(framework) {
-    framework.route('/', view_homepage);
+    framework.route('/', view_index);
 };
 
-function view_homepage() {
+function view_index() {
 
     var self = this;
 
     // definitions/mysql.js
     // create a DB connection
-    self.database(function(err, connection){
+    DATABASE(function(err, connection){
 
         if(err != null) {
             self.throw500(err);
@@ -30,7 +30,7 @@ function view_homepage() {
             console.log(rows);
 
             // Send rows as the model into the view
-            self.view('homepage', rows);
+            self.view('index', rows);
         });
 
     });

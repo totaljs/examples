@@ -6,7 +6,7 @@ framework.route('/', function () {
 	var self = this;
 	counter++;
 
-	self.change('Counter was updated, current state: ' + counter);
+	self.change('The counter was updated, current state: ' + counter);
 	self.plain('homepage');
 
 });

@@ -1,4 +1,4 @@
-exports.install = function(framework) {
+exports.install = function() {
 	framework.route('/', view_homepage_cached);
 	framework.route('/notcached/', view_homepage);
 	framework.route('/fn/', view_fn_cached);
@@ -9,7 +9,7 @@ function view_homepage_cached() {
 	var self = this;
 	var key = 'my-cache-key';
 
-	var item = self.cache.read(key);
+	var item = self.cache.get(key);
 
 	if (item === null) {
 		var date = new Date();

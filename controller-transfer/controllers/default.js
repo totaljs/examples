@@ -1,10 +1,10 @@
 exports.install = function(framework) {
-	framework.route('/', view_homepage);
+	framework.route('/', view_index);
 	framework.route('/other/', view_other, ['get']);
     framework.route('/other/', view_other_post, ['post']);
 };
 
-function view_homepage() {
+function view_index() {
     var self = this;
 	if (!self.transfer('/other/', ['post']))
         return self.throw404();

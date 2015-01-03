@@ -1,4 +1,4 @@
-exports.install = function(framework) {
+exports.install = function() {
     framework.route('/*', view_app);
     framework.websocket('/', socket_chat, ['json']);
 };

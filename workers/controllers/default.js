@@ -1,8 +1,8 @@
-exports.install = function(framework, options) {
-	framework.route('/', view_homepage);
+exports.install = function() {
+	framework.route('/', view_index);
 }
 
-function view_homepage() {
+function view_index() {
 	var self = this;
 	self.json(framework.global.weather);
 }

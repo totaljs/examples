@@ -1,16 +1,13 @@
-exports.install = function(framework) {
-
-	// Documentation: http://docs.totaljs.com/Framework/#framework.route
+exports.install = function() {
 	framework.route('/', timeout);
-
 	framework.route('/quick/', timeout, { timeout: 100 });
-
-	// Request timeout
-	framework.route('#408', view_408)
+	
+	// Request timeout (define timeout page)
+	framework.route('#408', view_408);
 }
 
 function timeout() {
-	// I forgotten to call a view()
+	// I forgot to call the view
 }
 
 function view_408() {

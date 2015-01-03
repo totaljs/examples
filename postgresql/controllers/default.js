@@ -8,7 +8,7 @@ function view_homepage() {
 
     // definitions/postgresql.js
     // create a DB connection
-    self.database('test', function(err, client, done) {
+    DATABASE('test', function(err, client, done) {
 
         if(err != null) {
             self.throw500(err);
@@ -30,7 +30,7 @@ function view_homepage() {
             console.log(rows);
 
             // Send rows as the model into the view
-            self.view('homepage', rows);
+            self.view('index', rows);
         });
 
     });

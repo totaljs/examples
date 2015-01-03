@@ -1,47 +1,34 @@
 exports.install = function(framework) {
-	framework.route('/', view_auto);
-	framework.route('/en/', view_EN);
-	framework.route('/sk/', view_SK);
-	framework.route('/cz/', view_CZ);
-	framework.route('/{language}/message/', view_message, ['xhr']);
+	framework.route('/', view_index);
+	framework.route('/', json_index, ['xhr']);
 };
 
-function view_auto() {
-	var self = this;
+// Sets the default language for all controllers
+framework.on('controller', function(controller, name) {
+	
+	var language = controller.req.language;
+	
+	// Sets the language from the query string
+	if (controller.query.language) {
+		controller.language = controller.query.language;
+		return;
+	}
 
-	var language = self.req.language;
-	var lng = '';
+	controller.language = 'en';
 
 	if (language.indexOf('sk') > -1)
-		lng = 'sk';
-	else if (language.indexOf('cz') > -1)
-		lng = 'cz';
-	else if (language.indexOf('en') > -1)
-		lng = 'en';
+		controller.language = 'sk';
 
-	//self.view('homepage-{0}'.format(lng));
-	self.redirect('/{0}/'.format(lng));
+	if (language.indexOf('cz') > -1)
+		controller.language = 'cz';
+});
+
+function view_index() {
+	var self = this;
+	self.view('index');
 }
 
-function view_SK() {
+function json_index(language) {
 	var self = this;
-	self.meta('Vitajte');
-	self.view('homepage-sk');
-}
-
-function view_CZ() {
-	var self = this;
-	self.meta('Vítejte');
-	self.view('homepage-cz');
-}
-
-function view_EN() {
-	var self = this;
-	self.meta('Welcome');
-	self.view('homepage-en');
-}
-
-function view_message(language) {
-	var self = this;
-	self.json({ message: RESOURCE(language, 'message') });
+	self.json({ message: RESOURCE(self.language, 'message') });
 }

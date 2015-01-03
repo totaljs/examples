@@ -3,14 +3,14 @@ framework.on('controller', function(controller, name) {
 	if (controller.url !== '/')
         return;
 
-	// controllers/default.js - cancel execute function: viewIndex()
-	controller.cancel();
+	// controllers/default.js - cancel the execution of the function: view_index()
 
-	// redirect to new controller
-    if (!controller.isTransfer)
-	   controller.transfer('/cancel/');
+    if (!controller.isTransfer) {
+        controller.cancel();
+    	controller.transfer('/cancel/');
+    }
 
     // or
-    //controller.redirect('/cancel/');
+    // controller.cancel().redirect('/cancel/');
 
 });
