@@ -6,7 +6,7 @@ exports.install = function(framework) {
 function view_index() {
 
 	var self = this;
-	var User = MODEL('user');
+    var User = MODEL('user').schema;
 
 	User.find(function(err, users) {
 		self.view('index', users);
