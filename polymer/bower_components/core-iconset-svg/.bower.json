@@ -1,0 +1,19 @@
+{
+  "name": "core-iconset-svg",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5",
+    "core-iconset": "Polymer/core-iconset#^0.5"
+  },
+  "version": "0.5.5",
+  "homepage": "https://github.com/Polymer/core-iconset-svg",
+  "_release": "0.5.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.5.5",
+    "commit": "1cdadf517382c2db9ee2d2abf43a486a8513f760"
+  },
+  "_source": "git://github.com/Polymer/core-iconset-svg.git",
+  "_target": "^0.5",
+  "_originalSource": "Polymer/core-iconset-svg"
+}
