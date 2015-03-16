@@ -1,27 +1,7 @@
-exports.install = function(framework) {
-	framework.route('/', view_index);
-	framework.route('/', json_index, ['xhr']);
+exports.install = function() {
+	F.route('/', view_index);
+	F.route('/', json_index, ['xhr']);
 };
-
-// Sets the default language for all controllers
-framework.on('controller', function(controller, name) {
-	
-	var language = controller.req.language;
-	
-	// Sets the language from the query string
-	if (controller.query.language) {
-		controller.language = controller.query.language;
-		return;
-	}
-
-	controller.language = 'en';
-
-	if (language.indexOf('sk') > -1)
-		controller.language = 'sk';
-
-	if (language.indexOf('cz') > -1)
-		controller.language = 'cz';
-});
 
 function view_index() {
 	var self = this;
@@ -30,5 +10,6 @@ function view_index() {
 
 function json_index(language) {
 	var self = this;
+	// console.log(TRANSLATE(self.language, 'Welcome')); --> converts "Welcome" to hash code
 	self.json({ message: RESOURCE(self.language, 'message') });
 }
