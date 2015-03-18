@@ -3,10 +3,16 @@ exports.install = function() {
 
 	framework.route('/', view_administrator, ['authorize', '@administrator']);
 	framework.route('/', view_moderator, ['authorize', '@moderator']);
+	framework.route('/both/', view_both, ['authorize', '@moderator', '@administrator']);
 
 	framework.route('/login/', redirect_login, ['unauthorize']);
 	framework.route('/logoff/', redirect_logoff);
 };
+
+function view_both() {
+	var self = this;
+	self.plain('For both (moderator and administrator), current: ' + self.user.name);
+}
 
 function view_administrator() {
 	var self = this;
