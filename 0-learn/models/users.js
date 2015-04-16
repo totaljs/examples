@@ -31,7 +31,7 @@ User.setGet(function*(error, model, options, callback) {
 
     var user = yield sync(builder.$$findOne(db))();
     if (user !== null) {
-        U.copy(user, model); // copy "user" values to "model" (model is a default "User" instance)
+        U.copy(user, model); // copies "user" values to "model" (model is a default "User" instance)
         return callback(); // if you don't send any value into the callback then the framework uses "model"
     }
 
