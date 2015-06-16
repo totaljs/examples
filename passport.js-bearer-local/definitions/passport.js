@@ -12,7 +12,7 @@ function findByToken(token, fn) {
 }
 
 passport.use(new BearerStrategy({}, function(token, done) {
-    process.nextTick(function () {
+    setImmediate(function () {
         findByToken(token, function(err, user) {
             if (err)
                 return done(err);
@@ -25,4 +25,4 @@ passport.use(new BearerStrategy({}, function(token, done) {
     });
 }));
 
-framework.middleware('passport.js', passport.initialize());
+F.middleware('passport.js', passport.initialize());

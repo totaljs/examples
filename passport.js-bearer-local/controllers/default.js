@@ -1,8 +1,8 @@
 var passport = require('passport');
 
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
-	framework.route('/passport/', passport_login_bearear_callback, ['#passport.js']);
+exports.install = function() {
+	F.route('/', view_homepage);
+	F.route('/passport/', passport_login_bearear_callback, ['#passport.js']);
 };
 
 function view_homepage() {
