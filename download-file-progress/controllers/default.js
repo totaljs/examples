@@ -1,10 +1,10 @@
 var fs = require('fs');
 var progress = {};
 
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
-    framework.route('/', json_percentage, ['xhr']);
-    framework.route('/download/', file_download);
+exports.install = function() {
+	F.route('/', view_homepage);
+    F.route('/', json_percentage, ['xhr']);
+    F.route('/download/', file_download);
 };
 
 /**
@@ -30,7 +30,7 @@ function json_percentage() {
 function file_download() {
 
     var self = this;
-    var filename = self.path.public('file.zip');
+    var filename = F.path.public('file.zip');
     var stream = fs.createReadStream(filename);
 
     var size = fs.statSync(filename).size;
@@ -45,6 +45,5 @@ function file_download() {
         progress[id] = Math.floor((current / size) * 100);
     });
 
-    self.stream(utils.getContentType('.zip'), stream, 'file.zip');
-
+    self.stream(U.getContentType('.zip'), stream, 'file.zip');
 }

@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
-	framework.route('/xhr/', xhr_panel, ['xhr', 'post']);
+exports.install = function() {
+	F.route('/', view_homepage);
+	F.route('/xhr/', xhr_panel, ['xhr', 'post']);
 };
 
 function view_homepage() {

@@ -2,9 +2,8 @@
 // AUTHORIZATION
 // ================================================
 
-framework.onAuthorization = function(req, res, flags, next) {
+F.onAuthorization = function(req, res, flags, next) {
 
-	var self = this;
 	var cookie = req.cookie('__user');
 
 	switch (cookie) {

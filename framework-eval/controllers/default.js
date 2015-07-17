@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', view_index);
-	framework.route('/eval/', post_eval, ['post']);
+exports.install = function() {
+	F.route('/', view_index);
+	F.route('/eval/', post_eval, ['post']);
 
 };
 
@@ -11,6 +11,6 @@ function view_index() {
 
 function post_eval() {
 	var self = this;
-	framework.eval(self.body.text);
+	F.eval(self.body.text);
 	self.json({ r: true });
 }

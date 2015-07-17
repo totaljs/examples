@@ -13,4 +13,4 @@ passport.deserializeUser(function(obj, done) {
     done(null, obj);
 });
 
-framework.middleware('passport.js', passport.initialize());
+F.middleware('passport.js', passport.initialize());

@@ -1,8 +1,8 @@
-exports.install = function(framework) {
-	framework.route('/', view, ['#A']);
-	framework.route('/b/', view, [], ['B']);
-	framework.route('/c/', view, ['#C']); // if flag starts with # then is registered as middleware
-	framework.route('/all/', view, { middleware: ['A', 'B', 'C'] });
+exports.install = function() {
+	F.route('/', view, ['#A'], { options: 'for middleware' });
+	F.route('/b/', view, ['#B']);
+	F.route('/c/', view, ['#C']); // if flag starts with # then is registered as middleware
+	F.route('/all/', view, { middleware: ['A', 'B', 'C'] });
 }
 
 function view() {

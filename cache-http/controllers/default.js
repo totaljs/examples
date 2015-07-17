@@ -1,9 +1,9 @@
 exports.install = function() {
-	framework.route('/', view_homepage);
-	framework.route('/dynamic/date/', view_dynamic_modified);
-	framework.route('/dynamic/etag/', view_dynamic_etag);
-	framework.route('/date/', view_modified);
-	framework.route('/etag/', view_etag);
+	F.route('/', view_homepage);
+	F.route('/dynamic/date/', view_dynamic_modified);
+	F.route('/dynamic/etag/', view_dynamic_etag);
+	F.route('/date/', view_modified);
+	F.route('/etag/', view_etag);
 };
 
 function view_homepage() {

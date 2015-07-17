@@ -1,5 +1,5 @@
-exports.install = function(framework) {
-	framework.route('/', plain_index);
+exports.install = function() {
+	F.route('/', plain_index);
 };
 
 function plain_index() {

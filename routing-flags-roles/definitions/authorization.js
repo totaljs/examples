@@ -1,4 +1,4 @@
-framework.onAuthorization = function(req, res, flags, callback) {
+F.onAuthorization = function(req, res, flags, callback) {
 
 	// http://localhost:8000/?user=admin
 	// or

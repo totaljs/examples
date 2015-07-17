@@ -4,8 +4,8 @@
 // http://www.totaljs.com
 // ===================================================
 
-var framework = require('total.js').http('debug');
+require('total.js').http('debug');
 
-framework.on('load', function() {
-    framework.install('controller', 'https://www.totaljs.com/examples/inject-controller.js');
+F.on('load', function() {
+    F.install('controller', 'https://www.totaljs.com/examples/inject-controller.js');
 });

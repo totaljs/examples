@@ -1,8 +1,8 @@
-exports.install = function(framework) {
-	framework.route('/');
-	framework.route('/1/', view1);
-	framework.route('/1/2/', view2);
-	framework.route('/1/2/3/', view3);
+exports.install = function() {
+	F.route('/');
+	F.route('/1/', view1);
+	F.route('/1/2/', view2);
+	F.route('/1/2/3/', view3);
 };
 
 function view1() {

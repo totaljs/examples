@@ -1,9 +1,9 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
+exports.install = function() {
+	F.route('/', view_homepage);
 };
 
 function view_homepage() {
 	var self = this;
-	process.send('Response framework ID: ' + framework.id);
+	process.send('Response framework ID: ' + F.id);
 	self.view('homepage');
 }

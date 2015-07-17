@@ -1,10 +1,10 @@
-exports.install = function(framework) {
-	framework.route('/', view_form);
-	framework.route('/', json_form, ['xhr', 'post', '*web/ContactForm']);
+exports.install = function() {
+	F.route('/', view_form);
+	F.route('/', json_form, ['xhr', 'post', '*ContactForm']);
 };
 
 function view_form() {
-	this.view('form', SCHEMA('web', 'ContactForm').create());
+	this.view('form', GETSCHEMA('ContactForm').create());
 }
 
 function json_form() {

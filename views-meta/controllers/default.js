@@ -1,8 +1,8 @@
 exports.install = function() {
-	framework.route('/');
-	framework.route('/controller/', view_index_controller);
-	framework.route('/custom/');
-	framework.route('/controller/custom/', view_custom_controller);
+	F.route('/');
+	F.route('/controller/', view_index_controller);
+	F.route('/custom/');
+	F.route('/controller/custom/', view_custom_controller);
 };
 
 function view_index_controller() {

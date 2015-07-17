@@ -1,7 +1,7 @@
 exports.install = function() {
-	framework.route('/1/', test1);
-	framework.route('/2/', test2);
-	framework.route('/3/', test3, ['post', 'json']);
+	F.route('/1/', test1);
+	F.route('/2/', test2);
+	F.route('/3/', test3, ['post', 'json']);
 };
 
 exports.functions = {

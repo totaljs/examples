@@ -1,6 +1,6 @@
 exports.install = function() {
-	framework.route('/', view_index);
-	framework.file('sitemap.xml', file_xml);
+	F.route('/', view_index);
+	F.file('sitemap.xml', file_xml);
 }
 
 function view_index() {

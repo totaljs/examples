@@ -1,5 +1,5 @@
-exports.install = function(framework) {
-	framework.route('/', view_index);
+exports.install = function() {
+	F.route('/', view_index);
 };
 
 // Read all users

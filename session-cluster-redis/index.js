@@ -8,15 +8,15 @@ if (!cluster.isMaster) {
 
 	// This code will be executed according the number of CPU
 	// This code will be using: single process RAM * numCPUs
-	var framework = require('total.js');
+	require('total.js');
 
 	// Set framework ID
-	framework.on('message', function(message) {
+	F.on('message', function(message) {
 		if (message.type === 'id')
-			framework.id = message.id;
+			F.id = message.id;
 	});
 
-    framework.http('debug');
+    F.http('debug');
 	return;
 }
 

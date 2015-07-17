@@ -1,11 +1,11 @@
 var counter = 0;
 
 exports.install = function() {
-	framework.route('/', plain_index);
+	F.route('/', plain_index);
 
 	// This event is triggered every 60 seconds.
 
-	framework.on('service', function() {
+	F.on('service', function() {
 		counter++;
 	});
 

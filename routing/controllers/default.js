@@ -1,57 +1,49 @@
-exports.install = function(framework) {
-	// Documentation: http://docs.totaljs.com/Framework/#framework.route
-	framework.route('/', view_homepage);
-	framework.route('/contact/', view_contact);
-	framework.route('/products/', view_products);
-	framework.route('/products/{category}/', view_products);
-	framework.route('/products/{category}/{subcategory}/', view_products);
-	framework.route('/{category}/', view_homepage);
+exports.install = function() {
+	F.route('/', view_homepage);
+	F.route('/contact/', view_contact);
+	F.route('/products/', view_products);
+	F.route('/products/{category}/', view_products);
+	F.route('/products/{category}/{subcategory}/', view_products);
+	F.route('/{category}/', view_homepage);
 
 	// this route has a lower priority and it will be executed when:
 	// url: /asterix/
 	// url: /asterix/bla/bla/bla/bla/
-	framework.route('/asterix/*', view_asterix);
+	F.route('/asterix/*', view_asterix);
 
 	// route: all txt files
-	// Documentation: http://docs.totaljs.com/Framework/#framework.file
 	// Try: http://127.0.0.4/test.txt
-	framework.file('All *.txt', static_txt);
+	F.file('All *.txt', static_txt);
 
 	// route: all jpg files
 	// all images will resized about 50%
-	// Documentation: http://docs.totaljs.com/Framework/#framework.file
 	// Try: http://127.0.0.4/header.jpg
-	framework.file('All *.jpg', static_jpg);
+	F.file('All *.jpg', static_jpg);
 }
 
 function static_txt(req, res, isValidation) {
 
 	if (isValidation)
-		return req.url.indexOf('.txt') !== -1;
+		return req.extension === 'txt';
 
 	// generate response
 	// this === framework
 	// Documentation: http://docs.totaljs.com/Framework/#framework.responsContent
-	this.responseContent(req, res, 200, 'Server time: ' + new Date().toString(), 'text/plain');
+	res.content(200, 'Server time: ' + new Date().toString(), 'text/plain');
 }
 
 function static_jpg(req, res, isValidation) {
 
 	if (isValidation)
-		return req.url.indexOf('.jpg') !== -1;
+		return req.extension === 'jpg';
 
 	// generate response
 	// this === framework
-	// Documentation: http://docs.totaljs.com/Framework/#framework.responseImage
-	this.responseImage(req, res, this.path.public(req.url), function (image) {
-
+	res.image(F.path.public(req.url), function (image) {
 		// image === FrameworkImage
-		// http://docs.totaljs.com/FrameworkImage/
-
 		image.resize('50%');
 		image.quality(80);
 		image.minify();
-
 	});
 }
 

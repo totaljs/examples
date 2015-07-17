@@ -2,8 +2,8 @@ var isGenerating = false;
 var isGenerated = false;
 
 exports.install = function() {
-	framework.route('/', view_index);
-	framework.file('sitemap.xml', file_xml);
+	F.route('/', view_index);
+	F.file('sitemap.xml', file_xml);
 }
 
 function view_index() {
@@ -16,12 +16,12 @@ function file_xml(req, res, validation) {
 	if (validation)
 		return req.url === '/sitemap.xml';
 
-	var options = { hostname: req.hostname(), path: framework.path.public('sitemap.xml') };
+	var options = { hostname: req.hostname(), path: F.path.public('sitemap.xml') };
 
 	// Is processed sitemap.xml?
 	if (isGenerated) {
 		console.log('sitemap.xml -> cache');
-		framework.responseStatic(req, res);
+		res.continue();
 		return;
 	}
 
@@ -37,7 +37,7 @@ function file_xml(req, res, validation) {
 	isGenerating = true;
 
 	console.log('sitemap.xml -> creating');
-	var worker = framework.worker('sitemap', 'sitemap', 5000);
+	var worker = F.worker('sitemap', 'sitemap', 5000);
 
 	// Send settings
 	worker.send(options);
@@ -50,7 +50,7 @@ function file_xml(req, res, validation) {
 		isGenerating = false;
 		isGenerated = true;
 
-		framework.responseStatic(req, res);
+		res.continue();
 	});
 
 }

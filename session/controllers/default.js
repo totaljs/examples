@@ -1,9 +1,9 @@
 exports.install = function() {
 
-	framework.route('/', view_index, ['#session']);
+	F.route('/', view_index, ['#session']);
 
 	// Or set a global middleware
-	// framework.use('session');
+	// F.use('session');
 };
 
 function view_index() {

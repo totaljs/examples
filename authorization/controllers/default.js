@@ -1,13 +1,13 @@
 exports.install = function() {
-	framework.route('/', view_logged, ['authorize']);
-	framework.route('/', view_homepage);
-	framework.route('/', json_homepage, ['xhr', 'post']);
-	framework.route('/logout/', logout, ['authorize', 'get']);
+	F.route('/', view_logged, ['authorize']);
+	F.route('/', view_homepage);
+	F.route('/', json_homepage, ['xhr', 'post']);
+	F.route('/logout/', logout, ['authorize', 'get']);
 };
 
 function view_logged() {
 	var self = this;
-	self.plain('You are logged as {0}. To unlogged remove cookie __user or click http://{1}:{2}/logout/'.format(self.user.email, framework.ip, framework.port));
+	self.plain('You are logged as {0}. To unlogged remove cookie __user or click http://{1}:{2}/logout/'.format(self.user.email, F.ip, F.port));
 }
 
 function view_homepage() {
@@ -18,31 +18,29 @@ function view_homepage() {
 function json_homepage() {
 
 	var self = this;
-	var errorBuilder = self.validate(self.post, ['LoginName', 'LoginPassword']);
+	var error = self.validate(self.post, ['LoginName', 'LoginPassword']);
 
 	if (self.user !== null)
-		errorBuilder.add('Logged');
+		error.add('Logged');
 
-	if (errorBuilder.hasError()) {
-		self.json(errorBuilder);
+	if (error.hasError()) {
+		self.json(error);
 		return;
 	}
 
 	var db = self.database('users');
-	var filter = function(o) { return o.email === self.post.LoginName && o.password === self.post.LoginPassword; };
-
-	db.one(filter, function(user) {
+	db.one(n => n.email === self.body.LoginName && n.password === self.body.LoginPassword, function(err, user) {
 
 		if (user === null) {
-			errorBuilder.add('LoginError');
-			self.json(errorBuilder);
+			error.add('LoginError');
+			self.json(error);
 			return;
 		}
 
 		self.database('users-logs').insert({ id: user.id, email: user.email, ip: self.req.ip, date: new Date() });
 
 		// Save to cookie
-		self.res.cookie(self.config.cookie, framework.encrypt({ id: user.id, ip: self.req.ip }, 'user'), new Date().add('m', 5));
+		self.res.cookie(F.config.cookie, F.encrypt({ id: user.id, ip: self.req.ip }, 'user'), new Date().add('5 minutes'));
 
 		// Return result
 		self.json({ r: true });
@@ -51,6 +49,6 @@ function json_homepage() {
 
 function logout() {
 	var self = this;
-	self.res.cookie(self.config.cookie, '', new Date().add('y', -1));
+	self.res.cookie(F.config.cookie, '', new Date().add('-1 year'));
 	self.redirect('/');
 }

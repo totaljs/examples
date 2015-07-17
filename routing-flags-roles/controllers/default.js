@@ -1,15 +1,15 @@
 var info = 'http://127.0.0.1:8000/?user=admin\nhttp://127.0.0.1:8000/?user=moderator';
 
-exports.install = function(framework) {
-	framework.route('#401', error_401);
+exports.install = function() {
+	F.route('#401', error_401);
 
 	// custom flag definition : '!custom1', '!custom2'
 	// role flag definition   : '@admin', '@moderator'
 	// difference between custom and role flags is: custom flags are skipped from comparing flags between route and request
 
-	framework.route('/', view_homepage);
-	framework.route('/', view_admin, ['authorize', '@admin']);
-	framework.route('/', view_moderator, ['authorize', '@moderator']);
+	F.route('/', view_homepage);
+	F.route('/', view_admin, ['authorize', '@admin']);
+	F.route('/', view_moderator, ['authorize', '@moderator']);
 };
 
 function view_homepage() {

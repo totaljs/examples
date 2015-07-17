@@ -1,5 +1,4 @@
-var ContactForm = Builders.schema('web').create('ContactForm');
-
+var ContactForm = NEWSCHEMA('ContactForm');
 ContactForm.define('Email', 'string(200)', true);
 ContactForm.define('Phone', 'string(40)');
 ContactForm.define('Message', 'string(10000)', true);
@@ -26,7 +25,7 @@ ContactForm.setValidation(function(name, value) {
     }
 });
 
-ContactForm.setSave(function(error, model, helper, next) {
+ContactForm.setSave(function(error, model, options, callback) {
     DATABASE('contactform').insert(model);
-    next({ r: true });
+    callback(SUCCESS(true));
 });

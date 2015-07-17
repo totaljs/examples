@@ -1,59 +1,54 @@
-exports.install = function(framework) {
+exports.install = function() {
 
 /*
-	var db = framework.database('images');
+	var db = DATABASE('images');
 	db.insert({ file: db.binary.insert('logo.png', 'image/png', require('fs').readFileSync('/users/petersirka/desktop/logo.png')) });
 */
 
-	framework.route('/', view_homepage);
-    framework.file('load image from database', static_image);
+	F.route('/', view_homepage);
+    F.file('load image from database', static_image);
 };
 
 function view_homepage() {
     var self = this;
-	self.plain('http://{0}:{1}/1392394046499rjdobt9.png'.format(framework.ip, framework.port));
+	self.plain('http://{0}:{1}/1392394046499rjdobt9.png'.format(F.ip, F.port));
 }
 
 // Serve image from database products
 function static_image(req, res, isValidation) {
 
     if (isValidation)
-        return req.url.indexOf('.png') !== -1;
+        return req.extension === 'png';
 
-    // this === framework
-    var self = this;
-
-    var db = self.database('images');
+    var db = DATABASE('images');
     var id = req.uri.pathname.replace('/', '').replace('.png', '');
 
     // Check the client cache via etag
     // if not modified - framework send automatically 304
     // id === etag
-   
+
     /*
-    if (self.notModified(req, res, id))
+    if (F.notModified(req, res, id))
         return;
     */
-   
+
     db.binary.read(id, function(err, stream, header) {
 
         if (err) {
-            self.response404(req, res);
+            res.throw404(req, res);
             return;
         }
 
         // Set HTTP cache via etag
-        // Documentation: http://docs.totaljs.com/Framework/#framework.setModified
-        // self.setModified(req, res, id);
+        // F.setModified(req, res, id);
 
-        // Documentation: http://docs.totaljs.com/Framework/#framework.responseImage
-        self.responseImage(req, res, stream, function(image) {
+        res.image(stream, function(image) {
             image.resize('50%');
             image.output('png');
             image.minify();
         });
 
         // or
-        // self.responseStream(req, res, 'image/png', stream);
+        // self.stream('image/png', stream);
     });
 }

@@ -1,6 +1,6 @@
 exports.install = function() {
-	framework.route('/');
-	framework.route('/sub/', view_subpage);
+	F.route('/');
+	F.route('/sub/', view_subpage);
 };
 
 function view_subpage() {
@@ -9,5 +9,5 @@ function view_subpage() {
 
 	// set default image path (affects layout)
 	self.currentImage('products');
-	self.view('subpage');	
+	self.view('subpage');
 };

@@ -1,10 +1,13 @@
 var Users = MODEL('Users');
 
 exports.install = function() {
-    F.route('/api/users/', json_users_query);
-    F.route('/api/users/{id}/', json_users_read);
-    F.route('/api/users/{id}/', json_users_remove, ['delete']);
-    F.route('/api/users/', json_users_save, ['put', 'json', '*User']);
+    F.restful('/api/users/', ['*User'], json_users_query, json_users_read, json_users_remove, json_users_save);
+    // Is same as:
+    // F.route('/api/users/', json_users_query);
+    // F.route('/api/users/{id}/', json_users_read);
+    // F.route('/api/users/', json_users_save, ['post', '*User']);
+    // F.route('/api/users/{id}/', json_users_save, ['put', '*User']);
+    // F.route('/api/users/{id}/', json_users_remove, ['delete']);
 };
 
 function json_users_query() {
@@ -22,7 +25,8 @@ function json_users_remove(id) {
     Users.User.remove({ _id: id }, self.callback());
 }
 
-function json_users_save() {
+function json_users_save(id) {
     var self = this;
+    self.body._id = ObjectID.parse(id);
     self.body.$async(self.callback()).$workflow('check').$save();
 }

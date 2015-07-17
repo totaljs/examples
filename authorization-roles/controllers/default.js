@@ -1,12 +1,12 @@
 exports.install = function() {
-	framework.route('/');
+	F.route('/');
 
-	framework.route('/', view_administrator, ['authorize', '@administrator']);
-	framework.route('/', view_moderator, ['authorize', '@moderator']);
-	framework.route('/both/', view_both, ['authorize', '@moderator', '@administrator']);
+	F.route('/', view_administrator, ['authorize', '@administrator']);
+	F.route('/', view_moderator, ['authorize', '@moderator']);
+	F.route('/both/', view_both, ['authorize', '@moderator', '@administrator']);
 
-	framework.route('/login/', redirect_login, ['unauthorize']);
-	framework.route('/logoff/', redirect_logoff);
+	F.route('/login/', redirect_login, ['unauthorize']);
+	F.route('/logoff/', redirect_logoff);
 };
 
 function view_both() {

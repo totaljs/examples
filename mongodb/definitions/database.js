@@ -7,7 +7,7 @@ MC.connect(CONFIG('database'), function(err, db) {
     DB = db;
 });
 
-framework.database = function(collection) {
+F.database = function(collection) {
     if (collection)
         return DB.collection(collection);
     return DB;

@@ -1,5 +1,5 @@
 exports.install = function() {
-	framework.route('/', view_index);
+	F.route('/', view_index);
 };
 
 function view_index() {
@@ -56,12 +56,9 @@ function view_index() {
 		}, 1000);
 	});
 
-
 	async.run(function() {
-
 		if (self.xhr)
 			return self.json(builder);
 		self.view('index', builder);
 	});
-
 }

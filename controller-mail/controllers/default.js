@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
-	framework.route('/mail/', redirect_mail);
+exports.install = function() {
+	F.route('/', view_homepage);
+	F.route('/mail/', redirect_mail);
 };
 
 function view_homepage() {

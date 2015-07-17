@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', pipe_homepage);
-	framework.route('/file/', pipe_file);
+exports.install = function() {
+	F.route('/', pipe_homepage);
+	F.route('/file/', pipe_file);
 }
 
 function pipe_homepage() {

@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
-	framework.route('/', view_homepage, ['xhr', 'post']);
+exports.install = function() {
+	F.route('/', view_homepage);
+	F.route('/', view_homepage, ['xhr', 'post']);
 };
 
 function view_homepage() {
@@ -12,7 +12,6 @@ function view_homepage() {
 		return;
 	}
 
-	// Look here: https://github.com/totaljs/examples/tree/master/framework-schema-validation
 	var result = self.validate(self.post, ['FirstName', 'LastName', 'Age', 'Email', 'Terms'], 'Form');
 
 	// Documentation: ErrorBuilder

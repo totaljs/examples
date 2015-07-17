@@ -1,8 +1,6 @@
-exports.install = function(framework) {
-
-	framework.route('/', plain_homepage);
-	framework.route('/order/', plain_order, ['post']);
-
+exports.install = function() {
+	F.route('/', plain_homepage);
+	F.route('/order/', plain_order, ['post']);
 };
 
 function plain_homepage() {
