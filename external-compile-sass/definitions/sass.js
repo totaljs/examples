@@ -30,5 +30,5 @@ F.file('*.scss', function(req, res, is) {
 });
 
 F.onCompileStyle = function (filename, content) {
-    return sass.renderSync({ data: content, outputStyle: 'compressed' }).css.toString('utf8');
+    return sass.renderSync({ file: filename, data: content, outputStyle: 'compressed' }).css.toString('utf8');
 };
