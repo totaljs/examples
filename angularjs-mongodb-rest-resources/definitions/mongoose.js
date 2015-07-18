@@ -1,4 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect(framework.config.database);
+mongoose.connect(F.config.database);
 
 global.mongoose = mongoose;

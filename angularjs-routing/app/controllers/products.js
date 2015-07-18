@@ -1,3 +1,3 @@
-function ProductsCtrl($scope) {
+app.controller('ProductsCtrl', ['$scope', function($scope) {
     $scope.name = 'Products';
-}
+}]);

@@ -1,1 +1,0 @@
-function getName(){return obj.name}var obj={name:"Peter",age:35};

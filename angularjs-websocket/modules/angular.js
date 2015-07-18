@@ -1,9 +1,10 @@
 // MIT License
+// Copyright Peter Širka <petersirka@gmail.com>
 // Version 1.01
 
 exports.name = 'angular.js';
-exports.version = '1.00';
-exports.options = { 'angular-version': '1.2.18', 'angular-i18n-version': '1.2.15' };
+exports.version = '1.01';
+exports.options = { 'angular-version': '1.3.15', 'angular-i18n-version': '1.3.15' };
 
 var fs = require('fs');
 var EXTENSION_JS = '.js';
@@ -13,7 +14,9 @@ var REPOSITORY_ANGULAR_COMMON = '$angular-common';
 var REPOSITORY_ANGULAR_CONTROLLER = '$angular-controller';
 var REPOSITORY_ANGULAR_OTHER = '$angular-other';
 
-exports.install = function(framework, options) {
+exports.install = function() {
+
+    var options = framework.version >= 1900 ? arguments[0] : arguments[1];
 
     Utils.extend(exports.options, options, true);
 
@@ -74,14 +77,14 @@ exports.install = function(framework, options) {
 
         if (length > 1) {
             for (var i = 0; i < length; i++)
-                self.ngCommon.call(self, arguments[i]);
+                framework.helpers.call(self, arguments[i]);
             return '';
         }
 
         if (name instanceof Array) {
             length = name.length;
             for (var i = 0; i < length; i++)
-                self.ngCommon.call(self, name[i]);
+                framework.helpers.ngCommon.call(self, name[i]);
             return '';
         }
 
@@ -128,7 +131,7 @@ exports.install = function(framework, options) {
         if (name.lastIndexOf(EXTENSION_JS) === -1)
             extension = EXTENSION_JS;
 
-        output += $script_create(isLocal ? '/i18n/angular-locale_' + name + extension : '//cdnjs.cloudflare.com/ajax/libs/angular-i18n/' + exports.options['angular-i18n-version'] + '/angular-locale_' + name + extension);
+        output += $script_create(isLocal ? '/i18n/angular-locale_' + name + extension : '//cdnjs.cloudflare.com/ajax/libs/angular.js/' + exports.options['angular-i18n-version'] + '/i18n/angular-locale_' + name + extension);
         self.repository[REPOSITORY_ANGULAR_LOCALE] = output;
 
         return '';
@@ -404,7 +407,7 @@ exports.install = function(framework, options) {
     framework.on('controller-render-head', event_render_head);
 };
 
-exports.uninstall = function(framework) {
+exports.uninstall = function() {
     delete framework.helpers.ng;
     delete framework.helpers.ngInclude;
     delete framework.helpers.ngResource;

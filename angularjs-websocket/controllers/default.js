@@ -1,6 +1,6 @@
 exports.install = function() {
-    framework.route('/*', view_app);
-    framework.websocket('/', socket_chat, ['json']);
+    F.route('/*', view_app);
+    F.websocket('/', socket_chat, ['json']);
 };
 
 function view_app() {
