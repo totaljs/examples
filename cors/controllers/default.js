@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/time/', cors_time_preflight, ['options']);
-	framework.route('/time/', cors_time);
+exports.install = function() {
+	F.route('/time/', cors_time_preflight, ['options']);
+	F.route('/time/', cors_time);
 };
 
 function cors_time_preflight() {

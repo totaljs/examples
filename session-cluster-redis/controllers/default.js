@@ -1,5 +1,5 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage, ['#session']);
+exports.install = function() {
+	F.route('/', view_homepage, ['#session']);
 };
 
 function view_homepage() {

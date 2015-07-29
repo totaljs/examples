@@ -1,12 +1,12 @@
-exports.install = function(framework) {
-	framework.route('/');
-	framework.route('/usage/', view_usage);
+exports.install = function() {
+	F.route('/');
+	F.route('/usage/', view_usage);
 
-	framework.websocket('/', socket_homepage, ['json']);
+	F.websocket('/', socket_homepage, ['json']);
 
-	// framework.websocket('/chat/', socket_homepage, ['json'], ['chat']);
-	// framework.websocket('/chat/private/', socket_private_homepage, ['json'], ['privatechat'], ['*']);
-	// framework.websocket('/chat/private/sex/', socket_sex_homepage, ['json'], ['privatechat', 'sexchat'], ['www.totaljs.com', 'eshop.totaljs.com', 'blog.totaljs.com']);
+	// F.websocket('/chat/', socket_homepage, ['json'], ['chat']);
+	// F.websocket('/chat/private/', socket_private_homepage, ['json'], ['privatechat'], ['*']);
+	// F.websocket('/chat/private/sex/', socket_sex_homepage, ['json'], ['privatechat', 'sexchat'], ['www.totaljs.com', 'eshop.totaljs.com', 'blog.totaljs.com']);
 
 	// On client side:
 	// new WebSocket('ws://127.0.0.1:8004/', 'privatechat');
@@ -14,7 +14,7 @@ exports.install = function(framework) {
 
 function view_usage() {
 	var self = this;
-	self.plain(self.framework.usage(true));
+	self.plain(F.usage(true));
 }
 
 function socket_homepage() {

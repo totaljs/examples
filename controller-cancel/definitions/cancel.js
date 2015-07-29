@@ -1,4 +1,4 @@
-framework.on('controller', function(controller, name) {
+F.on('controller', function(controller, name) {
 
 	if (controller.url !== '/')
         return;

@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', view_index);
-	framework.route('/cancel/', view_cancel);
+exports.install = function() {
+	F.route('/', view_index);
+	F.route('/cancel/', view_cancel);
 };
 
 function view_index() {

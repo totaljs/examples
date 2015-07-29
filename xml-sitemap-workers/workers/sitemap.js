@@ -1,6 +1,6 @@
 // Load dependencies
 var fs = require('fs');
-var Utils = require('total.js/utils');
+require('total.js');
 
 // Worker settings
 var options = { path: '', hostname: '' };

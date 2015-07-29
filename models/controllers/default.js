@@ -1,5 +1,5 @@
-exports.install = function(framework) {
-	framework.route('/', json_homepage);
+exports.install = function() {
+	F.route('/', json_homepage);
 };
 
 function json_homepage() {

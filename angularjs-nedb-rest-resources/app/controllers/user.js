@@ -1,9 +1,9 @@
-function UserCtrl($scope, User) {
+app.controller('UserCtrl', ['$scope', 'User', function($scope, User) {
 
     $scope.users = User.query();
     $scope.isForm = false;
 
-    $scope.edit = function (_id) {   
+    $scope.edit = function (_id) {
     	$scope.user = User.get({ _id: _id });
     	$scope.isForm = true;
     };
@@ -20,7 +20,7 @@ function UserCtrl($scope, User) {
     };
 
     $scope.delete = function(_id) {
-		
+
 		User.delete({ _id: _id }, function() {
 			// Refresh users
 			$scope.users = User.query();
@@ -30,4 +30,4 @@ function UserCtrl($scope, User) {
     	$scope.isForm = false;
     };
 
-}
+}]);

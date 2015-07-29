@@ -6,4 +6,4 @@
 
 require('total.js').http('debug');
 
-console.log(framework.version);
+console.log(F.version);

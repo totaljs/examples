@@ -4,8 +4,8 @@
 // http://www.totaljs.com
 // ===================================================
 
-var framework = require('total.js').http('debug');
+require('total.js').http('debug');
 
-framework.route('/', function() {
+F.route('/', function() {
     this.plain('total.js');
 });

@@ -1,5 +1,5 @@
 // Global validation
-framework.onValidation = function(name, value) {
+F.onValidation = function(name, value) {
 
 	switch (name) {
 		case 'Email':

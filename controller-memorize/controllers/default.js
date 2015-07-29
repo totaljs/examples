@@ -1,7 +1,7 @@
-exports.install = function(framework) {
-	framework.route('/', view);
-	framework.route('/json/', json);
-	framework.route('/plain/', plain);
+exports.install = function() {
+	F.route('/', view);
+	F.route('/json/', json);
+	F.route('/plain/', plain);
 };
 
 function view() {
@@ -10,7 +10,6 @@ function view() {
 	self.repository.ticks = new Date().getTime();
 
 	// Save a rendered HTML into the cache (only the view - without layout, layout is not cached)
-	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.memorize
 	// Memorize uses standard internal FrameworkCache
 	self.memorize('view', '2 minutes', function() {
 		// Here is cached output (without layout) + meta tags (title, description, keywords, image) + sitemap
@@ -36,7 +35,6 @@ function view() {
 		self.view('homepage', self.repository.ticks);
 	});
 	*/
-
 }
 
 function json() {
@@ -44,7 +42,6 @@ function json() {
 	var self = this;
 
 	// Save a generated JSON into the cache
-	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.memorize
 	// Memorize uses standard internal FrameworkCache
 	self.memorize('json', '2 minutes', function() {
 		self.json({ ticks: new Date().getTime() });
@@ -56,7 +53,6 @@ function plain() {
 	var self = this;
 
 	// Save a output into the cache
-	// Documentation: http://docs.totaljs.com/FrameworkController/#controller.memorize
 	// Memorize uses standard internal FrameworkCache
 	self.memorize('plain', '2 minutes', function() {
 		self.plain('ticks: ' + new Date().getTime());

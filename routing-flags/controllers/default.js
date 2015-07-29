@@ -1,30 +1,27 @@
-exports.install = function(framework) {
+exports.install = function() {
 
-	framework.route('/', view_index);
+	F.route('/', view_index);
 
 	// [+xhr] - you can execute "view_subpage" with request type: XMLHttpRequest or classic GET/HTTP
-	framework.route('/sub/', view_subpage, ['+xhr']);
+	F.route('/sub/', view_subpage, ['+xhr']);
 
-	framework.route('/xhr/', xhr_example, ['xhr']);
-	framework.route('/xhr/post/', xhr_example, ['xhr', 'post']);
+	F.route('/xhr/', xhr_example, ['xhr']);
+	F.route('/xhr/post/', xhr_example, ['xhr', 'post']);
 
-	framework.route('/post/', form_example, ['post']);
-	framework.route('/json/', json_example, ['json']);
-	framework.route('/upload/', upload_example, ['upload']);
+	F.route('/post/', form_example, ['post']);
+	F.route('/json/', json_example, ['json']);
+	F.route('/upload/', upload_example, ['upload']);
 
-	framework.route('/put/', put_example, ['put']);
-	framework.route('/delete/', delete_example, ['delete']);
-
-	// Disable XSS protection
-	framework.route('/xss/', xss_example, ['xss']);
+	F.route('/put/', put_example, ['put']);
+	F.route('/delete/', delete_example, ['delete']);
 
 	// This route is enabled in debug mode
-	framework.route('/debug/', debug_example, ['debug']);
+	F.route('/debug/', debug_example, ['debug']);
 
-	framework.route('/myflag/', myflag_example, ['!myflag']);
+	F.route('/myflag/', myflag_example, ['!myflag']);
 
 	// https://github.com/petersirka/total.js/tree/master/examples/authorization
-	// framework.route('/user/profile/', user_profile, ['authorize']);
+	// F.route('/user/profile/', user_profile, ['authorize']);
 };
 
 // flags: !myflag
@@ -85,9 +82,4 @@ function delete_example() {
 // flags: put
 function put_example() {
 	this.plain('PUT - homepage');
-}
-
-// flags: xss
-function xss_example() {
-	this.plain('XSS - homepage');
 }

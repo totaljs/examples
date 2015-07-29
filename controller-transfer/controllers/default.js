@@ -1,7 +1,7 @@
-exports.install = function(framework) {
-	framework.route('/', view_index);
-	framework.route('/other/', view_other, ['get']);
-    framework.route('/other/', view_other_post, ['post']);
+exports.install = function() {
+	F.route('/', view_index);
+	F.route('/other/', view_other);
+    F.route('/other/', view_other_post, ['post']);
 };
 
 function view_index() {

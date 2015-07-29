@@ -3,6 +3,6 @@ var pool  = mysql.createPool({ host: 'example.org', user: 'bob', password: 'secr
 
 // override the framework prototype
 // use CONFIG files for connection string
-framework.database = function(callback) {
+F.database = function(callback) {
 	return pool.getConnection(callback);
 };

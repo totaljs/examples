@@ -1,5 +1,5 @@
-exports.install = function(framework) {
-	framework.route('/users/', view_users);
+exports.install = function() {
+	F.route('/users/', view_users);
 };
 
 exports.models = {

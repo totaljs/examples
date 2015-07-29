@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
-	framework.route('/', view_homepage, ['xhr', 'post']);
+exports.install = function() {
+	F.route('/', view_homepage);
+	F.route('/', view_homepage, ['xhr', 'post']);
 };
 
 function view_homepage() {
@@ -11,16 +11,10 @@ function view_homepage() {
 		return;
 	}
 
-	var resource = function(name) {
-		return self.resource('en', name);
-	};
+	var error = new ErrorBuilder(n => F.resource('en', n));
 
-	// Documentation: http://docs.totaljs.com/Builders.ErrorBuilder/
-	var errorBuilder = new builders.ErrorBuilder(resource);
-
-	// Documentation: http://docs.totaljs.com/FrameworkUtils/#utils.validate
-	if (Utils.validate(self.body, ['FirstName', 'LastName', 'Age', 'Email', 'Terms'], onValidation, errorBuilder).hasError()) {
-		self.json(errorBuilder);
+	if (U.validate(self.body, ['FirstName', 'LastName', 'Age', 'Email', 'Terms'], onValidation, error).hasError()) {
+		self.json(error);
 		return;
 	}
 
@@ -30,9 +24,9 @@ function view_homepage() {
 function onValidation(name, value) {
 	switch (name) {
 		case 'Email':
-			return utils.isEmail(value);
+			return U.isEmail(value);
 		case 'Age':
-			return utils.isValid(utils.parseInt(value) > 0, 'Fill fucking age');
+			return U.parseInt(value) > 0 ? true : 'Fill fucking age';
 		case 'Terms':
 			return value === '1';
 		case 'FirstName':

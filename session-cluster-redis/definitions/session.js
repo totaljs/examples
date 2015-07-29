@@ -4,7 +4,7 @@ var redis = require('redis');
 INSTALL('module', 'https://modules.totaljs.com/session/v1.00/session.js');
 
 // Configure session module with REDIS
-framework.on('install', function(type, name) {
+F.on('install', function(type, name) {
 
     if (type !== 'module')
         return;

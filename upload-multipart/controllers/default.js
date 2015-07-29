@@ -1,8 +1,8 @@
 exports.install = function() {
-	framework.route('/', view_homepage);
+	F.route('/', view_homepage);
 
 	// the number is maximum data receive
-	framework.route('/', view_homepage, ['upload'], 100); // 100 kB
+	F.route('/', view_homepage, ['upload'], 100); // 100 kB
 };
 
 function view_homepage() {

@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', view_registration);
-	framework.route('/', json_registration, ['post']);
+exports.install = function() {
+	F.route('/', view_registration);
+	F.route('/', json_registration, ['post']);
 };
 
 function codelist(controller) {

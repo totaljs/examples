@@ -1,7 +1,7 @@
 
 // A dynamic versioning
 // Documentation: http://docs.totaljs.com/Framework/#framework.onVersion
-framework.onVersion = function(name) {
+F.onVersion = function(name) {
 
 	switch (name) {
 		case 'custom.png':

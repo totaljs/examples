@@ -4,8 +4,8 @@
 // http://www.totaljs.com
 // ===================================================
 
-var framework = require('total.js').http('debug');
+require('total.js').http('debug');
 
-framework.on('load', function() {
-    framework.install('definition', 'https://www.totaljs.com/examples/inject-definition.js');
+F.on('load', function() {
+    F.install('definition', 'https://www.totaljs.com/examples/inject-definition.js');
 });

@@ -1,8 +1,8 @@
 
-framework.functions.now = function() {
+F.functions.now = function() {
 	return new Date();
 };
 
-framework.functions.hello = function() {
+F.functions.hello = function() {
 	return 'Hello world!';
 };

@@ -1,15 +1,15 @@
 // $ npm install paypal-express-checkout
 var paypal = require('paypal-express-checkout');
 
-exports.install = function(framework) {
-	framework.route('/');
-	framework.route('/pay/', redirect_payment);
-	framework.route('/paypal/ok/', view_payment);
+exports.install = function() {
+	F.route('/');
+	F.route('/pay/', redirect_payment);
+	F.route('/paypal/ok/', view_payment);
 };
 
 function redirect_payment() {
 	var self = this;
-	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), framework.isDebug);
+	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), F.isDebug);
 
 	var orderNumber = 100;
 	var price = 12.23;
@@ -27,7 +27,7 @@ function redirect_payment() {
 
 function view_payment() {
 	var self = this;
-	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), framework.isDebug);
+	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), F.isDebug);
 
 	payment.detail(self, function(err, data) {
 

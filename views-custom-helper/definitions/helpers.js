@@ -1,11 +1,11 @@
-framework.helpers.now = function() {
+F.helpers.now = function() {
 	// this === controller
 	// current view model: this.model
 
 	return new Date().format('dd.MM.yyyy HH:mm:ss');
 };
 
-framework.helpers.say = function(what, raw) {
+F.helpers.say = function(what, raw) {
 
 	// this === controller
 	// current view model: this.model

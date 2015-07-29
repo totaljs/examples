@@ -1,14 +1,13 @@
 var path = require('path');
 var counter = 0;
 
-exports.install = function(framework) {
+exports.install = function() {
 
 	// route index
-	framework.route('/', view_homepage);
+	F.route('/', view_homepage);
 
 	// file route
-	// Documentation: http://docs.totaljs.com/Framework/#framework.file
-	framework.file('*.pdf counter', file_download);
+	F.file('*.pdf counter', file_download);
 
 };
 
@@ -20,15 +19,13 @@ function view_homepage() {
 function file_download(req, res, isValidation) {
 
 	if (isValidation)
-		return req.url.toLowerCase().substring(req.url.length - 4) === '.pdf';
+		return req.extension === 'pdf';
 
 	// this === framework
-	var self = this;
 	var filename = path.basename(req.url);
 
 	counter++;
 
-	// Documentation: http://docs.totaljs.com/Framework/#framework.responseFile
 	// response file
-	self.responseFile(req, res, self.path.public(filename), filename);
+	res.file(F.path.public(filename), filename);
 };

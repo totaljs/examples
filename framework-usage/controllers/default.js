@@ -1,5 +1,5 @@
-exports.install = function(framework) {
-	framework.route('/', json_usage);
+exports.install = function() {
+	F.route('/', json_usage);
 };
 
 exports.usage = function() {
@@ -8,6 +8,6 @@ exports.usage = function() {
 
 function json_usage() {
 	var self = this;
-	// self.framework.usage([detailed:bool default false])
-	self.json(framework.usage(true), true);
+	// F.usage([detailed:bool default false])
+	self.json(F.usage(true), true);
 }

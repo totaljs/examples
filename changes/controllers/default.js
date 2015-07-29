@@ -1,7 +1,7 @@
 // Change describes some changes ...
 var counter = 0;
 
-framework.route('/', function () {
+F.route('/', function () {
 
 	var self = this;
 	counter++;

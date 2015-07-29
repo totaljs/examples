@@ -1,5 +1,5 @@
 exports.install = function() {
-	framework.route('/', view_index);
+	F.route('/', view_index);
 };
 
 function view_index() {

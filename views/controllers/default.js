@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/');
-	framework.route('/new/', view_homepage2);
+exports.install = function() {
+	F.route('/');
+	F.route('/new/', view_homepage2);
 };
 
 function view_homepage2() {

@@ -1,18 +1,16 @@
-exports.install = function(framework) {
-	framework.route('/read/', cookieRead);
-	framework.route('/write/', cookieWrite);
-}
+exports.install = function() {
+	F.route('/read/', cookieRead);
+	F.route('/write/', cookieWrite);
+};
 
 function cookieRead() {
 	var self = this;
-	// Documentation: http://docs.totaljs.com/Request.prototype/#Request.prototype.cookie
 	self.plain('Cookie example\nread test1: ' + (self.req.cookie('test1') || 'null') + '\nread test2: ' + (self.req.cookie('test2') || 'null'));
 }
 
 function cookieWrite() {
 	var self = this;
 
-	// Documentation: http://docs.totaljs.com/Response.prototype/#Response.prototype.cookie
 	self.res.cookie('test1', 'value 1', '2 days');
 	self.res.cookie('test2', 'value 2', new Date().add('day', 1));
 

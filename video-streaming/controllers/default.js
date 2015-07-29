@@ -1,3 +1,3 @@
 exports.install = function() {
-    framework.route('/');
+    F.route('/');
 };

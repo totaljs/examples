@@ -1,8 +1,8 @@
 
 // Change output
 
-framework.on('change', function(message, name, uri, ip) {
-	
+F.on('change', function(message, name, uri, ip) {
+
 	console.log('CHANGE:');
 	console.log('message:', message);
 	console.log('name:', name);

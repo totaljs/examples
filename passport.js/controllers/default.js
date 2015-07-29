@@ -1,9 +1,9 @@
 var passport = require('passport');
 
-exports.install = function(framework) {
-	framework.route('/', view_index);
-	framework.route('/login/twitter/', passport_login_twitter, ['#session', '#passport.js']);
-	framework.route('/login/twitter/callback/', passport_login_twitter_callback, ['#session', '#passport.js']);
+exports.install = function() {
+	F.route('/', view_index);
+	F.route('/login/twitter/', passport_login_twitter, ['#session', '#passport.js']);
+	F.route('/login/twitter/callback/', passport_login_twitter_callback, ['#session', '#passport.js']);
 };
 
 function view_index() {

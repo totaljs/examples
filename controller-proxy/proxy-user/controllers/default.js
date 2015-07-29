@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/users/', json_users);
-	framework.route('/', json_users, ['proxy']);
+exports.install = function() {
+	F.route('/users/', json_users);
+	F.route('/', json_users, ['proxy']);
 };
 
 function json_users() {
@@ -18,10 +18,7 @@ function json_users() {
 		{ name: 'Ivan', age: 29 }
 	];
 
-	var output = users.where(function(item) {
-		return item.age > self.post.age;
-	});
-
+	var output = users.where(n => n.age > self.body.age);
 	self.json(output);
 
 };

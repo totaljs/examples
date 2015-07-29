@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', file_download);
-	framework.route('/image/', image_download);
+exports.install = function() {
+	F.route('/', file_download);
+	F.route('/image/', image_download);
 };
 
 function file_download() {

@@ -1,4 +1,4 @@
-framework.middleware('A', function(req, res, next, options, controller) {
+F.middleware('A', function(req, res, next, options, controller) {
 
 	if (controller)
 		controller.repository.A = 'middleware - private - A';
@@ -7,7 +7,7 @@ framework.middleware('A', function(req, res, next, options, controller) {
 
 });
 
-framework.middleware('B', function(req, res, next, options, controller) {
+F.middleware('B', function(req, res, next, options, controller) {
 
 	console.log('B');
 
@@ -18,7 +18,7 @@ framework.middleware('B', function(req, res, next, options, controller) {
 
 });
 
-framework.middleware('C', function(req, res, next, options, controller) {
+F.middleware('C', function(req, res, next, options, controller) {
 
 	console.log('C');
 
@@ -29,9 +29,9 @@ framework.middleware('C', function(req, res, next, options, controller) {
 
 });
 
-framework.middleware('X', function(req, res, next, options, controller) {
+F.middleware('X', function(req, res, next, options, controller) {
 	console.log('Global middleware: X');
 	next();
 });
 
-framework.use('X');
+F.use('X');

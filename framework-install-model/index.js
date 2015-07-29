@@ -4,8 +4,8 @@
 // http://www.totaljs.com
 // ===================================================
 
-var framework = require('total.js').http('debug');
+require('total.js').http('debug');
 
-framework.on('load', function() {
-    framework.install('model', 'https://www.totaljs.com/examples/inject-model.js');
+F.on('load', function() {
+    F.install('model', 'https://www.totaljs.com/examples/inject-model.js');
 });

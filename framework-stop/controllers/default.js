@@ -1,8 +1,8 @@
-exports.install = function(framework) {
-	framework.route('/', stop);
+exports.install = function() {
+	F.route('/', stop);
 };
 
 function stop() {
 	// stop server
-	framework.stop();
+	F.stop();
 }

@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/users/', view_users);
-	framework.route('/users/admin/', view_users_admin);
+exports.install = function() {
+	F.route('/users/', view_users);
+	F.route('/users/admin/', view_users_admin);
 };
 
 function view_users() {

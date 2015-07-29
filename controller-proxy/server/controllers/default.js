@@ -1,6 +1,6 @@
-exports.install = function(framework) {
-	framework.route('/', view_homepage);
-	framework.route('/otherwise/', view_otherwise);
+exports.install = function() {
+	F.route('/', view_homepage);
+	F.route('/otherwise/', view_otherwise);
 };
 
 function view_homepage() {
@@ -14,6 +14,7 @@ function view_homepage() {
 
 	self.async.await(function(next) {
 		self.proxy('http://127.0.0.1:8001', { age: 25 }, function(error, data) {
+			console.log(error, data);
 
 			if (error)
 				self.error(error);
@@ -34,15 +35,7 @@ function view_homepage() {
 		});
 	});
 
-	self.jsonAsync(db);
-
-/*
- 	// OR
-	self.async.complete(function() {
-		self.json(db);
-	});
-*/
-
+	self.async.run(() => self.json(db));
 }
 
 function view_otherwise() {
@@ -78,8 +71,5 @@ function view_otherwise() {
 		});
 	});
 
-	fn.async(function() {
-		self.json(db);
-	});
-
+	fn.async(() => self.json(db));
 }

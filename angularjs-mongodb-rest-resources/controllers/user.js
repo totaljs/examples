@@ -1,8 +1,10 @@
-exports.install = function(framework) {
-	framework.route('/user/', json_user_query);
-	framework.route('/user/{id}/', json_user_get);
-	framework.route('/user/{id}/', json_user_save, ['post', 'json']);
-	framework.route('/user/{id}/', json_user_delete, ['delete']);
+exports.install = function() {
+	F.restful('/users/', [], json_user_query, json_user_get, json_user_save, json_user_delete);
+	// ... is same as:
+	// F.route('/user/', json_user_query);
+	// F.route('/user/{id}/', json_user_get);
+	// F.route('/user/{id}/', json_user_save, ['post', 'json']);
+    // F.route('/user/{id}/', json_user_delete, ['delete']);
 };
 
 /*

@@ -1,6 +1,6 @@
 exports.install = function() {
-	framework.route('/');
-	framework.route('/one-way-messaging/', view_SSE, ['sse']);
+	F.route('/');
+	F.route('/one-way-messaging/', view_SSE, ['sse']);
 };
 
 function view_SSE() {

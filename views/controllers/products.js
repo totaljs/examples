@@ -1,5 +1,5 @@
-exports.install = function(framework) {
-	framework.route('/products/', view_products);
+exports.install = function() {
+	F.route('/products/', view_products);
 };
 
 function view_products() {

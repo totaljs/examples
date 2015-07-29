@@ -1,5 +1,5 @@
 exports.install = function() {
-	framework.route('/', authorization);
+	F.route('/', authorization);
 };
 
 function authorization() {

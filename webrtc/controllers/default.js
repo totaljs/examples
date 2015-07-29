@@ -1,6 +1,6 @@
 exports.install = function() {
-    framework.route('/');
-    framework.websocket('/', socket_homepage, ['json']);
+    F.route('/');
+    F.websocket('/', socket_homepage, ['json']);
 };
 
 function socket_homepage() {
