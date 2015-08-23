@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    @{meta}
+    <meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=10" />
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="viewport" content="width=1024, user-scalable=yes" />
+	<meta name="robots" content="all,follow" />
+	<style type="text/css">
+		body { padding: 50px; margin: 0; font:normal 12px Arial; color: gray }
+		nav { margin-bottom: 20px; }
+		nav a { font-size: 20px; margin-right: 10px; color: gray; texr-decoration: none; }
+
+	</style>
+</head>
+<body>
+
+	<nav>
+		<a href="/">HOMEPAGE</a>
+		<a href="/terms/">TERMS</a>
+		<a href="/terms/privacy/">PRIVACY</a>
+		<a href="/contact/">CONTACT</a>
+	</nav>
+
+	<div style="padding:20px 0;border-bottom:1px solid #E0E0E0;">
+		Breadcrumb:
+	@{foreach m in sitemap()}
+		<a href="@{m.url}">@{m.name}</a>
+		@{if !m.last}
+		&nbsp; &gt; &nbsp;
+		@{fi}
+	@{end}
+	</div>
+
+	<div>@{body}</div>
+
+
+</body>
+</html>
