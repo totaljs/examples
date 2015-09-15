@@ -29,24 +29,24 @@
 <button>Submit</button>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('button').bind('click', function() {
-			$.post('/?ts=' + new Date().getTime(), $('#f').serialize(), function(d) {
-				var err = $('#error');
-			
-				if (d instanceof Array) {
+    $(document).ready(function() {
+        $('button').bind('click', function() {
+            $.post('/?ts=' + new Date().getTime(), $('#f').serialize(), function(d) {
+                var err = $('#error');
+                d = JSON.parse(d);
+                if (d instanceof Array) {
 
-					err.empty();
-					d.forEach(function(o) {
-						err.append('<div>' + o.error + '</div>');
-					});
-					err.show();
-					return;
-				};
+                    err.empty();
+                    d.forEach(function(o) {
+                        err.append('<div>' + o.error + '</div>');
+                    });
+                    err.show();
+                    return;
+                };
 
-				err.hide();
-				alert('Form is valid.');
-			});
-		});
-	});
+                err.hide();
+                alert('Form is valid.');
+            });
+        });
+    });
 </script>
