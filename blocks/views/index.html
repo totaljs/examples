@@ -1,0 +1,26 @@
+@{layout('')}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blocks</title>
+	<meta name="description" content="PAGE DESCRIPTION" />
+	<meta name="keywords" content="PAGE KEYWORDS" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="robots" content="all,follow" />
+	@{if url === '/admin/'}
+		@{import('admin.css', 'admin.js')}
+	@{else}
+		@{import('style.css', 'script.js')}
+	@{fi}
+</head>
+<body>
+
+	<div>
+		<a href="@{if url === '/admin/'}/@{else}/admin/@{fi}">SWITCH</a>
+	</div>
+
+</body>
+</html>

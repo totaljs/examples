@@ -1,0 +1,19 @@
+body { background-color: white; font-size: 12px; font-family: Arial; }
+
+/*
+ * @{BLOCK admin}
+ */
+div { background-color: red; color: white; padding: 10px 0; }
+b { font-size: 14px; }
+body:before { content: 'ADMIN AREA'; }
+/*
+ * @{end}
+ */
+
+/*
+ * @{BLOCK blockA, blockB, blockC}
+ */
+div { content: 'ANOTHER EXAMPLE'; }
+/*
+ * @{end}
+ */
