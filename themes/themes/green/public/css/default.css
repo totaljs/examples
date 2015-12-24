@@ -1,0 +1,6 @@
+body { padding: 0; margin: 0; font-family: Arial; font-size: 14px; line-height: 20px; background-color: #8CC152; color: white; }
+h1 { text-align: center; font-size: 30px; margin: 50px 0; padding: 0; }
+div { font-size: 11px; }
+
+a { display: inline-block; position: relative; border: 3px solid white; border-radius: 4px; text-decoration: none; color: white; font-size: 20px; text-align: center; padding: 10px 20px; }
+p { text-align: center; }
