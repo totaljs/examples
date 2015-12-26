@@ -1,6 +1,5 @@
 var greeting = '';
 
-exports.name = 'feedback';
 exports.version = '1.01';
 
 exports.install = function(options) {
