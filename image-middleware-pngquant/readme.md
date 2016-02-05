@@ -1,0 +1,3 @@
+- total.js +v1.9.7
+- you must have installed GraphicsMagick or ImageMagick
+- install `npm install -g pngquant`
