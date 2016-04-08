@@ -2,7 +2,7 @@
 // AUTHORIZATION
 // ================================================
 
-F.onAuthorization = function(req, res, flags, next) {
+F.onAuthorize = function(req, res, flags, next) {
 
 	var cookie = req.cookie('__user');
 

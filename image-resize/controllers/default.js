@@ -55,8 +55,8 @@ function view_index() {
 	// image.command(command, [priority]);
 
 	// IMPORTANT: see here https://github.com/petersirka/total.js/tree/master/examples/routing
-	image.resizeCenter(300, 300).save(filename, function(err, filename) {
-		model.url = '<div><img src="/{0}?ts={1}" width="300" height="300" alt="Uploaded image" /></div><br />'.format(Path.basename(filename), new Date().getTime());
+	image.resizeCenter(300, 300).save(filename, function(err) {
+		model.url = '<div><img src="/{0}?ts={1}" width="300" height="300" alt="Uploaded image" /></div><br />'.format(U.getName(filename), new Date().getTime());
 		self.view('index', model);
 	});
 

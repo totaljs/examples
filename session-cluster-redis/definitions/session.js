@@ -1,7 +1,7 @@
 var redis = require('redis');
 
 // Install session module
-INSTALL('module', 'https://modules.totaljs.com/session/v1.00/session.js');
+INSTALL('module', 'https://modules.totaljs.com/session/v1.01/session.js');
 
 // Configure session module with REDIS
 F.on('install', function(type, name) {

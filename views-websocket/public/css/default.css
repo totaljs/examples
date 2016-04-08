@@ -1,0 +1,8 @@
+/*auto*/
+
+body { font-family: Arial; font-size: 14px; line-height: 16px; color: gray; background-color: white; margin: 0; }
+nav { background-color: #F0F0F0; padding: 20px; }
+nav a { position: relative; display: inline-block; margin-right: 15px; text-decoration: none; color: gray; padding: 5px; }
+nav .selected { color: black; background-color: white; }
+#body { padding: 30px; }
+h1 { font: normal bold 18px Arial; margin: 0 0 20px; padding: 0; color: black; }

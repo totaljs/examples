@@ -1,0 +1,6 @@
+// identificator : NAME  --> URL --> PARENT (optional)
+
+homepage         : Homepage       --> /
+contact          : Contact        --> /contact/         --> homepage
+terms            : Terms          --> /terms/           --> homepage
+privacy          : Privacy        --> /terms/privacy/   --> terms

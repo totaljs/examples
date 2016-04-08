@@ -1,0 +1,52 @@
+@{layout('')}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Websocket example with views</title>
+	<meta charset="utf-8" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	@{import('jrouting.min.js', 'default.css')}
+</head>
+<body>
+	<nav>
+		<a href="/" class="jrouting">Homepage</a>
+		<a href="/company/" class="jrouting">Company</a>
+		<a href="/products/" class="jrouting">Products</a>
+		<a href="/contact/" class="jrouting">Contact</a>
+	</nav>
+	<div id="body">LOADING ...</div>
+
+	<script>
+		$('.jrouting').jRouting(true);
+
+		var ws = new WebSocket('ws://127.0.0.1:8000/');
+
+		ws.onmessage = function(e) {
+			var container = $('#body');
+			var message = JSON.parse(decodeURIComponent(e.data));
+
+			if (message.status === 200) {
+				// TIP: here you can cache the view body
+				container.html(message.body);
+				return;
+			}
+
+			container.html('404 - page not found');
+		};
+
+		jRouting.route('/*', function() {
+			send({ url: jRouting.url });
+			var nav = $('nav');
+			nav.find('.selected').removeClass('selected');
+			nav.find('[href="' + jRouting.url + '"]').addClass('selected');
+		});
+
+		function send(obj) {
+			ws.send(encodeURIComponent(JSON.stringify(obj)));
+		}
+
+	</script>
+
+</body>
+</html>

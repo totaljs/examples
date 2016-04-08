@@ -2,7 +2,7 @@
 // AUTHORIZATION
 // ================================================
 
-F.onAuthorization = function(req, res, flags, callback) {
+F.onAuthorize = function(req, res, flags, callback) {
 
 	var cookie = req.cookie(F.config.cookie);
 	if (cookie === null || cookie.length < 10) {
