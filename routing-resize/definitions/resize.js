@@ -1,5 +1,26 @@
-F.resize('/img/small/', 100, 100, {}, '/img/');
-F.resize('/img/grayscale/', null, null, { cache: false, grayscale: true }, '/img/');
-F.resize('/img/filters/', null, null, { blur: true, sepia: true, flip: true, flop: true }, '/img/');
-F.resize('/img/50percent/', '50%', null, {}, '/img/');
-F.resize('/img/medium/', '70%', null, {}, '/img/', ['.png']);
+// Works only in total.js 2.0
+
+F.resize('/img/small/', function(image) {
+	image.resize(100, 100);
+	image.quality(90);
+	image.minify();
+}, ['/img/']);
+
+F.resize('/img/grayscale/', function(image) {
+	image.grayscale();
+}, ['/img/', 'nocache']);
+
+F.resize('/img/filters/', function(image) {
+	image.blur(1);
+	image.sepia();
+	image.flip();
+	image.flop();
+}, ['/img/']);
+
+F.resize('/img/50percent/', function(image) {
+	image.resize('50%');
+}, ['/img/']);
+
+F.resize('/img/medium/', function(image) {
+	image.resize('70%');
+}, ['/img/', '.png']);
