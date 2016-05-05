@@ -4,16 +4,13 @@ exports.install = function() {
 };
 
 function view_homepage() {
-	var self = this;
-	self.view('homepage');
+	this.view('homepage');
 }
 
 function redirect_mail() {
 
-	var self = this;
-
     // This function automatically reads view: email.html
-    self.mail('petersirka@gmail.com', 'Test e-mail', '~email', { name: 'MODEL NAME' });
-    self.redirect('/?success=1');
+    this.mail('petersirka@gmail.com', 'Test e-mail', '~email', { name: 'MODEL NAME' });
+    this.redirect('/?success=1');
 
 }
