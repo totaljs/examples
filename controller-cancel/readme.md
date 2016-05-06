@@ -4,15 +4,15 @@ This example shows how to use a framework event to intercept, cancel and redirec
 
 Features covered by this example:
 
-* Controllers - route URL requests to code
-* Definitions - coded config files
-* `F.route()` - define a route
-* `F.on('controller')` - intercept controller requests
-* `controller.cancel()` - cancel a request
-* `controller.redirect()` - redirect a request
-* `controller.url` - determine request path
-* `controller.transfer()` - transfer a request
-* `controller.isTransfer` - detect a transfer
+* [Controllers](http://docs.totaljs.com/latest/en.html#pages~Controllers) - route URL requests to code
+* [Definitions](http://docs.totaljs.com/latest/en.html#pages~Definitions) - coded config files
+* [`F.route()`](http://docs.totaljs.com/latest/en.html#api~Framework~framework.route) - define a route
+* [`F.on('controller')`](http://docs.totaljs.com/latest/en.html#api~Framework~framework.on('controller') - intercept controller requests
+* [`controller.cancel()`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.cancel) - cancel a request
+* [`controller.redirect()`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.redirect) - redirect a request
+* [`controller.url`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.url) - determine request path
+* [`controller.transfer()`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.transfer) - transfer a request
+* [`controller.isTransfer`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.isTransfer) - detect a transfer
 
 ### Routing
 
