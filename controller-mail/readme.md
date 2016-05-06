@@ -7,14 +7,14 @@ This example shows how to create a URL that generates an email and then redirect
 
 Features covered by this example:
 
-* Controllers - route URL requests to code
-* Views - HTML template engine
+* [Controllers](http://docs.totaljs.com/latest/en.html#pages~Controllers) - route URL requests to code
+* [Views](http://docs.totaljs.com/latest/en.html#pages~View%20engine) - HTML template engine
 * Config - settings (mail server) used by the framework
-* `F.route()` - define a route
-* `controller.view()` - render a HTML template
-* `controller.mail()` - send an email
-* `controller.redirect()` - redirect a request
-* `@{layout`, `@{if}`, `@{fi}` and `{@model.key}` template tags
+* [`F.route()`](http://docs.totaljs.com/latest/en.html#api~Framework~framework.route) - define a route
+* [`controller.view()`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.view) - render a HTML template
+* [`controller.mail()`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.mail) - send an email
+* [`controller.redirect()`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.redirect) - redirect a request
+* [`@{layout`](http://docs.totaljs.com/latest/en.html#api~FrameworkViews~%40%7Blayout), `@{if}`, `@{fi}`, [`query.success`](http://docs.totaljs.com/latest/en.html#api~FrameworkViews~%40%7Bquery.customKey%7D) and [`{@model.key}`](http://docs.totaljs.com/latest/en.html#api~FrameworkViews~%40%7Bmodel.customKey%7D) template tags
 
 ### Overview
 

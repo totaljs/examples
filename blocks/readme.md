@@ -1,12 +1,12 @@
 ## Example: Blocks
 
-This example shows how to use blocks in HTML templates (views), CSS and JS files.
+This example shows how to use [Blocks](http://docs.totaljs.com/latest/en.html#pages~Blocks%20\(JS%2BCSS%2BHTML\)) in HTML templates (views), CSS and JS files.
 
 Features covered by this example:
 
-* `@{BLOCK}` and `@{END}` tags in CSS, JS and HTML files
-* `@{if}`, `@{fi}`, `@{else}` and `@{import}` tags in HTML files
-* `F.map()` method - clone files, enable blocks, merging files
+* [`@{BLOCK}`](http://docs.totaljs.com/latest/en.html#pages~Blocks%20\(JS%2BCSS%2BHTML\)) and [`@{END}`](http://docs.totaljs.com/latest/en.html#pages~Blocks%20\(JS%2BCSS%2BHTML\)) tags in CSS, JS and HTML files
+* `@{if}`, `@{fi}`, `@{else}` and [`@{import}`](http://docs.totaljs.com/latest/en.html#api~FrameworkViews~%40%7Bimport) tags in HTML files
+* [`F.map()`](http://docs.totaljs.com/latest/en.html#api~Framework~framework.map) method - clone files, enable blocks, merging files
 
 ### Overview
 
