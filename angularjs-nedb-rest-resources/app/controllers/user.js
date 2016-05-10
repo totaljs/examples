@@ -9,7 +9,7 @@ app.controller('UserCtrl', ['$scope', 'User', function($scope, User) {
     };
 
     $scope.save = function() {
-        $scope.user.$save({ _id: $scope.user._id }, function () {
+        $scope.user.$update({ _id: $scope.user._id }, function () {
             $scope.users = User.query();
         });
     	$scope.isForm = false;

@@ -1,3 +1,3 @@
 app.factory('User', function ($resource) {
-	return $resource('/user/:_id', { _id: '@_id' });
+	return $resource('/users/:_id', { _id: '@_id' }, { 'update': { method:'PUT' }});
 });

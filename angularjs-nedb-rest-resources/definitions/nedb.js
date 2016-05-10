@@ -1,10 +1,9 @@
 var Datastore = require('nedb');
 
 db = {};
-db.users = new Datastore('database/users.db');
+db.users = new Datastore(F.path.databases('users.db'));
 
 db.users.loadDatabase();
-
 // insert test data
 /*
 db.users.insert([{
@@ -43,7 +42,6 @@ db.users.insert([{
 }, {
     alias: "Tory Windom",
     email: "mail@example.ch"
-}], function (err) { });
+}], F.error());
 */
-
 global.nedb = db;
