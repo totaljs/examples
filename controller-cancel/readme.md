@@ -7,7 +7,7 @@ Features covered by this example:
 * [Controllers](http://docs.totaljs.com/latest/en.html#pages~Controllers) - route URL requests to code
 * [Definitions](http://docs.totaljs.com/latest/en.html#pages~Definitions) - coded config files
 * [`F.route()`](http://docs.totaljs.com/latest/en.html#api~Framework~framework.route) - define a route
-* [`F.on('controller')`](http://docs.totaljs.com/latest/en.html#api~Framework~framework.on('controller') - intercept controller requests
+* [`F.on('controller')`](http://docs.totaljs.com/latest/en.html#api~Framework~framework.on\('controller') - intercept controller requests
 * [`controller.cancel()`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.cancel) - cancel a request
 * [`controller.redirect()`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.redirect) - redirect a request
 * [`controller.url`](http://docs.totaljs.com/latest/en.html#api~FrameworkController~controller.url) - determine request path
