@@ -13,31 +13,22 @@ exports.install = function() {
 
 	// route: all txt files
 	// Try: http://127.0.0.4/test.txt
-	F.file('All *.txt', static_txt);
+	F.file('*.txt', static_txt);
 
 	// route: all jpg files
 	// all images will resized about 50%
 	// Try: http://127.0.0.4/header.jpg
-	F.file('All *.jpg', static_jpg);
+	F.file('*.jpg', static_jpg);
 }
 
-function static_txt(req, res, isValidation) {
-
-	if (isValidation)
-		return req.extension === 'txt';
-
-	// generate response
+function static_txt(req, res) {
+	// responds
 	// this === framework
-	// Documentation: http://docs.totaljs.com/Framework/#framework.responsContent
 	res.content(200, 'Server time: ' + new Date().toString(), 'text/plain');
 }
 
-function static_jpg(req, res, isValidation) {
-
-	if (isValidation)
-		return req.extension === 'jpg';
-
-	// generate response
+function static_jpg(req, res) {
+	// responds
 	// this === framework
 	res.image(F.path.public(req.url), function (image) {
 		// image === FrameworkImage
@@ -51,7 +42,7 @@ function view_homepage(category) {
 
 	category = category || '';
 
-	if (category.length > 0)
+	if (category.length)
 		category = ' -> ' + category;
 
 	this.plain('homepage{0}'.format(category));
@@ -66,10 +57,10 @@ function view_products(category, subcategory) {
 	category = category || '';
 	subcategory = subcategory || '';
 
-	if (category.length > 0)
+	if (category.length)
 		category = ' -> ' + category;
 
-	if (subcategory.length > 0)
+	if (subcategory.length)
 		subcategory = ' -> ' + subcategory;
 
 	this.plain('products{0}{1}'.format(category, subcategory));

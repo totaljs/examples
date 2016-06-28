@@ -8,10 +8,7 @@ function view_index() {
 	self.plain(self.hostname('sitemap.xml'));
 }
 
-function file_xml(req, res, validation) {
-
-	if (validation)
-		return req.url === '/sitemap.xml';
+function file_xml(req, res) {
 
 	var self = this;
 	var hostname = req.hostname();

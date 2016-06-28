@@ -3,12 +3,12 @@
 // WHY?
 // You can change a name of static file without replacement all names in all project files.
 
-// @{route...} or controller.route... or framework.route...
+// The files below must exists
+/js/script.js					: /js/script023.js
+/css/style.css					: /css/style001.css
 
-script.js					: script023.js
-style.css					: style001.css
-logo.png					: logo003.png
+// The framework creates mapping
+/img/logo.png			    -->  /img/logo003.png
 
-// From CSS background(url()):
-
+// The framework prepares CSS background(url()):
 /img/bg.png					: /img/bg002.png

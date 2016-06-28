@@ -9,25 +9,22 @@ exports.install = function() {
 
 function redirect_payment() {
 	var self = this;
-	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), F.isDebug);
+	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), DEBUG);
 
 	var orderNumber = 100;
 	var price = 12.23;
 
 	payment.pay(orderNumber, price, 'support', 'EUR', function(err, url) {
-
-		if (err) {
+		if (err)
 			self.throw500(err);
-			return;
-		}
-
-		self.redirect(url);
+		else
+			self.redirect(url);
 	});
 };
 
 function view_payment() {
 	var self = this;
-	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), F.isDebug);
+	var payment = paypal.init(CONFIG('paypal-user'), CONFIG('paypal-password'), CONFIG('paypal-signature'), CONFIG('paypal-return'), CONFIG('paypal-cancel'), DEBUG);
 
 	payment.detail(self, function(err, data) {
 

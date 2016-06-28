@@ -20,6 +20,9 @@ exports.install = function() {
 
 	// hidden for subdomain
 	F.route('[]/contact/', contact);
+
+	// wildcard subdomain routing
+	F.route('[api*]/', api);
 };
 
 function subdomain() {
@@ -36,4 +39,8 @@ function contact() {
 
 function root() {
 	this.plain('root');
+}
+
+function api() {
+	this.plain('api');
 }

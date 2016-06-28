@@ -25,12 +25,12 @@
 
 	<div style="padding:20px 0;border-bottom:1px solid #E0E0E0;">
 		Breadcrumb:
-	@{foreach m in sitemap()}
-		<a href="@{m.url}">@{m.name}</a>
-		@{if !m.last}
-		&nbsp; &gt; &nbsp;
-		@{fi}
-	@{end}
+		@{foreach m in sitemap()}
+			<a href="@{m.url}">@{m.name}</a>
+			@{if !m.last}
+			&nbsp; &gt; &nbsp;
+			@{fi}
+		@{end}
 	</div>
 
 	<div>@{body}</div>
