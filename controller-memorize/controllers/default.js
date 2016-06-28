@@ -7,7 +7,7 @@ exports.install = function() {
 function view() {
 
 	var self = this;
-	self.repository.ticks = new Date().getTime();
+	self.repository.ticks = Date.now();
 
 	// Save a rendered HTML into the cache (only the view - without layout, layout is not cached)
 	// Memorize uses standard internal FrameworkCache
@@ -30,7 +30,7 @@ function view() {
 	// OR
 
 	/*
-	self.memorize('view', '2 minutes', self.isDebug, function() {
+	self.memorize('view', '2 minutes', DEBUG, function() {
 		CACHE WILL SKIPPED IN DEBUG MODE
 		self.view('homepage', self.repository.ticks);
 	});

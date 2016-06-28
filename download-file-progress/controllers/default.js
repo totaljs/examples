@@ -20,7 +20,7 @@ function view_homepage() {
  */
 function json_percentage() {
     var self = this;
-    var id = (self.req.headers['user-agent'] + self.ip).hash('md5');
+    var id = (self.req.headers['user-agent'] + self.ip).hash();
     self.json({ percentage: progress[id] || 0 });
 }
 
@@ -36,7 +36,7 @@ function file_download() {
     var size = fs.statSync(filename).size;
     var current = 0;
     var percentage = 0;
-    var id = (self.req.headers['user-agent'] + self.ip).hash('md5');
+    var id = (self.req.headers['user-agent'] + self.ip).hash();
 
     progress[id] = 0;
 
@@ -45,5 +45,5 @@ function file_download() {
         progress[id] = Math.floor((current / size) * 100);
     });
 
-    self.stream(U.getContentType('.zip'), stream, 'file.zip');
+    self.stream(U.getContentType('zip'), stream, 'file.zip');
 }

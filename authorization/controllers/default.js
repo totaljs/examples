@@ -1,8 +1,8 @@
 exports.install = function() {
 	F.route('/', view_logged, ['authorize']);
 	F.route('/', view_homepage);
-	F.route('/', json_homepage, ['xhr', 'post']);
-	F.route('/logout/', logout, ['authorize', 'get']);
+	F.route('/', json_login, ['post', '*User']);
+	F.route('/logout/', logout, ['authorize']);
 };
 
 function view_logged() {
@@ -12,39 +12,12 @@ function view_logged() {
 
 function view_homepage() {
 	var self = this;
-	self.view('homepage', { LoginName: '@' });
+	self.view('homepage', { email: '@' });
 }
 
-function json_homepage() {
-
+function json_login() {
 	var self = this;
-	var error = self.validate(self.post, ['LoginName', 'LoginPassword']);
-
-	if (self.user !== null)
-		error.add('Logged');
-
-	if (error.hasError()) {
-		self.json(error);
-		return;
-	}
-
-	var db = self.database('users');
-	db.one(n => n.email === self.body.LoginName && n.password === self.body.LoginPassword, function(err, user) {
-
-		if (user === null) {
-			error.add('LoginError');
-			self.json(error);
-			return;
-		}
-
-		self.database('users-logs').insert({ id: user.id, email: user.email, ip: self.req.ip, date: new Date() });
-
-		// Save to cookie
-		self.res.cookie(F.config.cookie, F.encrypt({ id: user.id, ip: self.req.ip }, 'user'), new Date().add('5 minutes'));
-
-		// Return result
-		self.json({ r: true });
-	});
+	self.body.$workflow('login', self, self.callback());
 }
 
 function logout() {

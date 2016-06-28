@@ -7,7 +7,7 @@ exports.install = function() {
 	F.route('/', view_homepage);
 
 	// file route
-	F.file('*.pdf counter', file_download);
+	F.file('*.pdf', file_download);
 
 };
 
@@ -18,11 +18,8 @@ function view_homepage() {
 
 function file_download(req, res, isValidation) {
 
-	if (isValidation)
-		return req.extension === 'pdf';
-
 	// this === framework
-	var filename = path.basename(req.url);
+	var filename = U.getName(req.url);
 
 	counter++;
 

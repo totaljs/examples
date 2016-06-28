@@ -1,6 +1,6 @@
 exports.install = function() {
 	F.route('/', view_form);
-	F.route('/', json_form, ['xhr', 'post', '*ContactForm']);
+	F.route('/', json_form, ['post', '*ContactForm']);
 };
 
 function view_form() {

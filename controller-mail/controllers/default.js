@@ -9,8 +9,10 @@ function view_homepage() {
 
 function redirect_mail() {
 
+	var self = this;
+
     // This function automatically reads view: email.html
-    this.mail('petersirka@gmail.com', 'Test e-mail', '~email', { name: 'MODEL NAME' });
-    this.redirect('/?success=1');
+    self.mail('petersirka@gmail.com', 'Test e-mail', '~email', { name: 'MODEL NAME' });
+    self.redirect('/?success=1');
 
 }

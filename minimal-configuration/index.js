@@ -7,5 +7,5 @@
 require('total.js').http('debug');
 
 F.route('/', function() {
-    this.plain('total.js');
+    this.plain('Total.js');
 });

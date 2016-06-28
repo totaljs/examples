@@ -21,24 +21,24 @@
 	<form action="#" method="POST" id="f">
 		<div>
 			<div>Login name:</div>
-			<div><input type="text" name="LoginName" value="@{model.LoginName}" maxlength="200" /></div>
+			<div><input type="text" name="email" value="@{model.email}" maxlength="200" /></div>
 		</div>
 		<br />
 		<div>
 			<div>Login password:</div>
-			<div><input type="text" name="LoginPassword" value="" maxlength="30" /></div>
+			<div><input type="text" name="password" value="" maxlength="30" /></div>
 		</div>
 		<div id="error"></div>
 	</form>
 	<br />
 	<button>Submit</button>
 
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function() {
 			$('button').bind('click', function() {
-				$.post('/?ts=' + new Date().getTime(), $('#f').serialize(), function(d) {
+				$.post('/?ts=' + Date.now(), $('#f').serialize(), function(d) {
 					var err = $('#error');
-				
+
 					if (d instanceof Array) {
 
 						err.empty();
