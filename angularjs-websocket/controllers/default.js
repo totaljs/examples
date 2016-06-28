@@ -1,26 +1,21 @@
 exports.install = function() {
-    F.route('/*', view_app);
-    F.websocket('/', socket_chat, ['json']);
+	F.route('/*', view_app);
+	F.websocket('/', socket_chat, ['json']);
 };
 
 function view_app() {
-    var self = this;
-    self.view('app');
+	var self = this;
+	self.view('app');
 }
 
 function socket_chat() {
 
 	var self = this;
 
-	// refresh online users
+	// Refreshes online users
 	var refresh = function() {
 		var users = [];
-
-		self.all(function(client) {
-			if (client.alias)
-				users.push(client.alias);
-		});
-
+		self.all(client => users.push(client.alias));
 		self.send({ type: 'users', message: users });
 	};
 
@@ -32,14 +27,9 @@ function socket_chat() {
 			return;
 		}
 
-		self.send({ user: client.alias, type: 'message', message: message.message, date: new Date() }, function(current) {
-			return (current.alias || '').length > 0;
-		});
+		self.send({ user: client.alias, type: 'message', message: message.message, date: new Date() });
 
 	});
 
-	self.on('close', function(client) {
-		refresh();
-	});
-
+	self.on('close', (client) => refresh());
 }

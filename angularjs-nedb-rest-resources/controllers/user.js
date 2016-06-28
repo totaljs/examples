@@ -5,7 +5,7 @@ exports.install = function() {
 	// F.route('/users/{id}/', json_user_get);
 	// F.route('/users/',      json_user_save, ['post']);
 	// F.route('/users/{id}/', json_user_save, ['put']);
-    // F.route('/users/{id}/', json_user_delete, ['delete']);
+	// F.route('/users/{id}/', json_user_delete, ['delete']);
 };
 
 /*
@@ -15,7 +15,7 @@ exports.install = function() {
 */
 function json_user_query() {
 	var self = this;
-    nedb.users.find({}, self.callback());
+	nedb.users.find({}, self.callback());
 }
 
 /*
@@ -25,7 +25,7 @@ function json_user_query() {
 */
 function json_user_get(id) {
 	var self = this;
-    nedb.users.findOne({ _id: id }, self.callback());
+	nedb.users.findOne({ _id: id }, self.callback());
 }
 
 /*
@@ -40,7 +40,7 @@ function json_user_save(id) {
 
 	// What is it? https://github.com/totaljs/examples/tree/master/changes
 	self.change('user: save, id: ' + id);
-    nedb.users.update({_id: id}, self.body, self.callback());
+	nedb.users.update({_id: id}, self.body, self.callback());
 }
 
 /*
@@ -56,5 +56,5 @@ function json_user_delete(id) {
 
 	// What is it? https://github.com/totaljs/examples/tree/master/changes
 	self.change('user: deleted, id: ' + id);
-    nedb.users.remove({ '_id': id }, self.callback());
+	nedb.users.remove({ '_id': id }, self.callback());
 }
