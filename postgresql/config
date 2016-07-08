@@ -1,0 +1,2 @@
+// Connection string
+database      : postgres://user:password@localhost:5432/mydatabasename

@@ -1,38 +1,23 @@
 exports.install = function() {
-    F.route('/', view_homepage);
+	F.route('/', view_homepage);
 };
 
 function view_homepage() {
 
-    var self = this;
+	var self = this;
 
-    // definitions/postgresql.js
-    // create a DB connection
-    DATABASE('test', function(err, client, done) {
+	// Documentation: https://github.com/petersirka/node-sqlagent
+	var sql = DB();
 
-        if(err != null) {
-            self.throw500(err);
-            return;
-        }
+	sql.select('users', 'tbl_user').make(function(builder) {
+		builder.sort('name');
+		builder.where('isremoved', false);
+		builder.take(10);
+	});
 
-        // Table schema = { Id: Number, Age: Number, Name: String };
-        client.query('SELECT * FROM users', function(err, rows) {
-
-            // Close connection
-            done();
-
-            if (err != null) {
-                self.throw500(err);
-                return;
-            }
-
-            // Shows the result on a console window
-            console.log(rows);
-
-            // Send rows as the model into the view
-            self.view('index', rows);
-        });
-
-    });
-
+	sql.exec(function(err, response) {
+		if (err)
+			return self.throw500(err);
+		self.view('index', response.users);
+	});
 }
