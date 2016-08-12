@@ -1,16 +1,6 @@
-# Examples
-
-Nedokončené:
-
-- framework-schema-and-validation
-
-upraviť URL adresy na serveri na injected
-
----
-
 ## IMPORTANT NOTE:
 
-All examples are customized for `+v1.9.x` version.
+All examples are customized for `+v2.0.x` version.
 
 ---
 
