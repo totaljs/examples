@@ -2,44 +2,49 @@
 <form action="#" method="POST" id="f">
 	<div>
 		<div>First name:</div>
-		<div><input type="text" name="FirstName" maxlength="200" /></div>
+		<div><input type="text" name="firstname" maxlength="200" /></div>
 	</div>
 	<br />
 	<div>
 		<div>Last name:</div>
-		<div><input type="text" name="LastName" maxlength="200" /></div>
+		<div><input type="text" name="lastname" maxlength="200" /></div>
 	</div>
 	<br />
 	<div>
 		<div>E-mail:</div>
-		<div><input type="text" name="Email" value="@" maxlength="200" /></div>
+		<div><input type="text" name="email" value="@" maxlength="200" /></div>
 	</div>
 	<br />
 	<div>
 		<div>Age:</div>
-		<div><input type="text" name="Age" maxlength="2" /></div>
+		<div><input type="text" name="age" maxlength="2" /></div>
 	</div>
 	<br />
 	<div>
-		<div><label><input type="checkbox" name="Terms" value="1" /> I agree</label></div>
+		<div><label><input type="checkbox" name="terms" value="1" /> I agree</label></div>
 	</div>
 	<div id="error"></div>
 </form>
 <br />
 <button>Submit</button>
 
-<script type="text/javascript">
+<script>
     $(document).ready(function() {
-        $('button').bind('click', function() {
-            $.post('/?ts=' + new Date().getTime(), $('#f').serialize(), function(d) {
+        $('button').on('click', function() {
+            $.post('/?ts=' + Date.now(), $('#f').serialize(), function(d) {
+
                 var err = $('#error');
-                d = JSON.parse(d);
+                $('input').removeClass('error');
+
                 if (d instanceof Array) {
 
                     err.empty();
+
                     d.forEach(function(o) {
+                    	$('input[name="' + o.name + '"]').addClass('error');
                         err.append('<div>' + o.error + '</div>');
                     });
+
                     err.show();
                     return;
                 };

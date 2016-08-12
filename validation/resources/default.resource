@@ -1,4 +1,4 @@
-FormFirstName			: Please enter your first name
-FormLastName			: Please enter your last name
-FormEmail				: Email (@Email) is not valid
-FormTerms				: You must agree
+error-firstname			: Please enter your first name
+error-lastname			: Please enter your last name
+error-email				: Email is not valid
+error-terms				: You must agree
