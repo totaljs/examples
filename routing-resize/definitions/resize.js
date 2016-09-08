@@ -24,3 +24,12 @@ F.resize('/img/50percent/', function(image) {
 F.resize('/img/medium/', function(image) {
 	image.resize('70%');
 }, ['/img/', '.png']);
+
+F.resize('/img/blur/', function(image) {
+	image.resize(100, 100);
+	image.quality(90);
+	image.blur(1);
+	image.minify();
+}, ['~' + F.path.root()]);
+
+console.log(F.path.root());

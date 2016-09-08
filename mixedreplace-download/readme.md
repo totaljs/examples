@@ -1,0 +1,1 @@
+This example works on in Total.js `v2.0.2`.
