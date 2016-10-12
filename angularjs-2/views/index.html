@@ -1,0 +1,60 @@
+@{layout('')}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular.js 2.0</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="robots" content="all,follow" />
+
+	<script src="https://code.angularjs.org/2.0.0-beta.17/Rx.umd.js"></script>
+	<script src="https://code.angularjs.org/2.0.0-beta.17/angular2-polyfills.js"></script>
+	<script src="https://code.angularjs.org/2.0.0-beta.17/angular2-all.umd.dev.js"></script>
+
+</head>
+<body>
+	<company-app>
+		Loading ...
+	</company-app>
+
+	<script>
+		(function() {
+
+		  var HelloWorldComponent = function() {};
+
+		  HelloWorldComponent.annotations = [
+			new ng.core.Component({
+			  selector: 'hello-world',
+			  template: '<h1>Hello Angular2!</h1>'
+			})
+		  ];
+
+		  var HelloFlentApi = ng.core.Component({
+			selector: 'hello-fluent',
+			template: '<h1>Hello {{name}}!</h1>' + '<input [(ngModel)]="name">',
+		  }).Class({
+			constructor: function() {
+			  this.name = "Fluent API";
+			}
+		  });
+
+		  var AppComponent = ng.core.Component({
+			selector: 'company-app',
+			template: '<hello-world></hello-world>' +
+			  '<hello-fluent></hello-fluent>',
+			directives: [HelloWorldComponent, HelloFlentApi]
+		  }).Class({
+			constructor: function() {}
+		  });
+
+		  document.addEventListener("DOMContentLoaded", function() {
+			ng.platform.browser.bootstrap(AppComponent);
+		  });
+
+		}());
+	</script>
+</body>
+</html>
