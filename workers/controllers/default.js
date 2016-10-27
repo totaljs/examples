@@ -4,5 +4,5 @@ exports.install = function() {
 
 function view_index() {
 	var self = this;
-	self.json(F.global.weather);
+	self.json(F.global.xml);
 }
