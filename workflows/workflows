@@ -1,0 +1,4 @@
+user-save            : workflow:'check'     -->     workflow:'confirm'     -->    save (response)
+array-results        : workflow:'check'     -->     workflow:'confirm'     -->    save    -->    operation:'blabla'
+user-query           : query (response)
+xml                  : transform:'xml' (response)
