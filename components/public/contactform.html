@@ -1,0 +1,15 @@
+<style>
+	.contactform { background-color: #F0F0F0; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+</style>
+
+<div class="contactform">
+	@{if settings.email}<b>@{model.email}</b>@{fi}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum saepe magnam odio minus id temporibus illum doloremque aliquid, consequatur nulla!
+</div>
+
+<script>
+	$(document).ready(function() {
+		setTimeout(function() {
+			$('.contactform').find('b').css('display', 'block').animate({ 'font-size': '50px' }, 300);
+		}, 1000);
+	});
+</script>

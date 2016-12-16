@@ -1,0 +1,20 @@
+<style>
+	.newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }
+	.newsletter-input { font-size: 20px; padding: 20px; width: 100%; }
+	.newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }
+</style>
+
+<div class="newsletter">
+	<div>Join to newsletter:</div>
+	<input type="text" class="newsletter-input" placeholder="Type your email address" />
+</div>
+
+<script>
+	$(document).on('keypress', '.newsletter-input', function(e) {
+		if (e.keyCode !== 13)
+			return;
+		$.post('/api/newsletter/', { email: this.value }, function(response) {
+			$('.newsletter').replaceWith('<div class="newsletter-success">THANK YOU!</div>');
+		});
+	});
+</script>
