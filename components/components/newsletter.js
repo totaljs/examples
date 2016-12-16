@@ -8,6 +8,6 @@ function json_newsletter() {
 	var self = this;
 	self.body.ip = self.ip;
 	self.body.created = F.datetime;
-	NOSQL('newsletter').upsert(self.body);
+	NOSQL('newsletter').insert(self.body);
 	self.json(SUCCESS(true));
 }

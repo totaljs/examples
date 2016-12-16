@@ -13,8 +13,9 @@
 	$(document).on('keypress', '.newsletter-input', function(e) {
 		if (e.keyCode !== 13)
 			return;
+		var el = $(this).closest('.newsletter');
 		$.post('/api/newsletter/', { email: this.value }, function(response) {
-			$('.newsletter').replaceWith('<div class="newsletter-success">THANK YOU!</div>');
+			el.replaceWith('<div class="newsletter-success">THANK YOU!</div>');
 		});
 	});
 </script>
