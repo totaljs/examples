@@ -1,0 +1,29 @@
+<!-- SERVER-SIDE IMPLEMENTATION -->
+<script type="text/totaljs">
+	exports.install = function() {
+		F.route('/api/datetime/', json_datetime);
+	};
+
+	function json_datetime() {
+		this.json(Date.now());
+	}
+</script>
+
+<style>
+	.datetime { background-color: black; border-radius: 4px; color: white; padding: 20px; }
+</style>
+
+<div class="datetime"></div>
+
+<!-- CLIENT-SIDE -->
+<script>
+$(document).ready(function() {
+	if ($('.datetime').length) {
+		setInterval(function() {
+			$.get('/api/datetime/', function(response) {
+				$('.datetime').html(new Date(response).toString());
+			});
+		}, 1000);
+	}
+});
+</script>
