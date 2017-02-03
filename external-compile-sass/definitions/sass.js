@@ -7,10 +7,9 @@ F.helpers.scss = function(name) {
 	return '<link type="text/css" rel="stylesheet" href="' + F.routeStyle(name).replace(/\.css$/, '') + '" />';
 };
 
-F.file('*.scss', function(req, res, is) {
+F.file(function(req, res, is) {
 	if (is)
 		return req.extension === 'scss';
-
 	F.exists(req, res, 20, function(next, tmp) {
 		var filename = F.path.public(req.url);
 		Fs.readFile(filename, function(err, data) {
