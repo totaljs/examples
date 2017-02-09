@@ -404,7 +404,7 @@ exports.install = function() {
 		return $script_create(name);
 	};
 
-	framework.on('controller-render-head', event_render_head);
+	framework.on('controller-render-meta', event_render_head);
 };
 
 exports.uninstall = function() {
@@ -418,7 +418,7 @@ exports.uninstall = function() {
 	delete framework.helpers.ngController;
 	delete framework.helpers.ngLocale;
 	delete framework.helpers.ngCommon;
-	framework.removeListener('controller-render-head', event_render_head);
+	framework.removeListener('controller-render-meta', event_render_head);
 };
 
 function event_render_head(controller) {
