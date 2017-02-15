@@ -9,9 +9,10 @@ exports.install = function() {
 function view_index() {
 	var self = this;
 
-	if (typeof(self.session.counter) === 'undefined')
-		self.session.counter = 0;
-	self.session.counter++;
+	if (self.session.counter)
+		self.session.counter++;
+	else
+		self.session.counter = 1;
 
 	self.view('index');
 }
