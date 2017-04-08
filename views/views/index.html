@@ -30,7 +30,7 @@
 
 <h2>Dynamic view</h2>
 
-@{view('Current date: @{model.format(\'dd.MM.yyyy HH:mm\')}', new Date())}
+@{viewCompile('Current date: @{model.format(\'dd.MM.yyyy HH:mm\')}', new Date())}
 
 <h2>Foreach</h2>
 
