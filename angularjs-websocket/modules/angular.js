@@ -14,11 +14,9 @@ var REPOSITORY_ANGULAR_COMMON = '$angular-common';
 var REPOSITORY_ANGULAR_CONTROLLER = '$angular-controller';
 var REPOSITORY_ANGULAR_OTHER = '$angular-other';
 
-exports.install = function() {
+exports.install = function(options) {
 
-	var options = framework.version >= 1900 ? arguments[0] : arguments[1];
-
-	Utils.extend(exports.options, options, true);
+	U.extend(exports.options, options, true);
 
 	/*
 		Include: Angular.js CDN into the head
@@ -396,11 +394,8 @@ exports.install = function() {
 	};
 
 	framework.helpers.ngInclude = function(name) {
-		var self = this;
-
 		if (name.lastIndexOf(EXTENSION_JS) === -1)
 			name += EXTENSION_JS;
-
 		return $script_create(name);
 	};
 
