@@ -31,7 +31,7 @@ function static_image(req, res) {
 	db.binary.read(id, function(err, stream, header) {
 
 		if (err) {
-			res.throw404(req, res);
+			res.throw404();
 			return;
 		}
 
@@ -45,6 +45,6 @@ function static_image(req, res) {
 		});
 
 		// or
-		// self.stream('image/png', stream);
+		// res.stream('image/png', stream);
 	});
 }
