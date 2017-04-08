@@ -19,7 +19,7 @@ exports.install = function() {
 	// all images will resized about 50%
 	// Try: http://127.0.0.4/header.jpg
 	F.file('*.jpg', static_jpg);
-}
+};
 
 function static_txt(req, res) {
 	// responds

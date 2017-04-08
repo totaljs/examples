@@ -5,7 +5,7 @@ exports.install = function() {
 
 	// Request timeout (define timeout page)
 	F.route('#408', view_408);
-}
+};
 
 function timeout() {
 	// I forgot to call the view
