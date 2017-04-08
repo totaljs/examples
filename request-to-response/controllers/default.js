@@ -1,7 +1,7 @@
 exports.install = function() {
 	F.route('/', pipe_homepage);
 	F.route('/file/', pipe_file);
-}
+};
 
 function pipe_homepage() {
 	var self = this;
@@ -10,5 +10,5 @@ function pipe_homepage() {
 
 function pipe_file() {
 	var self = this;
-	self.pipe('https://www.totaljs.com/download/logo-black.png');
+	self.pipe('https://www.totaljs.com/img/logo.png');
 }
