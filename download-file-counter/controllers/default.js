@@ -1,4 +1,3 @@
-var path = require('path');
 var counter = 0;
 
 exports.install = function() {
@@ -8,15 +7,14 @@ exports.install = function() {
 
 	// file route
 	F.file('*.pdf', file_download);
-
 };
 
 function view_homepage() {
 	var self = this;
 	self.plain(self.req.hostname('/totaljs.pdf') + '\n\nDownload count: ' + counter);
-};
+}
 
-function file_download(req, res, isValidation) {
+function file_download(req, res) {
 
 	// this === framework
 	var filename = U.getName(req.url);
@@ -25,4 +23,4 @@ function file_download(req, res, isValidation) {
 
 	// response file
 	res.file(F.path.public(filename), filename);
-};
+}
