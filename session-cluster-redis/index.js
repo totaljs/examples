@@ -18,21 +18,21 @@ if (!cluster.isMaster) {
 
     F.http('debug');
 	return;
+}else{
+	//Varun Batra <codevarun@gmail.com> Removed bug for cluster.fork is not a function since cluster isn't a master once forked. 
+	var numCPUs = os.cpus().length;
+
+	for (var i = 0; i < numCPUs; i++) {
+
+		// Run framework
+	    var fork = cluster.fork();
+
+	    fork.on('message', onMessage);
+
+	    // Send ID
+	    fork.send({ type: 'id', id: i });
+	}
 }
-
-var numCPUs = os.cpus().length;
-
-for (var i = 0; i < numCPUs; i++) {
-
-	// Run framework
-    var fork = cluster.fork();
-
-    fork.on('message', onMessage);
-
-    // Send ID
-    fork.send({ type: 'id', id: i });
-}
-
 console.log('The cluster is running.');
 
 function onMessage(message) {
