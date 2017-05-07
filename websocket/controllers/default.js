@@ -84,7 +84,7 @@ function socket_homepage() {
 		console.log('Connect / Online:', controller.online);
 
 		client.send({ message: 'Hello {0}'.format(client.id) });
-		controller.send({ message: 'Connect new user: {0}\nOnline: {1}'.format(client.id, controller.online) }, [], [client.id]);
+		controller.send({ message: 'Connect new user: {0}\nOnline: {1}'.format(client.id, controller.online) }, Object.keys(controller.connections), [client.id]);
 
         // or
         /*
