@@ -84,11 +84,11 @@ function socket_homepage() {
 		console.log('Connect / Online:', controller.online);
 
 		client.send({ message: 'Hello {0}'.format(client.id) });
-		controller.send({ message: 'Connect new user: {0}\nOnline: {1}'.format(client.id, controller.online) }, [], [client.id]);
+		controller.send({ message: 'Connect new user: {0}\nOnline: {1}'.format(client.id, controller.online) }, null, [client.id]);
 
         // or
         /*
-        controller.send({ message: 'Some message' }, [], function(user) {
+        controller.send({ message: 'Some message' }, null, function(user) {
             // filter
             return user.id === client.id;
         });
