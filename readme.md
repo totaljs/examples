@@ -1,7 +1,15 @@
 ## IMPORTANT NOTE:
 
-All examples are customized for `+v2.0.x` version.
+All examples are customized for `+v2.6.x` version.
 
 ---
 
-> Firstly you must install total.js as global module __npm install -g total.js__ or you must copy __node_modules__ with total.js into each example.
+## How to run examples?
+
+- first you have to install __Total.js framework__ `$ npm install total.js`
+- then run each example like this:
+
+```bash
+$ cd workers
+$ node index.js
+```
