@@ -123,6 +123,7 @@ export.uninstall = function() {
   F.removeListener('service', housekeeping);
 }
 ```
+
 ### Bonus 2: URI authentication
 
 The `.baa()` method only checks request HTTP headers for credentials, it doesn't check for credentials in the URI like this:
