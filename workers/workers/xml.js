@@ -5,6 +5,11 @@ F.load('debug', ['config'], '../');
 
 U.download(CONFIG('url'), ['get'], function(err, response) {
 
+    if (err) {
+        console.error(err);
+        return process.exit();
+    }
+
 	var data = [];
 
 	response.on('data', U.streamer('<CD>', '</CD>', function(item) {
