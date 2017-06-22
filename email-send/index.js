@@ -1,7 +1,6 @@
-var framework = require('total.js');
-var mail = require('total.js/mail');
+require('total.js');
 
-var message = new mail.Message('Subject', 'Body');
+var message = new Mail.Message('Subject', 'Body');
 
 message.to('petersirka@gmail.com');
 
@@ -12,7 +11,7 @@ message.to('petersirka@gmail.com');
 
 message.from('jankohrasko@gmail.com', 'Janko Hrasko');
 
-mail.on('error', function (err) {
+Mail.on('error', function (err) {
 	console.log(err);
 });
 
@@ -24,4 +23,4 @@ mail.on('error', function (err) {
 // message.send('smtp.yourdomain.com', { user: 'ENTER_YOUR_EMAIL', password: 'ENTER_YOUR_PASSWORD' });
 
 // SEND via SMTP
-// message.send('smtp.yourdomain.com');
+message.send('smtp.yourdomain.com');
