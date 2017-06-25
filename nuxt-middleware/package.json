@@ -1,0 +1,20 @@
+{
+  "name": "nuxt-middleware",
+  "version": "1.0.0",
+  "description": "integrating total.js and nuxt.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "total.js",
+    "nuxt.js",
+    "vue.js"
+  ],
+  "author": "ckpiggy",
+  "license": "MIT",
+  "dependencies": {
+    "nuxt": "^1.0.0-alpha.4",
+    "total.js": "^2.6.3-3"
+  }
+}
