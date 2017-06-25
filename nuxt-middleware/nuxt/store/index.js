@@ -4,7 +4,8 @@ const store = function () {
   return new Vuex.Store({
     state: {
       msg: '',
-      counter: 0
+      counter: 0,
+      serverMsg: ''
     },
     mutations: {
       setMsg: function (state, msg){
@@ -15,6 +16,9 @@ const store = function () {
       },
       decrease: function (state) {
         state.counter -= 1
+      },
+      setServerMsg: function (state, msg) {
+        state.serverMsg = msg
       }
     }
   })
