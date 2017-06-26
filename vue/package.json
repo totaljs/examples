@@ -5,7 +5,8 @@
   "repository": "totaljs/examples",
   "dependencies": {
     "total.js": "latest",
-    "node-sass": "latest"
+    "vue": "latest",
+    "vue-server-renderer": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

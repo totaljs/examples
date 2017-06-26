@@ -5,7 +5,7 @@
   "repository": "totaljs/examples",
   "dependencies": {
     "total.js": "latest",
-    "node-sass": "latest"
+    "mongoose": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
