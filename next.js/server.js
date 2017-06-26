@@ -1,7 +1,7 @@
 require('total.js');
 
 const release = process.env.NODE_ENV === 'production';
-const next = require('next')
+const next = require('next');
 const app = next({ dir: '.', dev: !release });
 const handle = app.getRequestHandler();
 
