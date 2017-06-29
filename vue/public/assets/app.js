@@ -7,6 +7,7 @@
 		// node with the id "app", so that the client-side
 		// version can take over once it loads.
 		return new Vue({
+			el: '#app',
 			template: '<div id="app">You have been here for {{ counter }} seconds.</div>',
 			data: {
 				counter: 0
@@ -24,6 +25,6 @@
 	if (typeof module !== 'undefined' && module.exports) {
 		module.exports = createApp;
 	} else {
-		this.app = createApp({ el: '#app' });
+		this.app = createApp();
 	}
 }).call(this);
