@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "0.16.2",
-    "nuxt": "1.0.0-alpha.4",
+    "nuxt": "next",
     "total.js": "^2.6.3-3"
   }
 }
