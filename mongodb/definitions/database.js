@@ -6,7 +6,8 @@ F.wait('database');
 MC.connect(CONFIG('database'), function(err, db) {
 	if (err)
 		throw err;
-	DB = db;
+
+	DB = db.db('totaldemo');
 	F.wait('database');
 });
 
