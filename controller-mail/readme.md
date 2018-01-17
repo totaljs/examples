@@ -2,9 +2,6 @@
 
 This example shows how to create a URL that generates an email and then redirect to another page to display a confirmation message.
 
-> **Note**
-> This example is based on the 1.9.x versions of total.js - there are some changes to the mail system in v2.0 and above.
-
 Features covered by this example:
 
 * [Controllers](http://docs.totaljs.com/latest/en.html#pages~Controllers) - route URL requests to code
@@ -71,11 +68,11 @@ The mail server used by `.mail()` is defined by `key : vlaue` pairs in the `/con
 
 ```
 // Mail settings
-mail.smtp          : smtp.gmail.com
-mail.smtp.options  : {"secure":true,"port":465,"user":"YOUR-GMAIL-EMAIL","password":"YOUR-GMAIL-PASSWORD","timeout":10000}
-mail.address.from  : petersirka@gmail.com
-mail.address.reply : petersirka@gmail.com
-mail.address.bcc   :
+mail-smtp          : smtp.gmail.com
+mail-smtp-options  : {"secure":true,"port":465,"user":"YOUR-GMAIL-EMAIL","password":"YOUR-GMAIL-PASSWORD","timeout":10000}
+mail-address-from  : petersirka@gmail.com
+mail-address-reply : petersirka@gmail.com
+mail-address-bcc   :
 ```
 
 ### Templates (Views)
