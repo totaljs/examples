@@ -1,5 +1,7 @@
 // ================================================
 // AUTHORIZATION
+// Please note that this method is called for all routes, regardless of flags set.
+// For example, if the route is flagged with 'authorize', and the callback return value is false, the response status will be 401.
 // ================================================
 
 F.onAuthorize = function(req, res, flags, callback) {
