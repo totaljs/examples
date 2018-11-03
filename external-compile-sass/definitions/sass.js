@@ -7,22 +7,20 @@ F.helpers.scss = function(name) {
 	return '<link type="text/css" rel="stylesheet" href="' + F.routeStyle(name).replace(/\.css$/, '') + '" />';
 };
 
-F.file(function(req, res, is) {
+FILE(function(req, res, is) {
 	if (is)
 		return req.extension === 'scss';
 	F.exists(req, res, 20, function(next, tmp) {
 		var filename = F.path.public(req.url);
 		Fs.readFile(filename, function(err, data) {
-
 			if (err) {
 				next();
 				res.throw404();
-				return;
+			} else {
+				var content = F.onCompileStyle(filename, data.toString('utf8'));
+				RELEASE && Fs.writeFile(tmp, content);
+				res.content(200, content, 'text/css', true);
 			}
-
-			var content = F.onCompileStyle(filename, data.toString('utf8'));
-			RELEASE && Fs.writeFile(tmp, content);
-			res.content(200, content, 'text/css', true);
 		});
 	});
 });
