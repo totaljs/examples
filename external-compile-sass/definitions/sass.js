@@ -21,13 +21,12 @@ F.file(function(req, res, is) {
 			}
 
 			var content = F.onCompileStyle(filename, data.toString('utf8'));
-			if (!F.isDebug)
-				Fs.writeFile(tmp, content);
-			F.responseContent(req, res, 200, content, 'text/css', true);
+			RELEASE && Fs.writeFile(tmp, content);
+			res.content(200, content, 'text/css', true);
 		});
 	});
 });
 
 F.onCompileStyle = function (filename, content) {
-    return sass.renderSync({ file: filename, data: content, outputStyle: 'compressed' }).css.toString('utf8');
+	return sass.renderSync({ file: filename, data: content, outputStyle: 'compressed' }).css.toString('utf8');
 };
