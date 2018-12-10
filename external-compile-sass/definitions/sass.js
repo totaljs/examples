@@ -18,7 +18,7 @@ FILE(function(req, res, is) {
 				res.throw404();
 			} else {
 				var content = F.onCompileStyle(filename, data.toString('utf8'));
-				RELEASE && Fs.writeFile(tmp, content);
+				Fs.writeFileSync(tmp, content);
 				res.content(200, content, 'text/css', true);
 			}
 		});
