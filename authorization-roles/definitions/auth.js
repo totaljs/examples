@@ -2,17 +2,15 @@
 // AUTHORIZATION
 // ================================================
 
-F.onAuthorize = function(req, res, flags, next) {
-
-	var cookie = req.cookie('__user');
-
+AUTH(function($) {
+	var cookie = $.cookie('__user');
 	switch (cookie) {
 		case 'administrator':
 		case 'moderator':
-			flags.push('@' + cookie);
-			next(true, { name: cookie });
+			$.roles(cookie);
+			$.success({ name: cookie });
 			return;
 	}
 
-	next(false);
-};
+	$.invalid();
+});

@@ -1,11 +1,13 @@
 exports.install = function() {
-	F.route('/', authorization);
+	ROUTE('GET /', auth);
 };
 
-function authorization() {
+function auth() {
 
 	var self = this;
 	var auth = self.baa();
+
+	// "baa" means "B"asic "A"ccess "A"uthentication
 
 	if (auth.empty) {
 		self.baa('This is secured area');
@@ -13,7 +15,7 @@ function authorization() {
 		return;
 	}
 
-	if (auth.user !== 'peter' || auth.password !== '123456') {
+	if (auth.user !== 'totaljs' || auth.password !== '123456') {
 		self.baa('Wrong credentials, this is secured area:');
 		// or self.view401();
 		return;

@@ -1,11 +1,16 @@
 ## Example: Basic Access Authentication (BAA)
 
-This example shows how to use [Basic Access Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) to authenticate users.
+This example shows how to use [Basic Access Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) to authenticate users. For understanding `controller.baa()` --> `baa` means __`B`asic `A`ccess `A`uthentication__.
+
+__Default credentials__:
+
+- user: `totaljs`
+- password: `123456`
 
 Features covered by this example:
 
-* `controller.baa()` - read login details from request
-* `controller.baa('prompt')` - send login prompt on response (ask user to login)
+- `controller.baa()` - read login details from request
+- `controller.baa('prompt')` - send login prompt on response (ask user to login)
 
 See the `/controllers/default.js` for sample code.
 
@@ -17,18 +22,17 @@ To read credentials, use the `.baa()` method in a route handler function:
 
 ```javascript
 function authorization() {
-  var auth = this.baa(); // this === controller
-
-  // ...
+	var auth = this.baa(); // this === controller
+	// ...
 }
 ```
 
 This looks for the `Authorization: Basic <mime-encoded-userid-and-password>` HTTP header in the request, and returns an object containing relevant details:
 
 ```javascript
-auth.empty // if true, no credentials were found
-auth.user // the user name, if found
-auth.password // the password, if found
+auth.empty;    // if true, no credentials were found
+auth.user;     // the user name, if found
+auth.password; // the password, if found
 ```
 
 ### Requesting credentials
@@ -38,14 +42,14 @@ If the user hasn't logged in yet, the `auth.empty` property will be `true` (no u
 ```javascript
 function authorization() {
 
-  // ...
+	// ...
 
-  if (auth.empty) { // ask user to login
-    this.baa('Admin Login Required.'); // or whatever prompt you want the user to see
-    return;
-  }
+	if (auth.empty) { // ask user to login
+		this.baa('Admin Login Required.'); // or whatever prompt you want the user to see
+		return;
+	}
 
-  // ...
+	// ...
 }
 ```
 
@@ -64,26 +68,26 @@ The resulting request should include the login credentials, now all we need to d
 ```javascript
 function authorization() {
 
-  // ...
+	// ...
 
-  // isValidLogin() would be custom function written by you
-  // that checks whether user exists and also that the password
-  // is correct for that user
-  if ( isValidLogin( auth.user, auth.password ) ) {
+	// isValidLogin() would be custom function written by you
+	// that checks whether user exists and also that the password
+	// is correct for that user
+	if ( isValidLogin( auth.user, auth.password ) ) {
 
-    // do authorised stuff
+		// do authorised stuff
 
-  } else {
+	} else {
 
-    // ask them to login again?
-    this.baa('Admin Login Required.');
-    return;
+		// ask them to login again?
+		this.baa('Admin Login Required.');
+		return;
 
-    // or maybe just throw a #401 error?
-    this.view401('Invalid login details');
-    return;
+		// or maybe just throw a #401 error?
+		this.view401('Invalid login details');
+		return;
 
-  }
+	}
 
 }
 ```
@@ -97,22 +101,22 @@ var baaCache = {};
 
 function authorization() {
 
-  // ...
+	// ...
 
-  if ( (baaCache[auth.user] && baaCache[auth.user] === auth.password) || isValidLogin( auth.user, auth.password ) ) {
+	if ( (baaCache[auth.user] && baaCache[auth.user] === auth.password) || isValidLogin( auth.user, auth.password ) ) {
 
-    baaCache[auth.user] = auth.password; // cache
+		baaCache[auth.user] = auth.password; // cache
 
-    // do authorised stuff
+		// do authorised stuff
 
-  } else {
-    // ...
-  }
+	} else {
+		// ...
+	}
 }
 
 function housekeeping(tick) {
-  if (tick % 5 === 0) // every 5 mins clear cache
-    baaCache = {};
+	if (tick % 5 === 0) // every 5 mins clear cache
+		baaCache = {};
 }
 
 // add this to export.install() at top of script:
@@ -120,7 +124,7 @@ F.on('service', housekeeping)
 
 // also add an export.uninstall() to remove the listener
 export.uninstall = function() {
-  F.removeListener('service', housekeeping);
+	F.removeListener('service', housekeeping);
 }
 ```
 
@@ -137,24 +141,24 @@ If you wish to accept credentials in the URI, use `.req.uri.auth`:
 ```javascript
 function authorization() {
 
-  // ...
+	// ...
 
-  if (auth.empty) { // check for URI auth first, before asking user to login
+	if (auth.empty) { // check for URI auth first, before asking user to login
 
-    if (this.req.uri.auth) { // found credentials on auth, use those instead
+		if (this.req.uri.auth) { // found credentials on auth, use those instead
 
-      let creds = this.req.uri.auth.split(':');
-      auth.user = creds[0];
-      auth.password = creds[1];
-      auth.empty = false;
+			let creds = this.req.uri.auth.split(':');
+			auth.user = creds[0];
+			auth.password = creds[1];
+			auth.empty = false;
 
-    } else {
-      this.baa('Admin Login Required.'); // or whatever prompt you want the user to see
-      return;
-    }
+		} else {
+			this.baa('Admin Login Required.'); // or whatever prompt you want the user to see
+			return;
+		}
 
-  }
+	}
 
-  // ...
+	// ...
 }
 ```

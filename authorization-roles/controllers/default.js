@@ -1,12 +1,12 @@
 exports.install = function() {
-	F.route('/');
+	ROUTE('GET /');
+	ROUTE('GET /',        view_administrator, ['authorize', '@administrator']);
+	ROUTE('GET /',        view_moderator,     ['authorize', '@moderator']);
+	ROUTE('GET /both/',   view_both,          ['authorize', '@moderator', '@administrator']);
 
-	F.route('/', view_administrator, ['authorize', '@administrator']);
-	F.route('/', view_moderator, ['authorize', '@moderator']);
-	F.route('/both/', view_both, ['authorize', '@moderator', '@administrator']);
-
-	F.route('/login/', redirect_login, ['unauthorize']);
-	F.route('/logoff/', redirect_logoff);
+	// Login/Logout
+	ROUTE('GET /login/',  redirect_login,     ['unauthorize']);
+	ROUTE('GET /logout/', redirect_logout);
 };
 
 function view_both() {
@@ -29,7 +29,7 @@ function redirect_login() {
 	switch (self.query.user) {
 		case 'administrator':
 		case 'moderator':
-			self.res.cookie('__user', self.query.user, '1 day');
+			self.cookie('__user', self.query.user, '1 day');
 			self.redirect('/');
 			break;
 		default:
@@ -38,8 +38,8 @@ function redirect_login() {
 	}
 }
 
-function redirect_logoff() {
+function redirect_logout() {
 	var self = this;
-	self.res.cookie('__user', '', new Date().add('d', -1));
+	self.cookie('__user', '', '-1 day');
 	self.redirect('/');
 }
