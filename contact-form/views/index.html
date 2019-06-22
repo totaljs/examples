@@ -1,0 +1,60 @@
+@{layout('')}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contanct form</title>
+    <meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=10" />
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="robots" content="all,follow" />
+	<script src="https://cdn.componentator.com/spa.min@17.js"></script>
+	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@17.css" />
+	<style type="text/css">
+		body { padding: 50px; margin: 0; font:normal 12px Arial; color: gray; }
+		.button { background-color: #4285F4; border: 0; color: white; cursor: pointer; outline: 0; width: 100%; border-radius: 3px; height: 34px; text-transform: uppercase; font-family: Arial; font-weight: bold; }
+		.button:hover { box-shadow: 0 2px 5px rgba(0,0,0,0.1); opacity: 0.9; }
+		.button:disabled { background-color: #E0E0E0; color: silver; cursor: not-allowed; box-shadow: none; opacity: 1; }
+		.button i { margin-right: 5px; }
+		.success { padding: 10px 20px; color: white; background-color: #56B92B; border-radius: 3px; margin: 10px 0; }
+	</style>
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3">
+				<div data-scope="contactform">
+					<div data---="textbox__?.email__type:email;maxlength:200;required:true__'@'" class="m">Email address</div>
+					<div data---="textbox__?.phone__type:phone;maxlength:30__'+421'" class="m">Phone number</div>
+					<div data---="textarea__?.message__maxlength:10000;required:true__''" class="m">Message</div>
+					<div data---="error__?.response__null"></div>
+					<div data-bind="?.response__show:value && value.success" class="success hidden">
+						<i class="fa fa-check-circle mr5"></i> Contact form has been sent successfully. All contact forms are stored in <code>/databases/contactforms.nosql</code>
+					</div>
+					<div data---="validation__?">
+						<button name="submit" class="button" disabled data-bind="null__click:?/submit">SEND</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		PLUGIN('contactform', function(exports) {
+			exports.submit = function() {
+				// "?" means "contactform", it's obtained automatically from name of plugin
+				AJAX('POST /api/send/', GETR('?'), function(response) {
+					// Is logged?
+					SET('?.response', response);
+					if (response.success)
+						DEFAULT('contactform.*');
+				});
+			};
+		});
+	</script>
+
+
+</body>
+</html>
