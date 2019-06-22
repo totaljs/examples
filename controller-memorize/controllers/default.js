@@ -1,7 +1,7 @@
 exports.install = function() {
-	F.route('/', view);
-	F.route('/json/', json);
-	F.route('/plain/', plain);
+	ROUTE('GET /', view);
+	ROUTE('GET /json/', json);
+	ROUTE('GET /plain/', plain);
 };
 
 function view() {

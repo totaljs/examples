@@ -1,6 +1,6 @@
 exports.install = function() {
-	F.route('/');
-	F.resize('/img/*.png', resizer);
+	ROUTE('/');
+	RESIZE('/img/*.png', resizer);
 };
 
 function resizer(image) {

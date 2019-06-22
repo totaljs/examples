@@ -1,6 +1,6 @@
 exports.install = function() {
-	F.route('/', file_download);
-	F.route('/image/', image_download);
+	ROUTE('GET /',       file_download);
+	ROUTE('GET /image/', image_download);
 };
 
 function file_download() {

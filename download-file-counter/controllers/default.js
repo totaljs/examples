@@ -3,10 +3,10 @@ var counter = 0;
 exports.install = function() {
 
 	// route index
-	F.route('/', view_homepage);
+	ROUTE('/', view_homepage);
 
 	// file route
-	F.file('*.pdf', file_download);
+	FILE('*.pdf', file_download);
 };
 
 function view_homepage() {
@@ -22,5 +22,5 @@ function file_download(req, res) {
 	counter++;
 
 	// response file
-	res.file(F.path.public(filename), filename);
+	res.file(PATH.public(filename), filename);
 }

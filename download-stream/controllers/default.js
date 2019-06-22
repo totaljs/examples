@@ -1,10 +1,10 @@
-var fs = require('fs');
+var Fs = require('fs');
 
 exports.install = function() {
-	F.route('/', file_download);
+	ROUTE('GET /', file_download);
 };
 
 function file_download() {
 	var self = this;
-	self.stream('application/pdf', fs.createReadStream(F.path.public('totaljs.pdf')), 'logo.pdf');
+	self.stream('application/pdf', Fs.createReadStream(F.path.public('totaljs.pdf')), 'logo.pdf');
 }

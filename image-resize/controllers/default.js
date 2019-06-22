@@ -1,10 +1,10 @@
 var Path = require('path');
 
 exports.install = function() {
-	F.route('/', view_index);
+	ROUTE('GET  /', view_index);
 
 	// the number is maximum data receive
-	F.route('/', view_index, ['upload'], 100); // max 100 kB
+	ROUTE('POST /', view_index, ['upload'], 100); // max 100 kB
 };
 
 function view_index() {
@@ -28,7 +28,7 @@ function view_index() {
 	// $ brew install graphicsmagick
 	// =============================
 
-	var filename = F.path.public('upload.jpg');
+	var filename = PATH.public('upload.jpg');
 
 	// Documentation: http://docs.totaljs.com/FrameworkImage/
 	var image = file.image(); // this is equivalent to require('partail.js/image').init([useImageMagick]);
@@ -56,6 +56,12 @@ function view_index() {
 
 	// IMPORTANT: see here https://github.com/petersirka/total.js/tree/master/examples/routing
 	image.resizeCenter(300, 300).save(filename, function(err) {
+
+		if (err) {
+			self.throw500(err);
+			return;
+		}
+
 		model.url = '<div><img src="/{0}?ts={1}" width="300" height="300" alt="Uploaded image" /></div><br />'.format(U.getName(filename), new Date().getTime());
 		self.view('index', model);
 	});

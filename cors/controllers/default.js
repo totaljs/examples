@@ -1,10 +1,10 @@
 exports.install = function() {
-	F.route('/time/', cors_time, ['cors']);
-	// is same as:
-	// F.cors('/time/', ['GET'])
+	ROUTE('GET /', cors_time);
+
+	// Enables CORS for all requests
+	CORS();
 };
 
 function cors_time() {
-	var self = this;
-	self.plain(new Date().toString());
+	this.plain(new Date().toString());
 }

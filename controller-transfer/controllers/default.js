@@ -1,13 +1,13 @@
 exports.install = function() {
-	F.route('/', view_index);
-	F.route('/other/', view_other);
-    F.route('/other/', view_other_post, ['post']);
+	ROUTE('GET  /',       view_index);
+	ROUTE('GET  /other/', view_other);
+	ROUTE('POST /other/', view_other_post);
 };
 
 function view_index() {
-    var self = this;
+	var self = this;
 	if (!self.transfer('/other/', ['post']))
-        return self.throw404();
+		return self.throw404();
 }
 
 function view_other() {
@@ -15,5 +15,5 @@ function view_other() {
 }
 
 function view_other_post() {
-    this.plain('OTHER - POST');
+	this.plain('OTHER - POST');
 }

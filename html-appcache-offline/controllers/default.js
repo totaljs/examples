@@ -1,3 +1,3 @@
 exports.install = function() {
-    F.route('/');
+	ROUTE('GET /');
 };
