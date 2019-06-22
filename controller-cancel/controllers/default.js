@@ -1,6 +1,6 @@
 exports.install = function() {
-	F.route('/', view_index);
-	F.route('/cancel/', view_cancel);
+	ROUTE('GET /',        view_index);
+	ROUTE('GET /cancel/', view_cancel);
 };
 
 function view_index() {
