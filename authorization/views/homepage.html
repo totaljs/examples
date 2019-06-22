@@ -9,50 +9,43 @@
 	<meta name="format-detection" content="telephone=no"/>
 	<meta name="viewport" content="width=1024, user-scalable=yes" />
 	<meta name="robots" content="all,follow" />
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="https://cdn.componentator.com/spa.min@17.js"></script>
+	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@17.css" />
 	<style type="text/css">
-		body { padding: 50px; margin: 0; font:normal 12px Arial; color: gray }
-		#error { display: none; background-color: black; color: white; margin: 20px 0 0 0; }
-		#error > div { border-bottom: 1px solid gray; padding: 3px 5px; }
+		body { padding: 50px; margin: 0; font:normal 12px Arial; color: gray; }
+		.button { background-color: #4285F4; border: 0; color: white; cursor: pointer; outline: 0; width: 100%; border-radius: 3px; height: 34px; text-transform: uppercase; font-family: Arial; font-weight: bold; }
+		.button:hover { box-shadow: 0 2px 5px rgba(0,0,0,0.1); opacity: 0.9; }
+		.button:disabled { background-color: #E0E0E0; color: silver; cursor: not-allowed; box-shadow: none; opacity: 1; }
+		.button i { margin-right: 5px; }
 	</style>
 </head>
 <body>
 
-	<form action="#" method="POST" id="f">
-		<div>
-			<div>Login name:</div>
-			<div><input type="text" name="email" value="@{model.email}" maxlength="200" /></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+				<div data---="input__loginform.email__type:email;maxlength:200;autofill:1;required:1__'@'" class="m">Email address</div>
+				<div data---="input__loginform.password__type:password;maxlength:30;autofill:1;required:1__''" class="m">Password</div>
+				<div data---="error__loginform.response__null"></div>
+				<div data---="validation__loginform">
+					<button name="submit" class="button" disabled data-bind="null__click:loginform/submit">Sign-in</button>
+				</div>
+			</div>
 		</div>
-		<br />
-		<div>
-			<div>Login password:</div>
-			<div><input type="text" name="password" value="" maxlength="30" /></div>
-		</div>
-		<div id="error"></div>
-	</form>
-	<br />
-	<button>Submit</button>
+	</div>
 
 	<script>
-		$(document).ready(function() {
-			$('button').bind('click', function() {
-				$.post('/?ts=' + Date.now(), $('#f').serialize(), function(d) {
-					var err = $('#error');
-
-					if (d instanceof Array) {
-
-						err.empty();
-						d.forEach(function(o) {
-							err.append('<div>' + o.error + '</div>');
-						});
-						err.show();
-						return;
-					};
-
-					err.hide();
-					window.location.href = '/';
+		PLUGIN('loginform', function(exports) {
+			exports.submit = function() {
+				// "?" means "loginform", it's obtained automatically from name of plugin
+				AJAX('POST /login/', GETR('?'), function(response) {
+					// Is logged?
+					if (response.success)
+						location.reload(true);
+					else
+						SET('?.response', response);
 				});
-			});
+			};
 		});
 	</script>
 

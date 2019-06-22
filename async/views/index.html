@@ -19,7 +19,7 @@
 <body>
 
 	@{foreach m in model}
-		<div>@{m}</div>
+		<div>Length of content: @{m.url} - @{m.length.filesize(2)}</div>
 	@{end}
 
 </body>

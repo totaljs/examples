@@ -1,0 +1,5 @@
+name							: Total.js Auth example
+
+// IMPORTANT SETTINGS:
+cookie							: __user
+cookie_secret                   : Total2019
