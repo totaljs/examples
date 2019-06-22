@@ -9,12 +9,12 @@ function view_homepage_cached() {
 	var self = this;
 	var key = 'my-cache-key';
 
-	var item = F.cache.get(key);
+	var item = CACHE(key);
 
 	if (!item) {
 		var date = new Date();
 		item = date.toString();
-		F.cache.add(key, item, '5 minutes');
+		CACHE(key, item, '5 minutes');
 	}
 
 	// press 15x refresh browser
@@ -33,12 +33,12 @@ function view_fn_cached() {
 
 	var self = this;
 
-	F.cache.fn('cache-name', function(fnSave) {
+	F.cache.fn('cache-name', function(set) {
 
 		var dt = new Date();
 
 		// Documentation: http://docs.totaljs.com/FrameworkCache/#framework.cache.fn
-		fnSave(dt.format('dd.MM.yyyy - HH:mm:ss'), '2 minutes');
+		set(dt.format('dd.MM.yyyy - HH:mm:ss'), '2 minutes');
 
-	}, value => self.plain(value));
+	}, (value, fromcache, ctrl) => ctrl.plain(value), self);
 }

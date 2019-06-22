@@ -1,4 +1,4 @@
 exports.install = function() {
-	F.route('/');
-	F.route('/admin/', 'index');
+	ROUTE('GET /');
+	ROUTE('GET /admin/', 'index');
 };

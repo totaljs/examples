@@ -6,7 +6,7 @@ Features covered by this example:
 
 * [`@{BLOCK}`](http://docs.totaljs.com/latest/en.html#pages~Blocks%20\(JS%2BCSS%2BHTML\)) and [`@{END}`](http://docs.totaljs.com/latest/en.html#pages~Blocks%20\(JS%2BCSS%2BHTML\)) tags in CSS, JS and HTML files
 * `@{if}`, `@{fi}`, `@{else}` and [`@{import}`](http://docs.totaljs.com/latest/en.html#api~FrameworkViews~%40%7Bimport) tags in HTML files
-* [`F.map()`](http://docs.totaljs.com/latest/en.html#api~Framework~framework.map) method - clone files, enable blocks, merging files
+* [`MAP()`](https://docs.totaljs.com/latest/en.html#api~global~MAP) method - clone files, enable blocks, merging files
 
 ### Overview
 
@@ -19,43 +19,40 @@ First, let's take a look at how the blocks are defined in the files, then at the
 If you have a `.js` script that contains some common code, some admin-only code and some user-only code, you could either clone the file and maintain two versions - one for admins, one for users - or you could use blocks like so:
 
 ```javascript
-alert( 'ADMINS AND USERS' );
+alert('ADMINS AND USERS');
 
 // @{BLOCK admin}
-alert( 'ADMIN ONLY' );
+alert('ADMIN ONLY');
 // @{END}
 
 // @{BLOCK users}
-alert( 'USERS ONLY' );
+alert('USERS ONLY');
 // @{END}
 ```
 
 If the file is output without specifying blocks, you'd get:
 
 ```javascript
-alert( 'ADMINS AND USERS' );
+alert('ADMINS AND USERS');
 ```
 
 If it's output with the `admin` blocks, you'd get:
 
 ```javascript
-alert( 'ADMINS AND USERS' );
+alert('ADMINS AND USERS');
 
-alert( 'ADMIN ONLY' );
+alert('ADMIN ONLY');
 ```
 
 And if it's output with `users` blocks you'd get:
 
 ```javascript
-alert( 'ADMINS AND USERS' );
+alert('ADMINS AND USERS');
 
-alert( 'USERS ONLY' );
+alert('USERS ONLY');
 ```
 
-You can see an example script in `/public/js/script.js`.
-
-
-It's also possible to specify multiple conditions per block, for example:
+You can see an example script in `/public/js/script.js`. It's also possible to specify multiple conditions per block, for example:
 
 ```javascript
 // @{BLOCK admin, users, visitors}
@@ -93,14 +90,14 @@ Regardless of file format, the `@{BLOCK}` and `@{END}` tags must be on separate 
 
 ### Block selection
 
-To generate alternate versions of a file with one or more blocks enabled, simply use the framework `.map()` method as shown below:
+To generate alternate versions of a file with one or more blocks enabled, simply use the framework `MAP()` method as shown below:
 
 ```javascript
 // JS
-F.map('/js/admin.js', '/js/script.js#admin'); // --> `admin` block enabled
+MAP('/js/admin.js', '/js/script.js#admin'); // --> "admin" block enabled
 
 // CSS
-F.map('/css/admin.css', '/css/style.css#admin,moderator'); // --> `admin` and `moderator` blocks enabled
+MAP('/css/admin.css', '/css/style.css#admin,moderator'); // --> "admin" and "moderator" blocks enabled
 ```
 
 You can see an example in `/definitions/blocks.js`.
