@@ -1,6 +1,6 @@
 ## IMPORTANT NOTE:
 
-All examples are customized for `+v2.6.x` version.
+All examples are optimized for Total.js `+v3.3.x` version.
 
 ---
 
