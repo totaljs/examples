@@ -1,13 +1,7 @@
 exports.install = function() {
-	F.route('/1/', test1);
-	F.route('/2/', test2);
-	F.route('/3/', test3, ['post', 'json']);
-};
-
-exports.functions = {
-	increment: function(num) {
-		return num + 1;
-	}
+	ROUTE('/1/', test1);
+	ROUTE('/2/', test2);
+	ROUTE('/3/', test3, ['post', 'json']);
 };
 
 function test1() {
