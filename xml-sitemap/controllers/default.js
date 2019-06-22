@@ -1,7 +1,7 @@
 exports.install = function() {
-	F.route('/', view_index);
-	F.file('sitemap.xml', file_xml);
-}
+	ROUTE('/', view_index);
+	FILE('sitemap.xml', file_xml);
+};
 
 function view_index() {
 	var self = this;
@@ -10,9 +10,8 @@ function view_index() {
 
 function file_xml(req, res) {
 
-	var self = this;
 	var hostname = req.hostname();
-	var lastmod = new Date().format('yyyy-MM-dd');
+	var lastmod = NOW.format('yyyy-MM-dd');
 
 	var write = function(url, lastmod, priority, changefreq) {
 		var str = '<url><loc>' + url.encode() + '</loc><lastmod>' + lastmod + '</lastmod><changefreq>' + changefreq + '</changefreq><priority>' + priority + '</priority></url>';

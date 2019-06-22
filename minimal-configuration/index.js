@@ -6,6 +6,6 @@
 
 require('total.js').http('debug');
 
-F.route('/', function() {
-    this.plain('Total.js');
+ROUTE('GET /', function() {
+	this.plain('Total.js');
 });

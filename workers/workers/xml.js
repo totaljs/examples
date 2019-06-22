@@ -1,14 +1,14 @@
 require('total.js');
 
 // Loads the framework without HTTP server
-F.load('debug', ['config'], '../');
+LOAD('debug', ['config'], '../');
 
 U.download(CONFIG('url'), ['get'], function(err, response) {
 
-    if (err) {
-        console.error(err);
-        return process.exit();
-    }
+	if (err) {
+		console.error(err);
+		return process.exit();
+	}
 
 	var data = [];
 

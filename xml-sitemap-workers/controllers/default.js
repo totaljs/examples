@@ -2,9 +2,9 @@ var isGenerating = false;
 var isGenerated = false;
 
 exports.install = function() {
-	F.route('/', view_index);
-	F.file('sitemap.xml', file_xml);
-}
+	ROUTE('/', view_index);
+	FILE('sitemap.xml', file_xml);
+};
 
 function view_index() {
 	var self = this;

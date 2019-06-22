@@ -1,21 +1,17 @@
 global.Vue = require('vue');
-var renderer = require('vue-server-renderer').createRenderer();
-var app = require(F.path.root('public/assets/app.js'))();
+const Renderer = require('vue-server-renderer').createRenderer();
+const App = require(PATH.root('public/assets/app.js'))();
 
 exports.install = function() {
-	F.route('/*', view_index);	
+	ROUTE('/*', view_index);
 };
 
 function view_index() {
 	var self = this;
-
-	renderer.renderToString(app, function(error, html) {
-			
-		if (error) {
-				
+	Renderer.renderToString(App, function(error, html) {
+		if (error)
 			self.throw500(error);
-		}
-		
-		self.view('index', html);
+		else
+			self.view('index', html);
 	});
 }

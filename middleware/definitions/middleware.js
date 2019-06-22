@@ -1,37 +1,37 @@
-F.middleware('A', function(req, res, next, options, controller) {
+MIDDLEWARE('A', function($) {
 
-	if (controller)
-		controller.repository.A = 'middleware - private - A';
+	if ($.controller)
+		$.controller.repository.A = 'middleware - private - A';
 
-	next();
+	$.next();
 
 });
 
-F.middleware('B', function(req, res, next, options, controller) {
+MIDDLEWARE('B', function($) {
 
 	console.log('B');
 
-	if (controller)
-		controller.repository.B = 'middleware - private - B';
+	if ($.controller)
+		$.controller.repository.B = 'middleware - private - B';
 
-	next();
+	$.next();
 
 });
 
-F.middleware('C', function(req, res, next, options, controller) {
+MIDDLEWARE('C', function($) {
 
 	console.log('C');
 
-	if (controller)
-		controller.repository.C = 'middleware - private - C';
+	if ($.controller)
+		$.controller.repository.C = 'middleware - private - C';
 
-	next();
+	$.next();
 
 });
 
-F.middleware('X', function(req, res, next, options, controller) {
+MIDDLEWARE('X', function($) {
 	console.log('Global middleware: X');
-	next();
+	$.next();
 });
 
 F.use('X');

@@ -1,6 +1,6 @@
 require('total.js');
 
-F.route('/', function() {
+ROUTE('GET /', function() {
 	this.plain('Welcome');
 });
 
