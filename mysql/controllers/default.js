@@ -1,5 +1,5 @@
 exports.install = function() {
-	F.route('/', view_index);
+	ROUTE('/', view_index);
 };
 
 function view_index() {
@@ -7,19 +7,20 @@ function view_index() {
 	var self = this;
 
 	// definitions/mysql.js
-	// create a DB connection
-	DB(function(err, connection){
+	// create a DB conn
 
-		if(err != null) {
+	FUNC.mysql(function(err, conn) {
+
+		if (err != null) {
 			self.throw500(err);
 			return;
 		}
 
-		// Table schema = { Id: Number, Age: Number, Name: String };
-		connection.query('SELECT * FROM users', function(err, rows) {
+		// Table schema = { id: Number, age: Number, name: String };
+		conn.query('SELECT * FROM users', function(err, rows) {
 
-			// Close connection
-			connection.release();
+			// Close the connection
+			conn.release();
 
 			if (err != null) {
 				self.view500(err);

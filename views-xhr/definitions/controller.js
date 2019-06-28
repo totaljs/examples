@@ -1,6 +1,5 @@
 // this code affects all controllers
-F.on('controller', function(controller, name) {
-	if (!controller.xhr)
-		return;
-	controller.layout('');
+ON('controller', function(controller) {
+	if (controller.xhr)
+		controller.layout('');
 });

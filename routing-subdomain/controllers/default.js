@@ -7,22 +7,22 @@ exports.install = function() {
 	// 127.0.0.1	subdomain.website.debug
 	// and run node on 80 port
 
-	F.route('[subdomain]/', subdomain);
-	F.route('/', root);
+	ROUTE('GET [subdomain]/', subdomain);
+	ROUTE('GET /', root);
 
 	// 127.0.0.1	subdomain.website.debug
 	// 127.0.0.1	eshop.website.debug
 	// 127.0.0.1	blog.website.debug
-	F.route('[subdomain,eshop,blog]/', subdomain);
+	ROUTE('GET [subdomain,eshop,blog]/', subdomain);
 
 	// show for all subdomain
-	F.route('/all/', all);
+	ROUTE('GET /all/', all);
 
 	// hidden for subdomain
-	F.route('[]/contact/', contact);
+	ROUTE('GET []/contact/', contact);
 
 	// wildcard subdomain routing
-	F.route('[api*]/', api);
+	ROUTE('GET [api*]/', api);
 };
 
 function subdomain() {

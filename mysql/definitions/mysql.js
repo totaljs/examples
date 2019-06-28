@@ -3,6 +3,8 @@ var pool = mysql.createPool({ host: 'example.org', user: 'bob', password: 'secre
 
 // override the framework prototype
 // use CONFIG files for connection string
-F.database = function(callback) {
+// "FUNC." is a global variable defined in Total.js
+
+FUNC.mysql = function(callback) {
 	return pool.getConnection(callback);
 };

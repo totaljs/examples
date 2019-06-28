@@ -1,10 +1,10 @@
 exports.install = function() {
-	F.route('/');
-	F.file('/*.*', image_resize, ['.jpg', '.png', '.gif']);
+	ROUTE('/');
+	FILE('/*.*', image_resize, ['.jpg', '.png', '.gif']);
 };
 
 function image_resize(req, res) {
-	res.image(F.path.public(req.url), function(image) {
+	res.image(PATH.public(req.url), function(image) {
 		// image === FrameworkImage
 		image.resize('80%');
 		image.quality(80);

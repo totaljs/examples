@@ -1,6 +1,6 @@
 exports.install = function() {
-	F.route('/');
-	F.route('/new/', view_homepage2);
+	ROUTE('GET /');
+	ROUTE('GET /new/', view_homepage2);
 };
 
 function view_homepage2() {

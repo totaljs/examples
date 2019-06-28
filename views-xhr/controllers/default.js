@@ -1,6 +1,6 @@
 exports.install = function() {
-	F.route('/', view_homepage);
-	F.route('/xhr/', xhr_panel, ['xhr', 'post']);
+	ROUTE('GET  /',     view_homepage);
+	ROUTE('POST /xhr/', xhr_panel, ['xhr']);
 };
 
 function view_homepage() {

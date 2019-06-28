@@ -1,8 +1,8 @@
 exports.install = function() {
-	F.route('/', view_homepage);
+	ROUTE('GET  /', view_homepage);
 
 	// the number is maximum data receive
-	F.route('/', view_homepage, ['upload'], 100); // 100 kB
+	ROUTE('POST /', view_homepage, ['upload'], 100); // max. 100 kB
 };
 
 function view_homepage() {

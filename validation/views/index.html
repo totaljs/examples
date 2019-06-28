@@ -29,29 +29,30 @@
 <button>Submit</button>
 
 <script>
-    $(document).ready(function() {
-        $('button').on('click', function() {
-            $.post('/?ts=' + Date.now(), $('#f').serialize(), function(d) {
 
-                var err = $('#error');
-                $('input').removeClass('error');
+	$(document).on('click', 'button', function() {
+		AJAX('POST /', $('#f').serialize(), function(response) {
 
-                if (d instanceof Array) {
+			var err = $('#error');
 
-                    err.empty();
+			$('input').rclass('error');
 
-                    d.forEach(function(o) {
-                    	$('input[name="' + o.name + '"]').addClass('error');
-                        err.append('<div>' + o.error + '</div>');
-                    });
+			if (response instanceof Array) {
 
-                    err.show();
-                    return;
-                };
+				var builder = [];
 
-                err.hide();
-                alert('Form is valid.');
-            });
-        });
-    });
+				for (var i = 0; i < response.length; i++) {
+					var item = response[i];
+					$('input[name="' + item.name + '"]').aclass('error');
+					builder.push('<div>' + item.error + '</div>');
+				}
+
+				err.html(builder.join('')).show();
+
+			} else {
+				err.hide();
+				alert('Thank you!\nForm has been sent successfully.');
+			}
+		});
+	});
 </script>

@@ -8,10 +8,5 @@ exports.install = function() {
 
 function view_index() {
 	var self = this;
-	Renderer.renderToString(App, function(error, html) {
-		if (error)
-			self.throw500(error);
-		else
-			self.view('index', html);
-	});
+	Renderer.renderToString(App, self.callback('index'));
 }

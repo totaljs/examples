@@ -15,7 +15,9 @@
 <div><strong>Welcome!</strong></div>
 <div>partial.html in view &rarr; @{view('partial')}</div>
 
-@{viewToggle(new Date().getSeconds() % 2 == 0, 'dynamic')}
+@{if Date.now() % 2 == 0}
+    @{view('dynamic')}
+@{fi}
 
 @{if (1 === 1)}
 
@@ -30,7 +32,7 @@
 
 <h2>Dynamic view</h2>
 
-@{viewCompile('Current date: @{model.format(\'dd.MM.yyyy HH:mm\')}', new Date())}
+@{view_compile('Current date: @{model.format(\'dd.MM.yyyy HH:mm\')}', new Date())}
 
 <h2>Foreach</h2>
 

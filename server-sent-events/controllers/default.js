@@ -1,6 +1,6 @@
 exports.install = function() {
-	F.route('/');
-	F.route('/one-way-messaging/', view_SSE, ['sse']);
+	ROUTE('GET /');
+	ROUTE('GET /one-way-messaging/', view_SSE, ['sse']);
 };
 
 function view_SSE() {
@@ -24,11 +24,11 @@ function view_SSE() {
 			@data {String or Object}
 			@eventname {String} :: default null
 			@id {String} :: default null (Last Event ID)
-			@retry {Number} :: in milliseconds, default config['default-request-timeout']
+			@retry {Number} :: in milliseconds, default CONF.default_request_timeout
 
 			controller.sse(data, [eventname], [id], [retry])
 		*/
-		self.sse({ counter: counter++, message: utils.GUID(10) }, null, counter);
+		self.sse({ counter: counter++, message: GUID(10) }, null, counter);
 
 		// reconnect by the @retry
 		indexer++;

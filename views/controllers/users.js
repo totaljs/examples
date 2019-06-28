@@ -1,11 +1,11 @@
 exports.install = function() {
-	F.route('/users/', view_users);
-	F.route('/users/admin/', view_users_admin);
+	ROUTE('GET /users/', view_users);
+	ROUTE('GET /users/admin/', view_users_admin);
 };
 
 function view_users() {
 	var self = this;
-    self.meta('Users');
+	self.title('Users');
 
 	// this view is loaded by the controller name: /views/users/index.html
 	self.view('index');
@@ -13,6 +13,6 @@ function view_users() {
 
 function view_users_admin() {
 	var self = this;
-    self.meta('Admin');
+	self.title('Admin');
 	self.view('~admin');
 }

@@ -1,2 +1,1 @@
-// Documentation: https://github.com/petersirka/node-sqlagent#initialization-for-totaljs
-require('sqlagent/pg').init(CONFIG('database'), false);
+require('dbms/pg').init(CONF.database, err => console.log('ERROR', err));

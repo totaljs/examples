@@ -26,13 +26,10 @@ function view_index() {
 
 	var filename = PATH.public('upload.jpg');
 
-	// Documentation: http://docs.totaljs.com/FrameworkImage/
 	var image = file.image();
 
 	image.watermark(PATH.public('watermark.png'), 20, 80, 100, 40);
-
-	// IMPORTANT: see here https://github.com/petersirka/total.js/tree/master/examples/routing
-	image.resizeCenter(300, 300).save(filename, function(err) {
+	image.resize_center(300, 300).save(filename, function(err) {
 
 		if (err) {
 			self.throw500(err);

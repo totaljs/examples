@@ -8,7 +8,7 @@
 /css/style.css					: /css/style001.css
 
 // The framework creates mapping
-/img/logo.png			    -->  /img/logo004.png
+/img/logo.png			      -->  /img/logo004.png
 
-// The framework prepares CSS background(url()):
-/img/bg.png					: /img/bg002.png
+// The framework updates paths in CSS "background" or "background-image" too
+/img/bg.png					    : /img/bg002.png

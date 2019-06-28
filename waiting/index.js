@@ -1,4 +1,4 @@
-require('total.js');
+require('total.js').http('debug');
 
 ROUTE('GET /', function() {
 	this.plain('Welcome');
@@ -19,8 +19,5 @@ setTimeout(function() {
 setTimeout(function() {
 	F.wait('system');
 }, 7000);
-
-// Run the web server
-F.http('debug');
 
 // Open browser with http://127.0.0.1:8000/ and refresh repeatly.

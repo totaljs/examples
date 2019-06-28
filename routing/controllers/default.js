@@ -1,24 +1,24 @@
 exports.install = function() {
-	F.route('/', view_homepage);
-	F.route('/contact/', view_contact);
-	F.route('/products/', view_products);
-	F.route('/products/{category}/', view_products);
-	F.route('/products/{category}/{subcategory}/', view_products);
-	F.route('/{category}/', view_homepage);
+	ROUTE('GET /',                                   view_homepage);
+	ROUTE('GET /{category}/',                        view_homepage);
+	ROUTE('GET /contact/',                           view_contact);
+	ROUTE('GET /products/',                          view_products);
+	ROUTE('GET /products/{category}/',               view_products);
+	ROUTE('GET /products/{category}/{subcategory}/', view_products);
 
 	// this route has a lower priority and it will be executed when:
-	// url: /asterix/
-	// url: /asterix/bla/bla/bla/bla/
-	F.route('/asterix/*', view_asterix);
+	// url: /wildcard/
+	// url: /wildcard/bla/bla/bla/bla/
+	ROUTE('GET /wildcard/*',                         view_wildcard);
 
 	// route: all txt files
 	// Try: http://127.0.0.4/test.txt
-	F.file('*.txt', static_txt);
+	FILE('*.txt', static_txt);
 
 	// route: all jpg files
 	// all images will resized about 50%
 	// Try: http://127.0.0.4/header.jpg
-	F.file('*.jpg', static_jpg);
+	FILE('*.jpg', static_jpg);
 };
 
 function static_txt(req, res) {
@@ -28,9 +28,7 @@ function static_txt(req, res) {
 }
 
 function static_jpg(req, res) {
-	// responds
-	// this === framework
-	res.image(F.path.public(req.url), function (image) {
+	res.image(PATH.public(req.url), function (image) {
 		// image === FrameworkImage
 		image.resize('50%');
 		image.quality(80);
@@ -66,7 +64,7 @@ function view_products(category, subcategory) {
 	this.plain('products{0}{1}'.format(category, subcategory));
 }
 
-function view_asterix() {
+function view_wildcard() {
 	var self = this;
 	self.plain('asterix -> ' + self.uri.pathname);
 }

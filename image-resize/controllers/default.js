@@ -1,5 +1,3 @@
-var Path = require('path');
-
 exports.install = function() {
 	ROUTE('GET  /', view_index);
 
@@ -31,18 +29,15 @@ function view_index() {
 	var filename = PATH.public('upload.jpg');
 
 	// Documentation: http://docs.totaljs.com/FrameworkImage/
-	var image = file.image(); // this is equivalent to require('partail.js/image').init([useImageMagick]);
-
-	// require('total.js/image').init(filename, [useImageMagick]);
-	// file.image([useImageMagick]);
+	var image = file.image();
 
 	// image.identify(function(err, info) { info.width, info.heigth });
 	// image.resize(w, h, options);
-	// image.resizeCenter(w, h); :: resize(w, h, '^').align('center center').crop(w, h);
+	// image.resize_center(w, h); or resize(w, h, '^').align('center center').crop(w, h);
 	// image.crop(w, h, x, y);
 	// image.scale(w, h);
 	// image.quality(percentage);
-	// image.align(type); :: left-top left-bottom left-center right-top right-bottom right-center top-center bottom-center center-center
+	// image.align(type); --> left-top left-bottom left-center right-top right-bottom right-center top-center bottom-center center-center
 	// image.blur(radius);
 	// image.normalize();
 	// image.rotate(deg);
@@ -55,7 +50,7 @@ function view_index() {
 	// image.command(command, [priority]);
 
 	// IMPORTANT: see here https://github.com/petersirka/total.js/tree/master/examples/routing
-	image.resizeCenter(300, 300).save(filename, function(err) {
+	image.resize_center(300, 300).save(filename, function(err) {
 
 		if (err) {
 			self.throw500(err);

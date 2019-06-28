@@ -7,6 +7,6 @@
 require('total.js').http('debug');
 
 // INLINE ROUTING
-F.route('/', function() {
+ROUTE('/', function() {
 	this.plain('HOMEPAGE');
 });

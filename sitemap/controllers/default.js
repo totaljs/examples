@@ -1,6 +1,6 @@
 exports.install = function() {
-	F.route('/', 'index');
-	F.route('/contact/', 'contact');
-	F.route('/terms/', 'terms');
-	F.route('/terms/privacy/', 'privacy');
+	ROUTE('#homepage', 'index');
+	ROUTE('#contact', 'contact');
+	ROUTE('#terms', 'terms');
+	ROUTE('#privacy', 'privacy');
 };

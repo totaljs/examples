@@ -1,2 +1,0 @@
-allow-compile-script        : false
-directory-public-virtual    : /bower_components/

@@ -1,6 +1,6 @@
 exports.install = function() {
-	F.route('/*', 'app');
-	F.websocket('/', reader, ['json']);
+	ROUTE('/*', 'app');
+	WEBSOCKET('/', reader, ['json']);
 };
 
 function reader() {
@@ -14,7 +14,7 @@ function reader() {
 				var view = message.url.replace(/\//g, '');
 				if (!view)
 					view = 'homepage';
-				client.send({ status: 200, body: F.view(view) });
+				client.send({ status: 200, body: VIEW(view) });
 				break;
 			default:
 				client.send({ status: 404 });

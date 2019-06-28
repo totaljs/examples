@@ -1,34 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Site</title>
-    <meta charset="utf-8" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<title>My Site</title>
+	<meta charset="utf-8" />
+	<script src="//cdn.componentator.com/spa.min@17.js"></script>
 </head>
 <body>
+
 	<div id="menu">
-		<a onclick="loadPanel('company')" href="#">company</a>&nbsp;
-		<a onclick="loadPanel('product')" href="#">product</a>&nbsp;
-		<a onclick="loadPanel('contact')" href="#">contact</a>
+		<a onclick="loadpanel('company')" href="#">company</a>&nbsp;
+		<a onclick="loadpanel('product')" href="#">product</a>&nbsp;
+		<a onclick="loadpanel('contact')" href="#">contact</a>
 	</div>
 	<hr />
 	<div id="panel">@{body}</div>
 
-    <script type="text/javascript">
-		function loadPanel(choice) {
-			$.ajax({
-				type: 'post',
-				url: '/xhr/',
-				data: {
-					choice: choice
-				},
-				success: function(server) {
-					$('#panel').html(server);
-					console.log(server);
-				},
-				dataType: 'html'
+	<script type="text/javascript">
+		function loadpanel(choice) {
+			AJAX('POST /xhr/', { choice: choice }, function(response) {
+				$('#panel').html(response);
+				console.log(response);
 			});
 		}
-    </script>
+	</script>
+
 </body>
 </html>

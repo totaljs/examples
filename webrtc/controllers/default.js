@@ -1,37 +1,35 @@
 exports.install = function() {
-    F.route('/');
-    F.websocket('/', socket_homepage, ['json']);
+	ROUTE('/');
+	WEBSOCKET('/', socket_homepage, ['json']);
 };
 
 function socket_homepage() {
-    var self = this;
+	var self = this;
 
-    self.on('open', function(client) {
+	self.on('open', function(client) {
 
-        var pair = self.find(function(user) {
-            return user.get.room === client.get.room && user.id !== client.id;
-        });
+		var pair = self.find(function(user) {
+			return user.get.room === client.get.room && user.id !== client.id;
+		});
 
-        client.pair = pair;
+		client.pair = pair;
 
-        // We must waiting
-        if (pair === null)
-            return;
+		// We must waiting
+		if (pair) {
+			pair.pair = client;
+			pair.send({ 'type': 'start-host' });
+			client.send({ 'type': 'start-client' });
+		}
 
-        pair.pair = client;
-        pair.send({ 'type': 'start-host' });
-        client.send({ 'type': 'start-client' });
-    });
+	});
 
-    self.on('close', function(client) {
-        if (client.pair === null)
-            return;
-        client.pair.close();
-    });
+	self.on('close', function(client) {
+		if (client.pair)
+			client.pair.close();
+	});
 
-    self.on('message', function(client, message) {
-        if (client.pair === null)
-            return;
-        client.pair.send(message);
-    });
+	self.on('message', function(client, message) {
+		if (client.pair)
+			client.pair.send(message);
+	});
 }
