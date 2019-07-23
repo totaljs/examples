@@ -4,20 +4,20 @@ ROUTE('GET /', function() {
 	this.plain('Welcome');
 });
 
-F.wait('database');
-F.wait('users');
-F.wait('system');
+PAUSESERVER('database');
+PAUSESERVER('users');
+PAUSESERVER('system');
 
 setTimeout(function() {
-	F.wait('database');
+	PAUSESERVER('database');
 }, 3000);
 
 setTimeout(function() {
-	F.wait('users');
+	PAUSESERVER('users');
 }, 5000);
 
 setTimeout(function() {
-	F.wait('system');
+	PAUSESERVER('system');
 }, 7000);
 
 // Open browser with http://127.0.0.1:8000/ and refresh repeatly.
