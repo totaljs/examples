@@ -29,6 +29,7 @@ AUTH(function($) {
 	// opt.removecookie = true;    // Removes cookie if isn't valid (default: true)
 	// opt.extendcookie = true;    // Extends cookie expiration (default: true)
 	// opt.options = {};           // Optional, a cookie options when the the cookie is extended (default: { httponly: true, security: 'lax' })
+	// opt.ddos = 5;               // Enables a simple DDOS protection for hijacking
 
 	// Reads a cookie and session
 	MAIN.session.getcookie($, opt, $.done());
