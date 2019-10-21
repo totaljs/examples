@@ -14,7 +14,7 @@
   "author": "ckpiggy",
   "license": "MIT",
   "dependencies": {
-    "axios": "0.16.2",
+    "axios": "0.19.0",
     "nuxt": "next",
     "total.js": "^2.6.3-3"
   }
