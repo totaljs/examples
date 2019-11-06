@@ -16,6 +16,6 @@
   "dependencies": {
     "axios": "0.16.2",
     "nuxt": "next",
-    "total.js": "^2.6.3-3"
+    "total.js": "^3.3.0"
   }
 }
