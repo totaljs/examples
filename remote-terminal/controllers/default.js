@@ -20,7 +20,7 @@ function socket() {
 	self.on('open', function(client) {
 
 		// Each client will have own terminal
-		client.tty = Pty.spawn('/bin/bash', [], { name: 'xterm-color', cols: 80, rows: 24, cwd: process.env.PWD, env: process.env });
+		client.tty = Pty.spawn('bash', [], { name: 'xterm-color', cols: 80, rows: 24, cwd: process.env.PWD, env: process.env });
 
 		client.tty.on('exit', function(code, signal) {
 			// What now?
@@ -29,6 +29,10 @@ function socket() {
 		});
 
 		client.tty.on('data', function(data) {
+
+			// If you have a problem just uncomment the code below:
+			// console.log(data);
+
 			client.send(data);
 		});
 
