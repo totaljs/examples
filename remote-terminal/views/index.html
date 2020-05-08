@@ -1,0 +1,35 @@
+@{layout('')}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Remote terminal</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/xterm.min.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/xterm.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/addons/attach/attach.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/addons/fit/fit.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+	</head>
+	<body>
+
+		<div id="terminal"></div>
+
+		<script>
+
+			var term = new Terminal({ cols: 80, rows: 24 });
+			term.open(document.getElementById('terminal'));
+
+			var ws = new WebSocket(location.protocol.replace('http', 'ws') + '//' + location.hostname + (location.port ? (':' + location.port) : '') + '/');
+
+			ws.onopen = function() {
+				socket = new attach.attach(term, ws);
+			};
+
+			ws.onerror = function(e) {
+				console.log(e);
+			};
+
+		</script>
+	</body>
+</html>
