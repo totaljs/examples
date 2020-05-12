@@ -21,7 +21,7 @@
 			var ws = new WebSocket(location.protocol.replace('http', 'ws') + '//' + location.hostname + (location.port ? (':' + location.port) : '') + '/');
 
 			ws.onopen = function() {
-				socket = new attach.attach(term, ws);
+				new attach.attach(term, ws);
 			};
 
 			ws.onerror = function(e) {
