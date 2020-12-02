@@ -1,7 +1,7 @@
 <!-- SERVER-SIDE IMPLEMENTATION -->
 <script type="text/totaljs">
 	exports.install = function() {
-		F.route('/api/datetime/', json_datetime);
+		ROUTE('GET /api/datetime/', json_datetime);
 	};
 
 	function json_datetime() {

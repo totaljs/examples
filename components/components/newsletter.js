@@ -1,13 +1,11 @@
-// This is server-side implementaion of component
-
+// This is server-side implementaion of the component
 exports.install = function() {
-	F.route('/api/newsletter/', json_newsletter, ['post']);
+	ROUTE('POST /api/newsletter/', json_newsletter);
 };
 
 function json_newsletter() {
 	var self = this;
 	self.body.ip = self.ip;
-	self.body.created = F.datetime;
-	NOSQL('newsletter').insert(self.body);
-	self.json(SUCCESS(true));
+	self.body.created = NOW;
+	NOSQL('newsletter').insert(self.body).callback(self.done());
 }
