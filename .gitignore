@@ -28,5 +28,6 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+index.js.json
 
 .DS_Store
