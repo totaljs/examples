@@ -1,24 +1,25 @@
-require('total.js');
+require('total4');
 
 // Loads the framework without HTTP server
-LOAD('debug', ['config'], '../');
+LOAD('config', function() {
 
-U.download(CONFIG('url'), ['get'], function(err, response) {
+	RESTBuilder.GET(CONF.url).stream(function(err, response) {
 
-	if (err) {
-		console.error(err);
-		return process.exit();
-	}
+		if (err) {
+			console.error(err);
+			return process.exit();
+		}
 
-	var data = [];
+		var data = [];
 
-	response.on('data', U.streamer('<CD>', '</CD>', function(item) {
-		data.push(item.parseXML());
-	}));
+		response.stream.on('data', U.streamer('<CD>', '</CD>', function(item) {
+			data.push(item.parseXML());
+		}));
 
-	response.on('end', function() {
-		process.send(data);
-		process.exit();
+		response.stream.on('end', function() {
+			process.send(data);
+			process.exit();
+		});
+
 	});
-
 });
