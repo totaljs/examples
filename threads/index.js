@@ -21,7 +21,10 @@ const options = {};
 // Enables threads:
 options.cluster = 'auto';
 options.logs = 'isolated';
+
 options.threads = true;
+// or add prefix to endpoints:
+// options.threads = '/api/';
 
 var type = process.argv.indexOf('--release', 1) !== -1 || process.argv.indexOf('release', 1) !== -1 ? 'release' : 'debug';
 require(total + '/' + type)(options);
