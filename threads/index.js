@@ -26,5 +26,8 @@ options.threads = true;
 // or add prefix to endpoints:
 // options.threads = '/api/';
 
+// Proxy timeout
+// options.timeout = 5000;
+
 var type = process.argv.indexOf('--release', 1) !== -1 || process.argv.indexOf('release', 1) !== -1 ? 'release' : 'debug';
 require(total + '/' + type)(options);
