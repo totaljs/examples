@@ -4,11 +4,11 @@ NEWSCHEMA('Users', function(schema) {
 	schema.define('password', 'String(30)', true);
 
 	// Performs login
-	schema.addWorkflow('login', function($) {
+	schema.addWorkflow('login', function($, model) {
 
 		var builder = NOSQL('users').one();
-		builder.where('email', $.model.email);
-		builder.where('password', $.model.password);
+		builder.where('email', model.email);
+		builder.where('password', model.password);
 		builder.callback(function(err, user) {
 
 			if (!user) {
@@ -34,8 +34,6 @@ NEWSCHEMA('Users', function(schema) {
 
 	// Performs logout
 	schema.addWorkflow('logout', function($) {
-
-		console.log('SOM TU');
 
 		// Removes session
 		MAIN.session.remove($.sessionid);

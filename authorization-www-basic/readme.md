@@ -20,7 +20,7 @@ See the `/controllers/default.js` for sample code.
 
 To read credentials, use the `.baa()` method in a route handler function:
 
-```javascript
+```js
 function authorization() {
 	var auth = this.baa(); // this === controller
 	// ...
@@ -29,7 +29,7 @@ function authorization() {
 
 This looks for the `Authorization: Basic <mime-encoded-userid-and-password>` HTTP header in the request, and returns an object containing relevant details:
 
-```javascript
+```js
 auth.empty;    // if true, no credentials were found
 auth.user;     // the user name, if found
 auth.password; // the password, if found
@@ -39,7 +39,7 @@ auth.password; // the password, if found
 
 If the user hasn't logged in yet, the `auth.empty` property will be `true` (no username or password found)... so, we need to prompt them for those details:
 
-```javascript
+```js
 function authorization() {
 
 	// ...
@@ -65,7 +65,7 @@ On seeing that header, the browser will display the prompt (`Admin Login Require
 
 The resulting request should include the login credentials, now all we need to do is validate them:
 
-```javascript
+```js
 function authorization() {
 
 	// ...
@@ -96,7 +96,7 @@ function authorization() {
 
 The browser will keep sending the `Authorization` header on subsequent requests for about 15 minutes, effectively keeping the user logged in (from user perspective). Downside is that, server-side, you have to re-check the credentials on every request. As such it's probably worth keeping a cache of validated credentials to avoid excessive database lookups, for example:
 
-```javascript
+```js
 var baaCache = {};
 
 function authorization() {
@@ -138,7 +138,7 @@ https://user:password@www.example.com/
 
 If you wish to accept credentials in the URI, use `.req.uri.auth`:
 
-```javascript
+```js
 function authorization() {
 
 	// ...
