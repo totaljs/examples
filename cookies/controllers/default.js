@@ -1,14 +1,14 @@
 exports.install = function() {
-	ROUTE('GET /get/', cookieRead);
-	ROUTE('GET /set/', cookieWrite);
+	ROUTE('GET /get/', cookie_get);
+	ROUTE('GET /set/', cookie_set);
 };
 
-function cookieRead() {
+function cookie_get() {
 	var self = this;
 	self.plain('Cookie example\nread test1: ' + (self.cookie('test1') || 'null') + '\nread test2: ' + (self.cookie('test2') || 'null'));
 }
 
-function cookieWrite() {
+function cookie_set() {
 	var self = this;
 
 	self.cookie('test1', 'value 1', '2 days');
