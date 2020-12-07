@@ -1,6 +1,6 @@
 exports.install = function() {
-	ROUTE('/', view_index);
-	FILE('sitemap.xml', file_xml);
+	ROUTE('GET  /', view_index);
+	ROUTE('FILE /sitemap.xml', file_xml);
 };
 
 function view_index() {

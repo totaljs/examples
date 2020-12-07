@@ -1,6 +1,6 @@
 exports.install = function() {
-	ROUTE('GEt /',      view_homepage);
-	ROUTE('GEt /mail/', redirect_mail);
+	ROUTE('GET /',      view_homepage);
+	ROUTE('GET /mail/', redirect_mail);
 };
 
 function view_homepage() {

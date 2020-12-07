@@ -2,8 +2,8 @@ var isGenerating = false;
 var isGenerated = false;
 
 exports.install = function() {
-	ROUTE('/', view_index);
-	FILE('sitemap.xml', file_xml);
+	ROUTE('GET  /', view_index);
+	ROUTE('FILE /sitemap.xml', file_xml);
 };
 
 function view_index() {
@@ -11,12 +11,9 @@ function view_index() {
 	self.plain(self.hostname('sitemap.xml'));
 }
 
-function file_xml(req, res, validation) {
+function file_xml(req, res) {
 
-	if (validation)
-		return req.url === '/sitemap.xml';
-
-	var options = { hostname: req.hostname(), path: F.path.public('sitemap.xml') };
+	var options = { hostname: req.hostname(), path: PATH.public('sitemap.xml') };
 
 	// Is processed sitemap.xml?
 	if (isGenerated) {
@@ -28,16 +25,14 @@ function file_xml(req, res, validation) {
 	// Handle multiple requests
 	// [isGenerating === true] the request must wait
 	if (isGenerating) {
-		setTimeout(function() {
-			file_xml(req, res, validation);
-		}, 1000);
+		setTimeout(file_xml, 1000, req, res);
 		return;
 	}
 
 	isGenerating = true;
 
 	console.log('sitemap.xml -> creating');
-	var worker = F.worker('sitemap', 'sitemap', 5000);
+	var worker = WORKER('sitemap', 5000);
 
 	// Send settings
 	worker.send(options);

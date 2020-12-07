@@ -3,6 +3,7 @@
 // https://www.totaljs.com
 // ===================================================
 
+const total = 'total4';
 const options = {};
 
 // options.ip = '127.0.0.1';
@@ -16,14 +17,17 @@ const options = {};
 
 // Enables cluster:
 // options.cluster = 'auto';
-// options.cluster_limit = 10; // max 10. threads (works only with "auto" scaling)
 
 // Enables threads:
-// options.cluster = 'auto';
-// options.cluster_limit = 10; // max 10. threads (works only with "auto" scaling)
-// options.timeout = 5000;
+options.cluster = 'auto';
+options.logs = 'isolated';
+
+options.threads = true;
+// or add prefix to endpoints:
 // options.threads = '/api/';
-// options.logs = 'isolated';
+
+// Proxy timeout
+// options.timeout = 5000;
 
 var type = process.argv.indexOf('--release', 1) !== -1 || process.argv.indexOf('release', 1) !== -1 ? 'release' : 'debug';
-require('total4/' + type)(options);
+require(total + '/' + type)(options);

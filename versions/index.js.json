@@ -1,0 +1,36 @@
+{
+	"pid": 1649,
+	"port": 8000,
+	"ip": "0.0.0.0",
+	"stats": [
+		{
+			"id": null,
+			"version": {
+				"node": "v15.3.0",
+				"total": "4.0.0",
+				"app": "1.0.0"
+			},
+			"pid": 1649,
+			"thread": "",
+			"mode": "debug",
+			"overload": 0,
+			"date": "2020-12-06T22:01:44.581Z",
+			"memory": 8.86,
+			"rm": 0,
+			"fm": 0,
+			"wm": 0,
+			"em": 0,
+			"mm": 0,
+			"om": 0,
+			"dbrm": 0,
+			"dbwm": 0,
+			"usage": 0,
+			"requests": 9,
+			"pending": 0,
+			"errors": 0,
+			"timeouts": 0,
+			"online": 0,
+			"uptime": 1
+		}
+	]
+}

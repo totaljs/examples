@@ -1,6 +1,6 @@
 // Mail settings
-mail.smtp                       : smtp.gmail.com
-mail.smtp.options               : {"secure":true,"port":465,"user":"YOUR-GMAIL-EMAIL","password":"YOUR-GMAIL-PASSWORD","timeout":10000}
-mail.address.from               : petersirka@gmail.com
-mail.address.reply              : petersirka@gmail.com
-mail.address.bcc                :
+mail_smtp                       : smtp.gmail.com
+mail_smtp_options               : {"secure":true,"port":465,"user":"YOUR-GMAIL-EMAIL","password":"YOUR-GMAIL-PASSWORD","timeout":10000}
+mail_address_from               : YOUR-GMAIL-EMAIL
+// mail_address_reply              :
+// mail_address_bcc                :
