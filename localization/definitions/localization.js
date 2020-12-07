@@ -14,11 +14,8 @@ LOCALIZE(function(req, res) {
 	}
 
 	language = req.cookie(COOKIE);
-	if (language) {
-		if (allowed[language])
-			return language;
-		return 'en';
-	}
+	if (language)
+		return allowed[language] ? language : 'en';
 
 	// Sets the language according to user-agent
 	language = req.language;

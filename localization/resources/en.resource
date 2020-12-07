@@ -3,10 +3,10 @@
 // $ total --translate "Create translation hash from this text."
 
 // index.html
-T-1397214398     : Welcome
+T1bx8wg2         : Welcome
 
 // layout.html
-T-397449933      : Message:
-T-1993910501     : The selected localization has been stored into the cookie.
+T1sghbn7         : Message:
+T121zmsb         : The selected localization has been stored into the cookie.
 
 message          : This is the message from en.resource

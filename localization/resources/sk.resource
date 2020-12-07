@@ -3,10 +3,10 @@
 // $ total --translate "Create translation hash from this text."
 
 // index.html
-T-1397214398     : Vitajte
+T1bx8wg2         : Vitajte
 
 // layout.html
-T-397449933      : Správa:
-T-1993910501     : Vybraná lokalizácia bola uložená do cookie.
+T1sghbn7         : Správa:
+T121zmsb         : Vybraná lokalizácia bola uložená do cookie.
 
 message          : Toto je správa z sk.resource
