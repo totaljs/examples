@@ -11,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "node-pty": "latest",
-    "total.js": "latest"
+    "total4": "latest"
   }
 }
