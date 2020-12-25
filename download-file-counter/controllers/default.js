@@ -3,10 +3,10 @@ var counter = 0;
 exports.install = function() {
 
 	// route index
-	ROUTE('/', view_homepage);
+	ROUTE('GET /', view_homepage);
 
 	// file route
-	FILE('*.pdf', file_download);
+	ROUTE('FILE /*.pdf', file_download);
 };
 
 function view_homepage() {

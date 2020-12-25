@@ -9,6 +9,7 @@ function view_index() {
 	var model = { info: '...' };
 
 	var file = self.files[0];
+
 	if (self.files.length === 0 || !file.isImage()) {
 		self.view('index', model);
 		return;
@@ -28,7 +29,7 @@ function view_index() {
 
 	var image = file.image();
 
-	image.watermark(PATH.public('watermark.png'), 20, 80, 100, 40);
+	image.watermark(PATH.public('watermark.png'), 20, 80, 120, 40);
 	image.resize_center(300, 300).save(filename, function(err) {
 
 		if (err) {

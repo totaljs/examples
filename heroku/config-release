@@ -1,4 +1,0 @@
-// IMPORTANT FOR HEROKU
-default-ip                     : auto
-default-port                   : auto
-default-image-converter        : im
