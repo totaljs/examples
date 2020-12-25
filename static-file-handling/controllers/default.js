@@ -1,6 +1,6 @@
 exports.install = function() {
-	ROUTE('/');
-	FILE('/*.*', image_resize, ['.jpg', '.png', '.gif']);
+	ROUTE('GET  /');
+	ROUTE('FILE /*.*', image_resize, ['.jpg', '.png', '.gif']);
 };
 
 function image_resize(req, res) {
