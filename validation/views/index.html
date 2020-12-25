@@ -1,58 +1,38 @@
+<div data---="LAZY message__null__style:2"></div>
 
-<form action="#" method="POST" id="f">
-	<div>
-		<div>First name:</div>
-		<div><input type="text" name="firstname" maxlength="200" /></div>
+<div style="max-width:500px;margin:0 auto">
+	<div data-scope="contactform">
+		<div class="row">
+			<div class="col-md-6 m">
+				<div data---="input__?.firstname__required:1;maxlength:30__''">First name</div>
+			</div>
+			<div class="col-md-6 m">
+				<div data---="input__?.lastname__required:1;maxlength:30__''">Last name</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 m">
+				<div data---="input__?.email__required:1;type:email__'@'">E-mail address</div>
+			</div>
+			<div class="col-md-4 m">
+				<div data---="input__?.age__required:1;type:number__15">Age</div>
+			</div>
+		</div>
+		<div data---="checkbox__?.terms__null__false">I agree with terms and conditions</div>
+		<br />
+		<div data---="validation__?">
+			<button name="submit" data-bind="null__click:submitform" disabled>Submit form</button>
+		</div>
 	</div>
-	<br />
-	<div>
-		<div>Last name:</div>
-		<div><input type="text" name="lastname" maxlength="200" /></div>
-	</div>
-	<br />
-	<div>
-		<div>E-mail:</div>
-		<div><input type="text" name="email" value="@" maxlength="200" /></div>
-	</div>
-	<br />
-	<div>
-		<div>Age:</div>
-		<div><input type="text" name="age" maxlength="2" /></div>
-	</div>
-	<br />
-	<div>
-		<div><label><input type="checkbox" name="terms" value="1" /> I agree</label></div>
-	</div>
-	<div id="error"></div>
-</form>
-<br />
-<button>Submit</button>
+</div>
 
 <script>
 
-	$(document).on('click', 'button', function() {
-		AJAX('POST /', $('#f').serialize(), function(response) {
+	function submitform() {
+		AJAX('POST /', GET('contactform @reset'), ASETTER('message/response', 'Thank you! Form has been sent successfully.', function(response) {
+			console.log(response);
+			SET('contactform @default', {});
+		}));
+	}
 
-			var err = $('#error');
-
-			$('input').rclass('error');
-
-			if (response instanceof Array) {
-
-				var builder = [];
-
-				for (var i = 0; i < response.length; i++) {
-					var item = response[i];
-					$('input[name="' + item.name + '"]').aclass('error');
-					builder.push('<div>' + item.error + '</div>');
-				}
-
-				err.html(builder.join('')).show();
-
-			} else {
-				err.hide();
-				alert('Thank you!\nForm has been sent successfully.');
-			}
-		});
-	});
 </script>
