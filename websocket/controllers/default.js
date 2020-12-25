@@ -2,14 +2,10 @@ exports.install = function() {
 	ROUTE('GET /');
 	ROUTE('GET /usage/', view_usage);
 
-	WEBSOCKET('/', socket_homepage, ['json']);
-
-	// WEBSOCKET('/chat/', socket_homepage, ['json'], ['chat']);
-	// WEBSOCKET('/chat/private/', socket_private_homepage, ['json'], ['privatechat'], ['*']);
-	// WEBSOCKET('/chat/private/sex/', socket_sex_homepage, ['json'], ['privatechat', 'sexchat'], ['www.totaljs.com', 'eshop.totaljs.com', 'blog.totaljs.com']);
+	ROUTE('SOCKET /', socket_homepage);
 
 	// On client side:
-	// new WebSocket('ws://127.0.0.1:8004/', 'privatechat');
+	// new WebSocket('ws://127.0.0.1:8004/');
 };
 
 function view_usage() {
