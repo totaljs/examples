@@ -1,6 +1,6 @@
 exports.install = function() {
-	ROUTE('/', pipe_homepage);
-	ROUTE('/file/', pipe_file);
+	ROUTE('GET /', pipe_homepage);
+	ROUTE('GET /file/', pipe_file);
 };
 
 function pipe_homepage() {

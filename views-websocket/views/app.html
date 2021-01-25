@@ -5,8 +5,8 @@
 <head>
 	<title>Websocket example with views</title>
 	<meta charset="utf-8" />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	@{import('jrouting.min.js', 'default.css')}
+	<script src="//cdn.componentator.com/spa.min@18.js"></script>
+	@{import('default.css')}
 </head>
 <body>
 	<nav>
@@ -18,32 +18,37 @@
 	<div id="body">LOADING ...</div>
 
 	<script>
-		$('.jrouting').jRouting(true);
+
+		NAV.clientside('.jrouting');
 
 		var ws = new WebSocket('ws://127.0.0.1:8000/');
 
 		ws.onmessage = function(e) {
-			var container = $('#body');
-			var message = JSON.parse(decodeURIComponent(e.data));
 
+			var container = $('#body');
+			var message = JSON.parse(e.data);
 			if (message.status === 200) {
 				// TIP: here you can cache the view body
 				container.html(message.body);
+			} else
+				container.html('404 - page not found');
+		};
+
+		ROUTE('/*', function() {
+
+			if (!ws || ws.readyState !== 1) {
+				setTimeout(() => REDIRECT(NAV.url), 200);
 				return;
 			}
 
-			container.html('404 - page not found');
-		};
-
-		jRouting.route('/*', function() {
-			send({ url: jRouting.url });
+			send({ url: NAV.url });
 			var nav = $('nav');
-			nav.find('.selected').removeClass('selected');
-			nav.find('[href="' + jRouting.url + '"]').addClass('selected');
+			nav.find('.selected').rclass('selected');
+			nav.find('[href="' + NAV.url + '"]').aclass('selected');
 		});
 
 		function send(obj) {
-			ws.send(encodeURIComponent(JSON.stringify(obj)));
+			ws.send(JSON.stringify(obj));
 		}
 
 	</script>

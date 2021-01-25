@@ -13,12 +13,12 @@ exports.install = function() {
 
 	// route: all txt files
 	// Try: http://127.0.0.4/test.txt
-	FILE('*.txt', static_txt);
+	ROUTE('FILE /*.txt', static_txt);
 
 	// route: all jpg files
 	// all images will resized about 50%
 	// Try: http://127.0.0.4/header.jpg
-	FILE('*.jpg', static_jpg);
+	ROUTE('FILE /*.jpg', static_jpg);
 };
 
 function static_txt(req, res) {

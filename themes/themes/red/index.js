@@ -3,7 +3,7 @@
 exports.install = function() {
 
 	// Custom mapping
-	F.map('/red-theme-style.css', '=red/public/css/default.css');
+	MAP('/red-theme-style.css', '=red/public/css/default.css');
 	// Try: http://127.0.0.1:8000/red-theme-style.css
 
 	console.log('RED THEME IS INITIALIZED');

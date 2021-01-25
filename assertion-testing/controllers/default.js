@@ -1,23 +1,19 @@
 exports.install = function() {
-	ROUTE('/1/', test1);
-	ROUTE('/2/', test2);
-	ROUTE('/3/', test3, ['post', 'json']);
+
+	ROUTE('GET /customers/         *Customers --> query');
+	ROUTE('GET /customers/{id}/    *Customers --> read');
+
+	// Testing route
+	ROUTE('GET /test/', test);
+
 };
 
-function test1() {
-	this.plain('1');
-}
+// Action which performs unit-testing
+function test() {
 
-function test2() {
-	/*
-	if (TEST)
-		console.log('IS TEST');
-	*/
-	this.plain('2');
-}
-
-function test3() {
-	// throw error
+	// this === Total.js Controller
 	var self = this;
-	self.json(self.body);
+
+	self.runtest('GET /customers/', 'Customers-->@query');
+	self.runtest('GET /customers/123/', 'Customers-->@read'); // Invalid Id
 }

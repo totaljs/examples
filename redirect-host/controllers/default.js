@@ -1,5 +1,5 @@
 exports.install = function() {
-	ROUTE('/', view_index);
+	ROUTE('GET /', view_index);
 };
 
 function view_index() {

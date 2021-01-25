@@ -3,10 +3,10 @@ const Pty = require('node-pty');
 exports.install = function() {
 
 	// Route to views/index
-	ROUTE('/');
+	ROUTE('GET /');
 
 	// WebSocket route
-	WEBSOCKET('/', socket, ['raw']);
+	ROUTE('SOCKET /', socket, ['raw']);
 
 };
 

@@ -28,7 +28,7 @@
 				var value = $('input[name="username"]').val();
 
 				if (value.length > 0)
-					socket.send(encodeURIComponent(JSON.stringify({ username: value })));
+					socket.send(JSON.stringify({ username: value }));
 
 				return;
 			}
@@ -64,7 +64,7 @@
 
 		socket.onmessage = function(e) {
 			var el = $('#output');
-			var m = JSON.parse(decodeURIComponent(e.data)).message;
+			var m = JSON.parse(e.data).message;
 			el.val(m + '\n' + el.val());
 		};
 
@@ -79,7 +79,7 @@
 		var msg = el.val();
 
 		if (socket !== null && msg.length > 0)
-			socket.send(encodeURIComponent(JSON.stringify({ message: msg })));
+			socket.send(JSON.stringify({ message: msg }));
 
 		el.val('');
 	}
