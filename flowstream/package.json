@@ -1,0 +1,15 @@
+{
+  "name": "flowstream",
+  "description": "Total.js FlowStream",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "total4": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["flowstream", "dashboard"],
+  "author": "Peter Širka",
+  "license": "MIT"
+}

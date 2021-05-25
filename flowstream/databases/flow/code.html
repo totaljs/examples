@@ -1,0 +1,64 @@
+<script total>
+
+	exports.name = 'Code';
+	exports.icon = 'fa fa-code';
+	exports.config = { outputs: 1, code: '// $;\n// cache;\n// value;\n// send(value);\n// error(err);' };
+	exports.inputs = [{ id: 'input', name: 'Input' }];
+	exports.outputs = [{ id: 'output', name: 'Output' }];
+
+	exports.make = function(instance, config) {
+
+		var fn;
+
+		instance.message = function($) {
+			if (fn) {
+				try {
+					var send = data => instance.send('output', data);
+					var error = (err) => $.throw(err);
+					fn($.data, instance, instance.cache, $, $, require, send, error);
+				} catch (e) {
+					$.throw(e);
+				}
+			}
+			$.destroy();
+		};
+
+		instance.configure = function() {
+			try {
+				if (config.code) {
+					instance.status(1);
+					fn = new Function('value', 'instance', 'cache', '$', 'message', 'require', 'send', 'error', config.code);
+				} else {
+					instance.status(0);
+					fn = null;
+				}
+			} catch (e) {
+				fn = null;
+				instance.throw('Code: ' + e.message);
+			}
+		}
+
+		instance.close = function() {
+			fn = null;
+		};
+
+		instance.configure();
+
+	};
+
+</script>
+
+<settings>
+	<div class="padding">
+		<div data---="codemirror__?.code__type:javascript;height:500;tabs:true;trim:true" class="m">Code</div>
+	</div>
+</settings>
+
+<style>
+	.f-code .desc { font-size: 12px; }
+</style>
+
+<body>
+	<div><i class="far fa-play-circle mr5"></i>Code</div>
+	<div class="desc"></div>
+</body>

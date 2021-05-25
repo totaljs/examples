@@ -1,0 +1,203 @@
+<div data-scope="dashboard">
+	<div data---="viewbox__common.page__parent:window;margin:60;scrollbar:1;visibleY:1">
+		<div data---="dashboard__?.design__$id:dashboard;ondrop:?/drop;padding:15;parent:.ui-scrollbar-area"></div>
+	</div>
+</div>
+
+<div class="virtualwire" data-if="dashboard">
+	<button class="exec" data-exec="dashboard/components"><i class="fa fa-box"></i>@(Components)</button>
+	<button name="submit" class="b exec highlight" data-exec="dashboard/submit"><i class="far fa-play-circle green"></i>@(APPLY)</button>
+</div>
+
+<script id="template_dashboardsettings" type="text/html">
+	<div data-scope="dashboard.settings.@NAME@" id="@NAME@">
+		@BODY@
+	</div>
+</script>
+
+<div data---="largeform__common.form__if:dashboardsettings;width:700;visibleY:1;icon:fa fa-cog;submit:dashboard/settings_submit;$id:dashboardsettings" class="hidden invisible">
+	<div id="dashboard_settings"></div>
+	<nav data---="validation__settings__$id:dashboardsettingsvalidation">
+		<button name="submit"><i class="far fa-check-circle"></i>@(APPLY)</button>
+		<button name="cancel">@(Cancel)</button>
+	</nav>
+</div>
+
+<div id="dashboard_repo" class="hidden"></div>
+
+<script>
+
+	var dashboard = { components: [], design: [] };
+
+	// Reads dashboard statuses
+	SETTER(true, 'websocket/send', { TYPE: 'dashboard' });
+
+	PLUGIN('dashboard', function(exports) {
+
+		var initialized_settings = {};
+		var settings_current;
+
+		exports.init = function() {
+			AJAX('GET /api/dashboard/components/', function(response) {
+				var css = '';
+				response.wait(function(item, next) {
+					AJAX('GET /dashboard/' + item, function(response, err) {
+						if (response) {
+							var item = FUNC.parsedashboardcomponent(response);
+							var com = {};
+							new Function('exports', item.js)(com);
+							com.template = item.template ? Tangular.compile(item.template) : null;
+							com.settings = item.settings;
+							com.html = item.html;
+
+							if (item.css)
+								css += item.css;
+
+							dashboard.components.push(com);
+						}
+						next();
+					});
+				}, function() {
+					css && CSS(css, 'dashboard');
+					AJAX('GET /api/dashboard/flow/', function(response) {
+						SET('?.flow', response);
+						AJAX('GET /api/dashboard', function(response) {
+							for (var i = 0; i < response.length; i++)
+								exports.add(response[i]);
+						});
+					});
+				});
+			});
+		};
+
+		exports.reload = function() {
+			// do something
+		};
+
+		exports.add = function(opt, nobind) {
+
+			var com = dashboard.components.findItem('id', opt.component);
+			if (com == null)
+				return false;
+
+			var item = {};
+			item.id = opt.id;
+			item.offset = opt.offset;
+			item.config = opt.config;
+			item.actions = { settings: true, remove: true, move: true, resize: true };
+			item.component = opt.component;
+			item.template = com.template;
+			item.html = com.html;
+			item.title = opt.title;
+			item.make = com.make;
+			item.configure = com.configure;
+
+			item.settings = function() {
+				var id = 'settings_d' + item.id;
+				var dom = $('#dashboard_settings')[0];
+				var domrepo = $('#dashboard_repo')[0];
+				var domsettings = $('#' + id)[0];
+				var move = false;
+
+				if (dom.children[0] && dom.children[0] !== domsettings) {
+					domrepo.appendChild(dom.children[0]);
+					move = true;
+				}
+
+				RECONFIGURE('#dashboardsettings', { title: '@(Settings): ' + com.name });
+
+				if (initialized_settings[id]) {
+					if (move)
+						dom.appendChild(domsettings);
+				} else {
+					initialized_settings[id] = 1;
+					$('#dashboard_settings').append($('#template_dashboardsettings').html().replace(/@NAME@/g, id).replace(/@BODY@/g, com.settings));
+					COMPILE();
+				}
+
+				settings_current = this;
+				FIND('#dashboardsettingsvalidation').setPath('dashboard.settings.' + id);
+				SET('dashboard.settings.{0} @reset'.format(id), CLONE(this.config));
+				SET('common.form', 'dashboardsettings');
+			};
+
+			item.data = com.data;
+			item.destroy = com.destroy;
+			item.resize = com.resize;
+			item.service = com.service;
+
+			PUSH('?.design', item);
+		};
+
+		exports.drop = function(meta) {
+			var id = meta.el.attrd('id');
+			var component = dashboard.components.findItem('id', id);
+			exports.add({ id: Date.now().toString(36), title: component.name, component: id, config: CLONE(component.config), offset: { lg: { x: meta.x, y: meta.y, width: 3, height: 3 } }, actions: { settings: false, remove: true, move: true, resize: true }});
+		};
+
+		exports.components = function() {
+
+			var id = 'dashboardcomponents';
+
+			if (common.windows.findItem('id', id)) {
+				SETTER('infowindows/toggle', id);
+				return;
+			}
+
+			var win = {};
+			win.id = id;
+			win.hidden = false;
+			win.offset = { x: 500, y: 300, width: 250, height: 300, minwidth: 200, minheight: 200 };
+			win.title = '@(Dashboard components)';
+			win.html = '<div data-import="url:/windows/dashboard.html"></div>';
+			win.actions = { minimize: false, maximize: false, move: true, resize: true, autosave: true, close: true, hide: true };
+			PUSH('common.windows', win);
+		};
+
+		exports.submit = function() {
+
+			SETTER('approve/show', '@(Are you sure you want to save dashboard layout?)', '"far fa-check-circle" @(Continue)', function() {
+
+				var items = GET('? @reset').design;
+				var output = [];
+
+				for (var i = 0; i < items.length; i++) {
+					var item = items[i];
+					var data = {};
+					data.id = item.id;
+					data.config = item.config;
+					data.title = item.title;
+					data.offset = item.offset;
+					data.component = item.component;
+					output.push(data);
+				}
+
+				AJAX('POST /api/dashboard/ @showloading', output, ASETTER('notifybar/response @hideloading', '@(Dashboard has been updated successfully)'));
+			});
+		};
+
+		exports.settings_submit = function(hide) {
+			var model = GET(FIND('#dashboardsettingsvalidation').path + ' @clone');
+			$.extend(settings_current.config, model);
+			settings_current.meta.configure && settings_current.meta.configure.call(settings_current, model, settings_current.element);
+			hide();
+		};
+
+		WATCH('common.page', function(path, value) {
+			if (value !== 'dashboard')
+				SETTER('infowindows/hide', 'dashboardcomponents');
+		});
+
+		// WebSocket messages
+		ON('message', function(msg) {
+			switch (msg.TYPE) {
+				case 'dashboard':
+					common.dashboard && common.dashboard.send(msg.component, msg);
+					break;
+			}
+		});
+
+		exports.init();
+	});
+
+</script>

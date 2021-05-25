@@ -1,0 +1,19 @@
+<script total>
+
+	exports.name = 'Dashboard';
+	exports.icon = 'fa fa-dashboard';
+	exports.config = {};
+	exports.inputs = [{ id: 'input', name: 'Input' }];
+
+	exports.make = function(instance, config) {
+		instance.message = function($) {
+			$.dashboard($.data);
+			$.destroy();
+		};
+	};
+
+</script>
+
+<body>
+	<div><i class="fa fa-dashboard mr5"></i>Dashboard</div>
+</body>

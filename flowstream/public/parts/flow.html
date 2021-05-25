@@ -1,0 +1,256 @@
+<div data-scope="flow">
+	<div data---="viewbox__null__parent:window;visibleX:true;visibleY:true;scrollbar:true;margin:90">
+		<div data---="flow__?.data__width:6000;height:6000;grid:16;horizontal:1;infopath:?.info;undopath:?.undo;redopath:?.redo;ondrop:?/drop;contextmenu:?/contextmenu;dblclick:?/settings"></div>
+	</div>
+	<div class="stats"><i class="fa fa-refresh fa-spin mr5"></i> @(Processed messages:) <b data-bind="?.stats.messages__text__empty__format:0"></b> / pending <span class="gray" data-bind="?.stats.pending__text__empty__format:0"></span></div>
+</div>
+
+<div class="virtualwire" data-if="flow">
+	<button class="exec" data-exec="flow/components"><i class="fa fa-box"></i>@(Components)</button>
+	<button class="b exec highlight" data-exec="flow/submit"><i class="far fa-play-circle green"></i>@(APPLY)</button>
+</div>
+
+<script id="template_flowsettings" type="text/html">
+	<div data-scope="flow.settings.@NAME@" id="@NAME@">
+		@BODY@
+	</div>
+</script>
+
+<div data---="largeform__common.form__if:settings;width:700;visibleY:1;icon:fa fa-cog;submit:flow/settings_submit;$id:flowsettings" class="hidden invisible">
+	<div id="flow_settings"></div>
+	<nav data---="validation__settings__$id:settingsvalidation">
+		<button name="submit"><i class="far fa-check-circle"></i>@(APPLY)</button>
+		<button name="cancel">@(Cancel)</button>
+	</nav>
+</div>
+
+<!-- A temporary repository for components settings -->
+<div id="flow_repo" class="hidden"></div>
+
+<script>
+
+	if (!W.flow)
+		W.flow = { data: {}, console: {} };
+
+	// Reads flow statuses
+	SETTER(true, 'websocket/send', { TYPE: 'flow' });
+
+	PLUGIN('flow', function(exports) {
+
+		var initialized_settings = {};
+		var settings_current;
+
+		exports.init = function() {
+			AJAX('GET /api/flow/components/', function(response) {
+
+				var js = [];
+				var css = [];
+
+				for (var i = 0; i < response.length; i++) {
+					var com = response[i];
+					com.js && js.push(com.js);
+					com.css && css.push(com.css);
+				}
+
+				if (js.length)
+					new Function(js.join('\n'))();
+
+				CSS(css.join(''), 'flowcomponents');
+				SET('?.components', response);
+			});
+		};
+
+		exports.reload = function() {
+			WAIT('flow.components', exports.refresh);
+			CMD('flow.refresh');
+		};
+
+		exports.contextmenu = function(e, type, meta) {
+			var opt = {};
+			opt.x = e.pageX;
+			opt.y = e.pageY;
+			opt.items = [];
+			opt.items.push({ id: 'remove', name: '@(Remove)', icon: 'far fa-trash-alt red' });
+			opt.callback = function(item) {
+				switch (item.id) {
+					case 'remove':
+						CMD('flow.selected.clear');
+						break;
+				}
+			};
+			SETTER('menu/show', opt);
+		};
+
+		exports.settings = function(instance) {
+
+			var component = flow.components.findItem('id', instance.component);
+			var id = 'settings_f' + component.id;
+			var dom = $('#flow_settings')[0];
+			var domrepo = $('#flow_repo')[0];
+			var domsettings = $('#' + id)[0];
+			var move = false;
+
+			if (dom.children[0] && dom.children[0] !== domsettings) {
+				domrepo.appendChild(dom.children[0]);
+				move = true;
+			}
+
+			RECONFIGURE('#flowsettings', { title: '@(Settings): ' + component.name });
+
+			if (initialized_settings[id]) {
+				if (move)
+					dom.appendChild(domsettings);
+			} else {
+				initialized_settings[id] = 1;
+				$('#flow_settings').append($('#template_flowsettings').html().replace(/@NAME@/g, id).replace(/@BODY@/g, component.settings));
+				COMPILE();
+			}
+
+			settings_current = instance;
+			SETTER('#settingsvalidation/setPath', 'flow.settings.' + id);
+			SET('flow.settings.{0} @reset'.format(id), CLONE(instance.config));
+			SET('common.form', 'settings');
+		};
+
+		exports.settings_submit = function(hide) {
+			var model = GET(FIND('#settingsvalidation').path + ' @clone');
+			settings_current.config = model;
+			hide();
+		};
+
+		exports.components = function() {
+
+			var id = 'flowcomponents';
+
+			if (common.windows.findItem('id', id)) {
+				SETTER('infowindows/toggle', id);
+				return;
+			}
+
+			var win = {};
+			win.id = id;
+			win.hidden = false;
+			win.offset = { x: 500, y: 300, width: 250, height: 300, minwidth: 200, minheight: 200 };
+			win.title = '@(Flow components)';
+			win.html = '<div data-import="url:/windows/flow.html"></div>';
+			win.actions = { minimize: false, maximize: false, move: true, resize: true, autosave: true, close: true, hide: true };
+			PUSH('common.windows', win);
+
+		};
+
+		exports.refresh = function() {
+			AJAX('GET /api/flow/', function(response) {
+
+				var keys = Object.keys(response);
+
+				for (var i = 0; i < keys.length; i++) {
+					var key = keys[i];
+					if (key === 'paused')
+						continue;
+
+					var obj = response[key];
+					var com = flow.components.findItem('id', obj.component);
+
+					if (com == null) {
+						// component not found
+						WARN('Component "{0}" not found'.format(obj.component));
+						delete response[key];
+						continue;
+					}
+
+					obj.html = '<figure>' + com.html.format(key) + '</figure>';
+					obj.outputs = com.outputs ? CLONE(com.outputs) : null;
+					obj.inputs = com.inputs ? CLONE(com.inputs) : null;
+					obj.template = com.template ? Tangular.compile(com.template) : null;
+				}
+
+				SET('flow.data', response);
+			});
+		};
+
+		exports.submit = function() {
+
+			SETTER('approve/show', '@(Are you sure you want to save and apply Flow?)', '"far fa-check-circle" @(Continue)', function() {
+
+				var model = flow.data;
+				var output = {};
+				var keys = Object.keys(model);
+
+				for (var i = 0; i < keys.length; i++) {
+					var key = keys[i];
+					var com = model[key];
+
+					if (key === 'paused') {
+						output[key] = com;
+						continue;
+					}
+
+					var item = {};
+
+					item.id = com.id;
+					item.connections = com.connections;
+					item.config = com.config;
+					item.component = com.component;
+					item.x = com.x;
+					item.y = com.y;
+
+					output[item.id] = item;
+				}
+
+				AJAX('POST /api/flow/ @showloading', output, ASETTER('notifybar/response @hideloading', '@(Flow has been saved and applied successfully)', ACMD('flow.reset')));
+			});
+
+		};
+
+		exports.drop = function(e, grid) {
+			var id = e.el.attrd('id');
+			var com = flow.components.findItem('id', id);
+			var obj = {};
+			obj.id = 'f' + Date.now().toString(36);
+			obj.component = id;
+			obj.x = e.offsetX;
+			obj.y = e.offsetY;
+			obj.outputs = com.outputs ? CLONE(com.outputs) : null;
+			obj.inputs = com.inputs ? CLONE(com.inputs) : null;
+			obj.config = CLONE(com.config);
+			obj.html = '<figure>' + com.html.format(obj.id) + '</figure>';
+			obj.template = com.template ? Tangular.compile(com.template) : null;
+			CMD('flow.components.add', obj);
+		};
+
+		WATCH('common.page', function(path, value) {
+			if (value !== 'flow')
+				SETTER('infowindows/hide', 'flowcomponents');
+		});
+
+		// WebSocket messages
+		ON('message', function(msg) {
+			switch (msg.TYPE) {
+				case 'flow/stats':
+
+					if (common.page !== 'flow' || NOTFOCUSED())
+						return;
+
+					SET('flow.stats', { messages: msg.messages, mm: msg.mm, pending: msg.pending });
+					msg.traffic.priority.wait(function(key, next) {
+						var sleep = 500;
+						CMD('flow.traffic', key, { delay: 100, count: msg.traffic[key], speed: 3, limit: 30 });
+						setTimeout(next, sleep);
+					});
+					break;
+				case 'flow/status':
+					var refresh = W.flow && (!W.flow.status || !W.flow.status[msg.id]);
+					SET('flow.status.' + msg.id, msg.data);
+					refresh && CMD('flow.refresh');
+					break;
+				case 'flow/console':
+					SET('flow.console.' + msg.id, msg);
+					setTimeout2('refresh', ACMD('flow.refresh'), 50, 10);
+					break;
+			}
+		});
+
+		exports.init();
+	});
+
+</script>

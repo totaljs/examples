@@ -1,0 +1,38 @@
+<script total>
+
+	exports.name = 'Trigger';
+	exports.icon = 'fa fa-bullhorn';
+	exports.config = {};
+	exports.outputs = [{ id: 'output', name: 'Output' }];
+
+	exports.make = function(instance, config) {
+		instance.trigger = function(data) {
+			var val = U.random_string(20);
+			instance.send('output', val);
+		};
+	};
+
+</script>
+
+<script>
+	FUNC.ftrigger_run = function() {
+		SETTER('loading/show');
+		SETTER('websocket/send @hideloading', { TYPE: 'trigger' });
+	}
+</script>
+
+<style>
+	.ftrigger-button { width: 100%; height: 24px; border: 1px solid #E0E0E0; border-radius: var(--radius); color: #000; background-color: #F0F0F0; margin: 5px 0 0; }
+	.ftrigger-button:hover { background-color: #F8F8F8; }
+</style>
+
+<settings>
+	<div class="padding">
+		Without settings
+	</div>
+</settings>
+
+<body>
+	<div><i class="fa fa-bullhorn mr5"></i>Trigger</div>
+	<button class="exec ftrigger-button" data-exec="FUNC.ftrigger_run">Run</button>
+</body>

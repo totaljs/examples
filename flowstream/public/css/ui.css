@@ -1,0 +1,47 @@
+.ui-dashboard { position: relative; min-height: 200px; }
+.ui-dashboard-item { position: absolute; z-index: 1; overflow: hidden; }
+.ui-dashboard-item figure { position: relative; border: 1px solid #E0E0E0; border-radius: 0 0 var(--radius) var(--radius); background-color: #FFF; overflow: hidden; }
+.ui-dashboard-title { background-color: #FFF; height: 0; border: 1px solid #E0E0E0; border-bottom: 0; line-height: 30px; padding: 0 10px; font-size: 12px; border-radius: var(--radius) var(--radius) 0 0; cursor: grab; font-weight: bold; display: none; }
+.ui-dashboard-body { position: relative; }
+.ui-dashboard-control { float: right; margin: 9px 0 0 7px; cursor: pointer; color: gray; display: none; }
+.ui-dashboard-selected { z-index: 2; }
+.ui-dashboard-selected .ui-dashboard-title { border-color: #D0D0D0; }
+.ui-dashboard-selected .ui-dashboard-body figure { border-color: #D0D0D0; }
+.ui-dashboard-canresize .ui-dashboard-resize-button { position: absolute; border: 2px solid gray; border-top: 0; border-left: 0; width: 10px; height: 10px; right: 0; bottom: 0; cursor: nwse-resize; }
+.ui-dashboard-canresize .ui-dashboard-resize-button:hover { border-color: #000; }
+.ui-dashboard-header .ui-dashboard-title { height: 30px; display: block; }
+.ui-dashboard-control[data-name='remove']:hover { color: red; }
+.ui-dashboard-canremove .ui-dashboard-control[data-name='remove'] { display: block; }
+.ui-dashboard-cansettings .ui-dashboard-control[data-name='settings'] { display: block; }
+
+.ui-flow { position: relative; transform-origin: top left; transition: transform 0.3s; }
+.ui-flow .component { position: absolute; left: 150px; top: 150px; border: 2px solid #D0D0D0; background-color: #FFF; border-radius: var(--radius); box-shadow: 1px 5px 10px rgba(0,0,0,0.1); }
+.ui-flow .inputs { position: absolute; width: 100%; top: -8px; left: 4px; }
+.ui-flow .input { float: left; font-size: 11px; margin-right: 5px; }
+.ui-flow-v .outputs { position: absolute; width: 100%; margin: -10px 0 0 8px; }
+.ui-flow-v .output { float: left; border-radius: var(--radius); background-color: #FFF; padding: 2px 5px; font-size: 11px; border: 1px solid #E0E0E0; margin-right: 5px; color: gray; }
+.ui-flow-v .output .component-io { margin-right: 5px; }
+.ui-flow-h .outputs { margin: 0; }
+.ui-flow-h .output { background-color: #FFF; padding: 0 8px; font-size: 11px; color: gray; border-top: 1px solid #E0E0E0; line-height: 20px; }
+.ui-flow-h .output:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.ui-flow-h .output > span { display: block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.ui-flow-h .output .component-io { float: right; margin: 3px -14px 0 0; }
+.ui-flow .component-io { width: 12px; height: 12px; line-height: 12px; border-radius: 100px; background-color: #A0A0A0; text-align: center; float: left; margin-top: 1px; font-size: 9px; }
+.ui-flow .content { padding: 10px 8px; min-width: 200px; min-height: 24px; cursor: default; }
+.ui-flow-v .output.connected { border-color: #000; color: #000; }
+.ui-flow-h .output.connected { color: #000; }
+.ui-flow .output.connected .component-io { background-color: #68B25B !important; }
+.ui-flow .input.connected .component-io { background-color: #68B25B !important; }
+.ui-flow .connection { stroke-width: 2; stroke: #000; fill: none; }
+.ui-flow .connection-draft { stroke: var(--color); }
+.ui-flow .component-selected { border-color: var(--color); }
+.ui-flow .connection-selected { stroke: var(--color); }
+.ui-flow .area { position: relative; }
+.ui-flow-v .hasoutputs .content { padding-bottom: 20px; }
+.ui-flow path.highlight { stroke: var(--color); }
+.ui-flow svg { margin: -1px 0 0 -1px; }
+.ui-flow-grid { stroke: #E5E5E5; stroke-width: 1; }
+.ui-flow .output.connected .component-io.fa-times, .ui-flow .input.connected .component-io.fa-times, .ui-flow .output .component-io.fa-times, .ui-flow .input .component-io.fa-times { background-color: red !important; color: #FFF; }
+.ui-flow .traffic { fill: var(--color); }
+
+.ui-infowindows-item { box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important; }

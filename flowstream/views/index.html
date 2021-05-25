@@ -1,0 +1,69 @@
+@{layout('')}
+@{title('Flow Stream')}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=10" />
+	<meta name="robots" content="all,follow" />
+	<link href="https://cdn.componentator.com/spa.min@18.css" rel="stylesheet" type="text/css" />
+	<script src="//cdn.componentator.com/spa.min@18.js"></script>
+	@{import('meta', 'head', 'default.css + ui.css', 'func.js + ui.js')}
+</head>
+<body data---="exec">
+
+	<div data---="LAZY menu"></div>
+	<div data---="LAZY approve__null__cancel:@(Cancel)"></div>
+	<div data---="LAZY message__null__style:2"></div>
+	<div data---="LAZY notifybar"></div>
+	<div data---="loading"></div>
+
+	<div data---="infowindows__common.windows"></div>
+	<div data---="websocket__null__url:/;encoder:false"></div>
+
+	<header>
+		<div class="custom" data---="virtualwire__common.page"></div>
+		<nav class="menu" data---="selected__common.page__selector:button">
+			<button class="exec" data-exec="common/page" data-if="dashboard"><i class="fa fa-dashboard"></i>@(Dashboard)</button>
+			<button class="exec" data-exec="common/page" data-if="flow"><i class="fa fa-vector-square"></i>@(Flow)</button>
+		</nav>
+	</header>
+
+	<div data---="part__common.page__if:dashboard;url:/parts/dashboard.html;reload:dashboard/reload" data-id="dashboard" class="hidden invisible"></div>
+	<div data---="part__common.page__if:flow;url:/parts/flow.html;reload:flow/reload" data-id="flow" class="hidden invisible"></div>
+
+	<script>
+
+		var common = {};
+
+		common.windows = [];
+		common.page = 'dashboard';
+
+		FIND('#dashboard', function(com) {
+			common.dashboard = com;
+		});
+
+		DEF.dateformat = '@(yyyy-MM-dd)';
+
+		PLUGIN('common', function(exports) {
+			exports.page = function(el) {
+				SET('?.page', el.attrd('if'));
+			};
+		});
+
+		ON('@flag showloading', function() {
+			SETTER('loading/show');
+		});
+
+		ON('@flag hideloading', function() {
+			SETTER('loading/hide', 1000);
+		});
+
+		SETTER(true, 'loading/hide', 1000);
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<script total>
+
+	exports.name = 'DateTime';
+	exports.icon = 'fa fa-clock-o';
+	exports.config = {};
+	exports.outputs = [{ id: 'output', name: 'Output' }];
+
+	exports.make = function(instance, config) {
+
+		var id = setInterval(function() {
+			var dt = new Date();
+			instance.send('output', dt);
+			instance.status(dt);
+		}, 1000);
+
+		instance.close = function() {
+			clearInterval(id);
+		};
+
+	};
+
+</script>
+
+<style>
+	.fdatetime { font-size: 20px; margin: 5px 0 0; padding: 5px 0 0; border-top: 1px solid #E0E0E0; }
+</style>
+
+<settings>
+	<div class="padding">
+		Without settings
+	</div>
+</settings>
+
+<body>
+	<div><i class="fa fa-clock-o mr5"></i>DateTime</div>
+	<div data-bind="!?.status.{0}__text:value.format('yyyy-MM-dd HH:mm:ss')__show" class="hidden fdatetime"></div>
+</body>

@@ -1,0 +1,53 @@
+<script total>
+
+	exports.name = 'Random';
+	exports.icon = 'fa fa-industry';
+	exports.config = { interval: 5000 };
+	exports.outputs = [{ id: 'output', name: 'Output' }];
+
+	exports.make = function(instance, config) {
+
+		var id;
+
+		var fn = function() {
+			var val = U.random_string(10);
+			instance.send('output', val);
+			instance.status({ interval: config.interval, value: val });
+		};
+
+		instance.close = function() {
+			clearInterval(id);
+		};
+
+		instance.configure = function() {
+			id && clearInterval(id);
+			id = setInterval(fn, config.interval);
+		};
+
+		instance.configure();
+	};
+
+</script>
+
+<style>
+	.frandom pre { font-size: 10px; margin: 5px 0 0 0; padding: 5px; background-color: #F0F0F0; border-radius: var(--radius); }
+	.frandom div { font-weight: 14px; margin: 5px 0 0; border-top: 1px solid #E0E0E0; padding: 5px 0 0; }
+</style>
+
+<settings>
+	<div class="padding">
+		<div class="row">
+			<div class="col-md-3 m">
+				<div data---="input__?.interval__type:number">Interval</div>
+			</div>
+		</div>
+	</div>
+</settings>
+
+<body>
+	<div><i class="fa fa-industry mr5"></i>Random</div>
+	<div data-bind="!?.status.{0}__text pre:value.value__text div:value.interval + 'ms'__show" class="hidden frandom">
+		<div></div>
+		<pre></pre>
+	</div>
+</body>

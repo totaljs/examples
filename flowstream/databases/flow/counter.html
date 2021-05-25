@@ -1,0 +1,36 @@
+<script total>
+
+	exports.name = 'Counter';
+	exports.icon = 'fa fa-calculator';
+	exports.config = {};
+	exports.inputs = [{ id: 'data', name: 'Data' }];
+
+	exports.make = function(instance) {
+		var count = 0;
+		instance.message = function($) {
+			count++;
+			instance.status(count);
+			$.destroy();
+		};
+	};
+
+</script>
+
+<settings>
+
+</settings>
+
+<style>
+	.fcounter { font-size: 35px; margin: 5px 0 0; padding: 5px 0 0; font-weight: bold; border-top: 1px solid #E0E0E0; }
+</style>
+
+<settings>
+	<div class="padding">
+		Without settings
+	</div>
+</settings>
+
+<body>
+	<div><i class="fa fa-calculator mr5"></i>Counter</div>
+	<div data-bind="!?.status.{0}__text__show" class="fcounter hidden"></div>
+</body>

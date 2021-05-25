@@ -1,0 +1,28 @@
+html,body { padding: 0; margin: 0; overflow: hidden; background-color: #F0F0F0; }
+p { font-size: 13px; line-height: 16px; }
+
+.ml5 { margin-left: 5px; }
+.ml10 { margin-left: 10px; }
+
+:root {
+	--radius: 5px;
+}
+
+header { background-color: #FFF; height: 60px; border-bottom: 1px solid #E0E0E0; }
+header .menu { float: left; margin: 15px 0 0 15px; }
+header .custom { float: right; margin: 15px 15px 0 0; }
+header button { outline: 0; background: #E7E7E7; border: 0; font-size: 12px; height: 28px; padding: 0 15px; margin: 0 0 0 1px; color: #000; min-width: 110px; text-align: center; vertical-align: top; float: left; }
+header button i { margin-right: 5px; }
+header button.highlight { color: #000; }
+header button:first-child { border-top-left-radius: var(--radius); border-bottom-left-radius: var(--radius); margin-left: 0; }
+header button:last-child { border-top-right-radius: var(--radius); border-bottom-right-radius: var(--radius); }
+header button:hover { background: #F0F0F0; }
+header button.selected, header button:active { background: var(--color); color: #FFF; }
+header button:disabled { color: silver; cursor: not-allowed; border-color: #E0E0E0 !important; background: linear-gradient(#F8F8F8,#F0F0F0) !important; }
+header button:disabled i { color: silver !important; }
+
+.flowcomponents > div { height: 28px; line-height: 28px; font-size: 13px; padding: 0 10px; cursor: grab; border-top: 1px solid #E0E0E0; }
+.flowcomponents > div:first-child { border-top: 0; }
+.flowcomponents > div i { width: 15px; margin: 7px 0 0 5px; text-align: center; float: right; }
+
+.stats { height: 30px; background-color: #FFF; line-height: 30px; padding: 0 10px; font-size: 11px; }

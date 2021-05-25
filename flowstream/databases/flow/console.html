@@ -1,0 +1,36 @@
+<script total>
+
+	exports.name = 'Console';
+	exports.icon = 'fa fa-laptop-code';
+	exports.config = {};
+	exports.inputs = [{ id: 'data', name: 'Data' }];
+
+	exports.make = function(instance) {
+		instance.message = function($) {
+			MAIN.ws && MAIN.ws.send({ TYPE: 'flow/console', id: instance.id, data: $.data, component: $.from.component });
+			$.destroy();
+		};
+	};
+
+</script>
+
+<settings>
+
+</settings>
+
+<style>
+	.fconsole pre { font-size: 10px; margin: 5px 0 0 0; padding: 5px; background-color: #F0F0F0; border-radius: var(--radius); }
+</style>
+
+<settings>
+	<div class="padding">
+		Without settings
+	</div>
+</settings>
+
+<body>
+	<div><i class="fa fa-laptop-code mr5"></i>Console</div>
+	<div data-bind="!?.console.{0}__text pre:JSON.stringify(value.data, null, '  ')__show" class="fconsole hidden">
+		<pre></pre>
+	</div>
+</body>

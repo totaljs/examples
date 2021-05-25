@@ -1,0 +1,34 @@
+<body>
+	<div class="padding">
+		<div style="font-size:30%">Output</div>
+		<div class="output"></div>
+	</div>
+</body>
+
+<template>
+	{{ title }}
+</template>
+
+<script>
+
+	exports.id = 'demo';
+	exports.icon = 'fa fa-universal-access';
+	exports.name = 'Demo';
+	exports.config = {};
+
+	exports.make = function(el) {
+	};
+
+	exports.data = function(type, data, el) {
+		el.find('.output').text(data.data + '');
+	};
+
+	exports.resize = function(width, height, el, display) {
+
+	};
+
+	exports.configure = function(options) {
+
+	};
+
+</script>

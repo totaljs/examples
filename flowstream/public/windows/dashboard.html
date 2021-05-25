@@ -1,0 +1,10 @@
+<div data---="viewbox__null__scrollbar:1;visibleY:1;parent:.ui-infowindows-body;margin:30">
+	<div data---="search__%dashboardsearch__selector:div" data-bind="dashboard.components__template" class="flowcomponents">
+		<template>
+		{{ foreach m in value }}
+			<div data-id="{{ m.id }}" draggable="true" data-search="{{ m.name }}"><i class="{{ m.icon }}"></i>{{ m.name }}</div>
+		{{ end }}
+		</template>
+	</div>
+</div>
+<div data---="searchinput__%dashboardsearch__type:search;placeholder:@(Search components)" style="border:0;border-top:1px solid #E0E0E0"></div>
