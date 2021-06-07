@@ -1,0 +1,4 @@
+name                          : TMS Example
+
+allow_tms                     : true
+secret_tms                    : my-secret-tms-key
