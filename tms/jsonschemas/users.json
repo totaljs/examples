@@ -1,0 +1,33 @@
+{
+  "$id": "https://example.com/address.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Example schema for TMS example",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "age": {
+      "type": "number"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dtcreated": {
+      "type": "date"
+    },
+    "dtupdated": {
+      "type": "date"
+    }
+  },
+  "required": ["name", "email"]
+}
