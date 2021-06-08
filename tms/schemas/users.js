@@ -22,7 +22,10 @@ NEWSCHEMA('Users', function(schema) {
 		var user = USERS.find(u => u.id === $.id);
 
 		// Response
-		user ? $.callback(user) : $.invalid(404);
+		if (user)
+			$.callback(user);
+		else
+			$.invalid(404);
 	});
 
 	schema.setInsert(function($, model) {
@@ -51,10 +54,11 @@ NEWSCHEMA('Users', function(schema) {
 			// Replace only values based on schema fields => name, email, age, roles
 			for (var key of schema.fields)
 				USERS[index][key] = model[key];
-		}
 
-		// Response
-		index === -1 ? $.invalid(404) : $.success();
+			$.success();
+		} else
+			$.invalid(404);
+
 	});
 
 	schema.setRemove(function($) {
@@ -67,10 +71,11 @@ NEWSCHEMA('Users', function(schema) {
 			PUBLISH('users_remove', user);
 
 			USERS = USERS.filter(u => u.id !== user.id);
-		}
 
-		// Response
-		user ? $.success() : $.invalid(404);
+			$.success();
+		} else
+			$.invalid(404);
+
 	});
 
 });
