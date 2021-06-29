@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "serverless-http": "^2.7.0",
+    "total4": "^0.0.45-5"
+  },
+  "devDependencies": {
+    "serverless-offline": "^7.0.0"
+  }
+}
