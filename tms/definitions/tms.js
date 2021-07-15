@@ -8,9 +8,9 @@ NEWPUBLISH('users_update', 'Users');
 NEWPUBLISH('users_remove', 'Users');
 
 // Using json schema (jsonschemas/users.json) - https://json-schema.org/
-// NEWPUBLISH('users_insert', 'users');
-// NEWPUBLISH('users_update', 'users');
-// NEWPUBLISH('users_remove', 'users');
+// NEWPUBLISH('users_insert', 'jsonschema-users');
+// NEWPUBLISH('users_update', 'jsonschema-users');
+// NEWPUBLISH('users_remove', 'jsonschema-users');
 
 // Using inline declaration - key:value,key2:value2,...
 // NEWPUBLISH('users_insert', 'id:String,name:String,email:String,age:Number,roles:[String],dtcreated:Date');
