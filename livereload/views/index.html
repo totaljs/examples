@@ -1,0 +1,39 @@
+@{layout('')}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Live reload</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="robots" content="all,follow" />
+
+	<!--
+		Will watch entire project
+	-->
+	<script src="https://cdn.componentator.com/livereload.js" data-url="ws://127.0.0.1:35729"></script>
+
+	<!--
+		Will watch only public directory
+		<script src="https://cdn.componentator.com/livereload.js" data-url="ws://127.0.0.1:35729" data-type="public"></script>
+	-->
+</head>
+<body>
+
+	<h1>Update something</h1>
+	<div>Model: @{model.name}</div>
+
+	<script>
+
+		// Optional, you can remove it
+		function LIVERELOAD(meta) {
+			console.log(meta.filename, meta.user);
+			setTimeout(() => location.reload(true), 1000);
+		}
+
+	</script>
+
+</body>
+</html>
