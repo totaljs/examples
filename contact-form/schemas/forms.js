@@ -1,8 +1,9 @@
 NEWSCHEMA('ContactForms', function(schema) {
 
+	schema.define('fileid', 'UID');
 	schema.define('email', 'Email', true);
 	schema.define('phone', 'Phone');
-	schema.define('message', 'string(10000)', true);
+	schema.define('message', 'String(10000)', true);
 
 	schema.setSave(function($) {
 
@@ -14,6 +15,10 @@ NEWSCHEMA('ContactForms', function(schema) {
 		model.ua = ($.headers['user-agent'] || '').parseUA();
 
 		NOSQL('contactforms').insert(model);
+
+		// var mail = MAIL(....);
+		// model.fileid && mail.attachmentfs('files', model.fileid);
+
 		$.success();
 	});
 });
