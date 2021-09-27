@@ -34,4 +34,4 @@ MIDDLEWARE('X', function($) {
 	$.next();
 });
 
-F.use('X');
+USE('X');
