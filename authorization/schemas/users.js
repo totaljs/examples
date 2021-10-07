@@ -16,19 +16,12 @@ NEWSCHEMA('Users', function(schema) {
 				return;
 			}
 
-			var opt = {};
-			opt.name = CONF.cookie;        // A cookie name
-			opt.key = CONF.cookie_secret;  // A cookie secret key
-			opt.id = user.id;              // A user ID
-			opt.expire = '3 days';         // Expiration
-			opt.data = user;               // A session data
-			opt.note = ($.headers['user-agent'] || '').parseUA() + ' ({0})'.format($.ip); // A custom note
-
 			// Creates a cookie and session item
-			MAIN.session.setcookie($, opt, $.done());
+			MAIN.session.authcookie($, UID(), user.id, '3 days');
 
 			// Writes audit
-			AUDIT('users', $, 'login', user.id + ': ' + user.name);
+			$.audit(user.id + ': ' + user.name);
+			$.success();
 		});
 	});
 
@@ -36,13 +29,11 @@ NEWSCHEMA('Users', function(schema) {
 	schema.addWorkflow('logout', function($) {
 
 		// Removes session
-		MAIN.session.remove($.sessionid);
-
-		// Removes auth cookie
-		$.cookie(CONF.cookie, '', '-1 year');
+		MAIN.session.logout($);
 
 		// Performs a redirect
 		$.redirect('/');
+
 	});
 
 });

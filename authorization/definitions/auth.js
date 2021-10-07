@@ -5,32 +5,84 @@
 // Alternatively, beware that if the route is flagged with 'unauthorize', and the callback return value is false, the response status will be 200 OK.
 // ================================================
 
-// MAIN is a global shared object (it's part of Total.js)
-// We create a session instance
-// Why do we use MAIN.session? Because we can access into the session from every place (on server-side) in this application
-MAIN.session = SESSION();
+var opt = {};
 
-// Delegate for loading session data
-MAIN.session.ondata = function(meta, next) {
-	// Loads user data from DB
-	NOSQL('users').one().where('id', meta.id).callback(next);
+// A secret key
+opt.secret = CONF.cookie_secret;
+
+// A cookie name (optional)
+opt.cookie = CONF.cookie;
+
+// Header name for obtaining of token (if you do not want to use cookie (or can be used with the cookie)
+// opt.header = 'REQUEST_HEADER_NAME';
+
+// Enables strict security according to the browser device (default: true)
+// opt.strict = true;
+
+// Memory expiration
+// opt.expire = '5 minutes';
+
+// A simple DDOS protection (max. limit per IP)
+// opt.ddos = 10;
+
+// A cookie options
+// opt.options = { samesite: 'lax' }
+
+// Logout delegate
+// opt.onlogout = function({ sessionid, userid });
+
+// Delegate will be executed for each request that has obtained session
+// If the delegate returns true {Boolean} then the next processing will be canceled
+// $ = AuthOptions
+// opt.onsession = function(session, $, init)
+
+// Delegate will be executed if the request is blocked
+// $ = AuthOptions
+// opt.onddos = function($)
+
+// Data read delegate
+opt.onread = function(meta, next) {
+
+	// meta.sessionid {String}
+	// meta.userid {String}
+	// meta.ua {String} A user-agent
+	// next(err, USER_DATA) {Function} A callback function
+
+	NOSQL('users').one().where('id', meta.userid).callback(next);
 };
 
-AUTH(function($) {
+// Release delegate
+opt.onfree = function(meta) {
+	// meta.sessions {Array String} with sessionid
+	// meta.users {Array String} with userid (can be "null")
+};
 
-	// This function will be executed for each request with except requests to static files
+// Applies preddefined session + extends "opt" object
+AUTH(opt);
 
-	// Session options:
-	var opt = {};
-	opt.name = CONF.cookie;        // A cookie name
-	opt.key = CONF.cookie_secret;  // An encrypt key
-	opt.expire = '3 days';         // Optional, after read can be updated expiration
+// Logout:
+// opt.logout($);
+// returns Boolean;
 
-	// opt.removecookie = true;    // Removes cookie if isn't valid (default: true)
-	// opt.extendcookie = true;    // Extends cookie expiration (default: true)
-	// opt.options = {};           // Optional, a cookie options when the the cookie is extended (default: { httponly: true, security: 'lax' })
-	// opt.ddos = 5;               // Enables a simple DDOS protection for hijacking
+// Releases all users in the memory
+// opt.refresh(userid, [except_session_id]);
 
-	// Reads a cookie and session
-	MAIN.session.getcookie($, opt, $.done());
-});
+// Updates all existing sessions
+// opt.update(userid, function(user) {});
+
+// Creates a token for cookie or custom header
+// opt.sign(sessionid, userid);
+// returns String;
+
+// Creates a secured cookie
+// $ can be controller or Schema/Task/Operation options
+// opt.authcookie($, sessionid, userid, expiration, [options]);
+
+// Contains all sessions
+// opt.sessions {Object}
+
+// Contains all blocked IP addresses
+// opt.blocked {Object}
+
+// Stores "session" instance to a global variable
+MAIN.session = opt;
