@@ -18,7 +18,7 @@
 
 		function init() {
 	  		var el = document.getElementById('message');
-			var obj = new EventSource('/one-way-messaging/');
+			var obj = new EventSource('/sse/');
 
 			obj.onmessage = function(ev) {
 	  			el.innerHTML = ev.data + '<br />' + el.innerHTML;
