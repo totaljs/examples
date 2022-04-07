@@ -28,7 +28,7 @@ function view_index() {
 
 	var filename = PATH.public('upload.jpg');
 
-	// Documentation: http://docs.totaljs.com/FrameworkImage/
+	// Documentation: https://docs.totaljs.com/total4/4047d004kk50c/
 	var image = file.image();
 
 	// image.identify(function(err, info) { info.width, info.heigth });
