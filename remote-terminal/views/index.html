@@ -5,28 +5,26 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Remote terminal</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/xterm.min.css" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/xterm.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/addons/attach/attach.js"></script>
+		<link href="https://cdn.componentator.com/spa.min@19.css" rel="stylesheet" type="text/css" />
+		<script src="https://cdn.componentator.com/spa.min@19.js"></script>
 	</head>
 	<body>
 
-		<div id="terminal"></div>
+		<div data---="xterm__null__send:send_to_server"></div>
 
 		<script>
 
-			var term = new Terminal({ cols: 80, rows: 24 });
-			term.open(document.getElementById('terminal'));
+			ON('ready', function() {
+				var ws = new WebSocket(location.protocol.replace('http', 'ws') + '//' + location.hostname + (location.port ? (':' + location.port) : '') + '/');
 
-			var ws = new WebSocket(location.protocol.replace('http', 'ws') + '//' + location.hostname + (location.port ? (':' + location.port) : '') + '/');
+				function send_to_server(data) {
+					ws.send(data);
+				}
 
-			ws.onopen = function() {
-				new attach.attach(term, ws);
-			};
-
-			ws.onerror = function(e) {
-				console.log(e);
-			};
+				ws.onmessage = function(e) {
+					SETTER('xterm/write', e.data);
+				};
+			});
 
 		</script>
 	</body>
