@@ -1,0 +1,104 @@
+@{layout('')}
+@{title('Flow Stream')}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=10" />
+	<meta name="robots" content="all,follow" />
+	<link href="https://cdn.componentator.com/spa.min@19.css" rel="stylesheet" type="text/css" />
+	<script src="//cdn.componentator.com/spa.min@19.js"></script>
+	<style>
+		body { background-color: #F0F0F0; }
+		.maxwidth { width: 600px; margin: 30px auto; background: #FFF; padding: 10px 20px 20px; }
+		.users > div { padding: 5px 0; border-top: 1px solid #E0E0E0; }
+		.users > div > span { float: right; }
+		.users > div i { margin-right: 8px; }
+		.users > div:first-child { border-top: 0; }
+
+		button { background-color: #FFF; border-radius: var(--radius); border: 1px solid #D0D0D0; height: 45px; line-height: 27px; padding: 0 10px; cursor: pointer; width: 200px; }
+		button i { margin-right: 5px; }
+		button:disabled { color: #777; background-color: #F8F8F8; cursor: not-allowed; border-color: #E0E0E0; }
+		button:disabled i { color: #777 !important; }
+
+	</style>
+</head>
+<body data---="exec">
+
+	<div data---="LAZY message"></div>
+
+	<div class="maxwidth">
+
+		<h2>Form</h2>
+
+		<!-- All data from the form will be stored on the path: "window.usersform" -->
+		<div data-scope="usersform">
+			<div data---="input__?.name__required:1;innerlabel:1;placeholder:Enter user name" class="invisible m">Name</div>
+			<div data---="input__?.email__required:1;innerlabel:1;type:email__'@'" class="invisible">E-mail address</div>
+			<div data---="validate__?" style="margin-top:15px">
+				<button name="submit" class="exec b" data-exec="?/submit" disabled><i class="fa fa-check-circle green"></i>INSERT</button>
+			</div>
+		</div>
+
+		<hr />
+		<h2>List of users</h2>
+		<div data-scope="users">
+			<div data-bind="!?.list__template" class="users">
+				<script type="text/html">
+					{{ foreach m in value }}
+						<div data-id="{{ m.id }}">
+							<span>{{ m.dtcreated | format('yyyy-MM-dd') }}</span>
+							<i class="fa fa-user"></i>{{ m.name }}
+						</div>
+					{{ end }}
+				</script>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+
+		// A global error handling
+		ON('ERROR', function(err) {
+			var errors = [];
+			for (var e of err)
+				errors.push(e.error);
+			SETTER('message/warning', errors.join('<br>'));
+		});
+
+		// A plugin for handling form
+		PLUGIN('usersform', function(exports) {
+			exports.submit = function() {
+				var model = exports.form;
+				AJAX('POST /api/users/insert/', model, ERROR(function(response) {
+
+					// Done, user inserted
+					// No error
+
+					// Reset form
+					SET('? @default', {});
+
+					// Refresh user list
+					EXEC('users/refresh');
+
+				}));
+			};
+		});
+
+		PLUGIN('users', function(exports) {
+
+			exports.refresh = function() {
+				// User list will be stored on the path: "window.users.list"
+				AJAX('GET /api/users/list/', '?.list');
+			};
+
+			exports.refresh();
+		});
+
+	</script>
+
+</body>
+</html>
