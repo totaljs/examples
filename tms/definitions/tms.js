@@ -18,7 +18,6 @@ NEWPUBLISH('users_remove', 'Users');
 // NEWPUBLISH('users_remove', 'id:String,name:String,email:String,age:Number,roles:[String],dtcreated:Date,dtupdated:Date');
 
 
-
 // SUBSCRIBE - Receiving data (different declrations can be also used)
 NEWSUBSCRIBE('users_insert', 'Users');
 NEWSUBSCRIBE('users_update', 'Users');
@@ -41,3 +40,6 @@ SUBSCRIBE('users_remove', function(model) {
 	// Set $.id param to EXEC call - https://docs.totaljs.com/total4/407ff001jy51c/#485dc001cl51c
 	controller.id = model.id; 
 });
+
+// Registers RPC
+NEWCALL('users_query', '-Users --> query');
