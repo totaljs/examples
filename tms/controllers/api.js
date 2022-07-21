@@ -14,4 +14,4 @@ exports.install = function() {
 	ROUTE('PUT       /api/users/{id}/      *Users --> update');
 	ROUTE('DELETE    /api/users/{id}/      *Users --> remove');
 
-}
+};
