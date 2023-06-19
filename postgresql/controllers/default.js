@@ -1,8 +1,8 @@
 exports.install = function() {
-	ROUTE('GET /', view_homepage);
+	ROUTE('GET /', index);
 };
 
-function view_homepage() {
-	// https://wiki.totaljs.com/dbms/01-welcome/
-	DBMS().find('tbl_user').where('isremoved', false).take(10).callback(this.callback('index'));
+function index() {
+	// https://docs.totaljs.com/total4/pzbr001pr41d/
+	DATA.find('tbl_user').where('isremoved', false).take(10).callback(this.callback('index'));
 }
