@@ -47,7 +47,7 @@
 						<i class="fa fa-check-circle mr5"></i> Contact form has been sent successfully. All contact forms are stored in <code>/databases/contactforms.nosql</code>
 					</ui-bind>
 					<ui-component name="validation" path="?">
-						<ui-component name="button" path="?" config="exec:?/submit;icon:null" class="hidden button" disabled>SEND</ui-component>
+						<ui-component name="button" path="?" config="exec:?/submit" class="hidden button" disabled>SEND</ui-component>
 					</ui-component>
 				</ui-plugin>
 			</div>
@@ -69,7 +69,7 @@
 
 				// A callback
 				opt.callback = function(response) {
-					SET('?.file', response);
+					exports.set('file', response);
 				};
 
 				opt.progress = function(percentage) {
@@ -80,23 +80,23 @@
 			};
 
 			exports.remove = function() {
-				NUL('?.file');
+				exports.nul('file');
 			};
 
 			exports.submit = function() {
 
-				// "?" means "contactform", it's obtained automatically from name of plugin
-				var model = GET('? @reset @clone');
+				var model = exports.form;
+
 				if (model.file) {
 					model.fileid = model.file.id;
 					delete model.file;
 				}
 
-				AJAX('POST /api/send/', model, function(response) {
+				export.ajax('POST /api/send/', model, function(response) {
 					if (response.success)
-						SET('? @default', { response: response });
+						exports.set('@default', { response: response });
 					else
-						SET('?.response', response);
+						exports.set('response', response);
 				});
 			};
 		});
