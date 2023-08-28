@@ -8,46 +8,48 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=10" />
 	<meta name="format-detection" content="telephone=no"/>
 	<meta name="robots" content="all,follow" />
-	<script src="https://cdn.componentator.com/spa.min@18.js"></script>
-	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@18.css" />
+	<script src="https://cdn.componentator.com/spa.min@19.js"></script>
+	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@19.css" />
 	<style type="text/css">
 		body { padding: 50px; margin: 0; font:normal 12px Arial; color: gray; }
-		.button { background-color: #4285F4; border: 0; color: white; cursor: pointer; outline: 0; width: 100%; border-radius: 3px; height: 34px; text-transform: uppercase; font-family: Arial; font-weight: bold; }
-		.button:hover { box-shadow: 0 2px 5px rgba(0,0,0,0.1); opacity: 0.9; }
-		.button:disabled { background-color: #E0E0E0; color: silver; cursor: not-allowed; box-shadow: none; opacity: 1; }
-		.button i { margin-right: 5px; }
+		.ui-button button { background-color: #4285F4 !important; border: 0; color: white !important; cursor: pointer; outline: 0; width: 100%; border-radius: 3px; height: 34px; text-transform: uppercase; font-family: Arial; font-weight: bold; }
+		.ui-button button:hover { box-shadow: 0 2px 5px rgba(0,0,0,0.1); opacity: 0.9; }
+		.ui-button button:disabled { background-color: #E0E0E0 !important; color: silver !important; cursor: not-allowed; box-shadow: none; opacity: 1; }
+		.ui-button button i { margin-right: 5px; }
 		.success { padding: 10px 20px; color: white; background-color: #56B92B; border-radius: 3px; margin: 10px 0; }
 		.exec { cursor: pointer; }
 	</style>
 </head>
-<body data---="exec">
+<body class="exec">
 
-	<div data---="LAZY fileuploader"></div>
+	<ui-component name="LAZY fileuploader"></ui-component>
+	<ui-component name="exec"></ui-component>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">
-				<div data-scope="contactform">
-					<div data---="input__?.email__type:email;maxlength:200;required:true__'@'" class="m">Email address</div>
-					<div data---="input__?.phone__type:phone;maxlength:30;forcevalidation:0__'+421'" class="m">Phone number</div>
-					<div data---="input__?.message__type:multiline;maxlength:10000;required:true__''">Message</div>
-					<div class="help"><span class="exec" data-exec="?/upload"><i class="fa fa-cloud-upload"></i>Upload attachment</span></div>
-					<div data-bind="?.file__template__show" class="hidden">
+				<ui-plugin path="contactform">
+					<ui-component name="input" class="m" path="?.email" config="type:email;required:1;placeholder:@;maxlength:200;">Email address</ui-component>
+					<ui-component name="input" class="m" path="?.phone" config="type:phone;required:1;placeholder:+421;maxlength:20;forcevaliadation:0;">Phone number</ui-component>
+					<ui-component name="input" class="m" path="?.message" config="type:multiline;required:1;maxlength:10000;"> Message</ui-component>
+					<div class="help"><ui-bind config="click:?/upload" > <i class="fa fa-cloud-upload"></i>Upload attachement</ui-bind></div>
+					<ui-bind path="?.file" config="template;show" class="hidden">
 						<script type="text/html">
 							<hr />
 							<span class="exec pull-right" data-exec="?/remove"><i class="fa fa-times red mr5"></i>Remove</span>
 							<div>Filename: <b>{{ value.name }}</b> ({{ value.size }} bytes)</div>
 						</script>
-					</div>
+					</ui-bind>
+
 					<br />
-					<div data---="error__?.response__null"></div>
-					<div data-bind="?.response__show:value && value.success" class="success hidden">
+					<ui-component name="error" path="?.response"></ui-component>
+					<ui-bind path="?.response" config="show:value && value.success" class="success hidden block">
 						<i class="fa fa-check-circle mr5"></i> Contact form has been sent successfully. All contact forms are stored in <code>/databases/contactforms.nosql</code>
-					</div>
-					<div data---="validation__?">
-						<button name="submit" class="button exec" data-exec="?/submit" disabled>SEND</button>
-					</div>
-				</div>
+					</ui-bind>
+					<ui-component name="validation" path="?">
+						<ui-component name="button" path="?" config="exec:?/submit;icon:null" class="hidden button" disabled>SEND</ui-component>
+					</ui-component>
+				</ui-plugin>
 			</div>
 		</div>
 	</div>
