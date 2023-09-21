@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    @{meta}
+    <meta charset="utf-8" />
+	<script src="//cdn.componentator.com/spa.min@18.js"></script>
+	<style type="text/css">
+		body { padding: 50px; margin: 0; font:normal 12px Arial; color: gray }
+		a { float:left; margin: 0 5px 0 0; font-size: 13px; }
+		div { height: 20px; padding: 0 5px; font-size: 11px; }
+		p { background-color: #F0F0F0; padding: 5px; font:bold 15px Arial; }
+	</style>
+</head>
+<body>
+
+	<div>
+		<a href="/?language=sk">SK</a>
+		<a href="/?language=cz">CZ</a>
+		<a href="/?language=en">EN</a>
+	</div>
+	<br />
+
+	<p>@{body}</p>
+	<div>@(Message:) <span>&hellip;</span></div>
+
+	<script>
+		AJAX('GET /', function(response) {
+			$('span').html(response.message);
+		});
+	</script>
+
+</body>
+</html>

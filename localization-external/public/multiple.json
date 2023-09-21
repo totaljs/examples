@@ -1,0 +1,20 @@
+{
+	"sk": [
+		{ "id": "T1bx8wg2", "value": "Vitajte" },
+		{ "id": "T1sghbn7", "value": "Správa:" },
+		{ "id": "T121zmsb", "value": "Vybraná lokalizácia bola uložená do cookie." },
+		{ "id": "message", "value": "Toto je správa z sk.resource" }
+	],
+	"cz": [
+		{ "id": "T1bx8wg2", "value": "Vítejte" },
+		{ "id": "T1sghbn7", "value": "Zpráva:" },
+		{ "id": "T121zmsb", "value": "Zvolená lokalizace byla uložena do cookie." },
+		{ "id": "message", "value": "Toto je zpráva z cz.resource" }
+	],
+	"en": [
+		{ "id": "T1bx8wg2", "value": "Welcome" },
+		{ "id": "T1sghbn7", "value": "Message:" },
+		{ "id": "T121zmsb", "value": "The selected localization has been stored into the cookie." },
+		{ "id": "message", "value": "This is the message from en.resource" }
+	]
+}
