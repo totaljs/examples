@@ -8,8 +8,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=10" />
 	<meta name="format-detection" content="telephone=no"/>
 	<meta name="robots" content="all,follow" />
-	<script src="https://cdn.componentator.com/spa.min@17.js"></script>
-	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@17.css" />
+	<script src="https://cdn.componentator.com/spa.min@19.js"></script>
+	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@19.css" />
 	<style type="text/css">
 		body { padding: 50px; margin: 0; font:normal 12px Arial; color: gray; }
 		.button { background-color: #4285F4; border: 0; color: white; cursor: pointer; outline: 0; width: 100%; border-radius: 3px; height: 34px; text-transform: uppercase; font-family: Arial; font-weight: bold; }
@@ -23,12 +23,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-4">
-				<div data---="input__loginform.email__type:email;maxlength:200;autofill:1;required:1__'@'" class="m">Email address</div>
-				<div data---="input__loginform.password__type:password;maxlength:30;autofill:1;required:1__''" class="m">Password</div>
-				<div data---="error__loginform.response__null"></div>
-				<div data---="validation__loginform">
+
+				<ui-component name="input" path="loginform.email" config="type:email;maxlength:200;autofill:1;required:1" default="@" class="m">Email address</ui-component>
+				<ui-component name="input" path="loginform.password" config="type:password;maxlength:30;autofill:1;required:1" class="m">Password</ui-component>
+				<ui-component name="error" path="loginform.response" config="null"></ui-component>
+				<ui-component name="validation" path="loginform">
 					<button name="submit" class="button" disabled data-bind="null__click:loginform/submit">Sign-in</button>
-				</div>
+				</ui-component>
 			</div>
 		</div>
 	</div>

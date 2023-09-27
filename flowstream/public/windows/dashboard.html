@@ -1,10 +1,12 @@
-<div data---="viewbox__null__scrollbar:1;visibleY:1;parent:.ui-infowindows-body;margin:30">
-	<div data---="search__%dashboardsearch__selector:div" data-bind="dashboard.components__template" class="flowcomponents">
-		<template>
-		{{ foreach m in value }}
-			<div data-id="{{ m.id }}" draggable="true" data-search="{{ m.name }}"><i class="{{ m.icon }}"></i>{{ m.name }}</div>
-		{{ end }}
-		</template>
-	</div>
-</div>
-<div data---="searchinput__%dashboardsearch__type:search;placeholder:@(Search components)" style="border:0;border-top:1px solid #E0E0E0"></div>
+<ui-component name="viewbox" path="null" config="scrollbar:1;visibleY:1;parent:.ui-infowindows-body;margin:30">
+	<ui-component name="search" path="%dashboardsearch" config="selector:div" class="flowcomponents">
+		<ui-bind path="dashboard.components" config="template">	
+			<script type="text/html">
+				{{ foreach m in value }}
+					<div data-id="{{ m.id }}" draggable="true" data-search="{{ m.name }}"><i class="{{ m.icon }}"></i>{{ m.name }}</div>
+				{{ end }}
+			</script>
+		</ui-bind>
+	</ui-component>
+</ui-component>
+<ui-component name="searchinput" path="%dashboard" config="type:search;placeholder:@(Search components)" style="border:0;border-top:1px solid #E0E0E0"></ui-component>

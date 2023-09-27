@@ -8,31 +8,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta http-equiv="X-UA-Compatible" content="IE=10" />
 	<meta name="robots" content="all,follow" />
-	<link href="https://cdn.componentator.com/spa.min@18.css" rel="stylesheet" type="text/css" />
-	<script src="//cdn.componentator.com/spa.min@18.js"></script>
+	<link href="https://cdn.componentator.com/spa.min@19.css" rel="stylesheet" type="text/css" />
+	<script src="//cdn.componentator.com/spa.min@19.js"></script>
 	@{import('meta', 'head', 'default.css + ui.css', 'func.js + ui.js')}
 </head>
-<body data---="exec">
+<body class="exec">
 
-	<div data---="LAZY menu"></div>
-	<div data---="LAZY approve__null__cancel:@(Cancel)"></div>
-	<div data---="LAZY message__null__style:2"></div>
-	<div data---="LAZY notifybar"></div>
-	<div data---="loading"></div>
+	<ui-component name="LAZY menu"></ui-component>
+	<ui-component name="LAZY approve" path="null" config="cancel:@(Cancel)"></ui-component>
+	<ui-component name="LAZY message" path="null" config="style:2"></ui-component>
+	<ui-component name="LAZY notifybar"></ui-component>
+	<ui-component name="loading"></ui-component>
 
-	<div data---="infowindows__common.windows"></div>
-	<div data---="websocket__null__url:/;encoder:false"></div>
+	<ui-component name="infowindows" path="common.windows" ></ui-component>
+	<ui-component name="websocket" path="null" config="url:/;encoder:false" ></ui-component>
 
 	<header>
-		<div class="custom" data---="virtualwire__common.page"></div>
-		<nav class="menu" data---="selected__common.page__selector:button">
+		<ui-component name="virtualwire" path="common.page" class="custom"></ui-component>
+		<ui-component name="selected" path="common.page" config="selector:button" class="menu">
 			<button class="exec" data-exec="common/page" data-if="dashboard"><i class="fa fa-dashboard"></i>@(Dashboard)</button>
 			<button class="exec" data-exec="common/page" data-if="flow"><i class="fa fa-vector-square"></i>@(Flow)</button>
-		</nav>
-	</header>
+		</ui-component>
 
-	<div data---="part__common.page__if:dashboard;url:/parts/dashboard.html;reload:dashboard/reload" data-id="dashboard" class="hidden invisible"></div>
-	<div data---="part__common.page__if:flow;url:/parts/flow.html;reload:flow/reload" data-id="flow" class="hidden invisible"></div>
+	</header>
+	<ui-componet name="part" path="common.page" config="if:dashboard;url:/parts/dashboard.html;reload:dashboard/reload" data-id="dashbord" class="hidden invisible"></ui-componet>
+	<ui-componet name="part" path="common.page" config="if:flow;url:/parts/flow.html;reload:flow/reload" data-id="dashbord" class="hidden invisible"></ui-componet>
 
 	<script>
 
