@@ -1,0 +1,65 @@
+{
+	"id": "lorkikhc",
+	"components": {
+		"timer": "<script total>\n\n\texports.id = 'timer';\n\texports.name = 'Timer';\n\texports.group = 'Triggers';\n\texports.version = '2';\n\texports.icon = 'ti ti-clock';\n\texports.author = 'Total.js';\n\texports.config = { random: true, type: 'string', data: '', interval: 5000 };\n\texports.outputs = [{ id: 'output', name: 'Output' }];\n\texports.kind = 'trigger';\n\n\texports.make = function(instance, config) {\n\n\t\tvar interval;\n\n\t\tinstance.trigger = function() {\n\n\t\t\tvar val;\n\n\t\t\tswitch (config.type) {\n\t\t\t\tcase 'number':\n\t\t\t\t\tval = config.random ? U.random() : config.data.parseFloat();\n\t\t\t\t\tbreak;\n\t\t\t\tcase 'buffer':\n\t\t\t\t\ttry {\n\t\t\t\t\t\tval = config.random ? Buffer.from(U.random_string()) : Buffer.from(config.data, 'base64');\n\t\t\t\t\t} catch (e) {\n\t\t\t\t\t\tinstance.throw(e);\n\t\t\t\t\t}\n\t\t\t\t\tbreak;\n\t\t\t\tcase 'date':\n\t\t\t\t\tval = config.random ? NOW.add('-' + U.random(500, 10)) : config.data.parseDate();\n\t\t\t\t\tbreak;\n\t\t\t\tcase 'object':\n\t\t\t\t\ttry {\n\t\t\t\t\t\tval = config.random ? {} : (new Function('return ' + config.data))();\n\t\t\t\t\t} catch (e) {\n\t\t\t\t\t\tinstance.throw(e);\n\t\t\t\t\t}\n\t\t\t\t\tbreak;\n\t\t\t\tcase 'boolean':\n\t\t\t\t\tval = config.random ? U.random() % 2 === 0 : config.data === 'true' || config.data === 'on' || config.data === '1';\n\t\t\t\t\tbreak;\n\t\t\t\tdefault:\n\t\t\t\t\tval = config.random ? U.random_string(20) : config.data;\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tinstance.send('output', val);\n\t\t};\n\n\t\tinstance.configure = function() {\n\t\t\tinterval && clearInterval(interval);\n\t\t\tinterval = null;\n\t\t\tif (config.interval)\n\t\t\t\tinterval = setInterval(() => instance.trigger(), config.interval);\n\t\t};\n\n\t\tinstance.close = function() {\n\t\t\tinterval && clearInterval(interval);\n\t\t\tinterval = null;\n\t\t};\n\n\t\tinstance.configure();\n\t};\n\n</script>\n\n<script>\n\tFUNC.ftimer_exec = function(el) {\n\t\tSETTER('websocket/send', { TYPE: 'trigger', id: el.attrd2('id') });\n\t};\n</script>\n\n<style>\n\t.CLASS .padding { padding: 0 10px 10px; }\n\t.CLASS button { width: 100%; height: 24px; border: 1px solid #E0E0E0; border-radius: var(--radius); color: #000; background-color: #F0F0F0; margin: 0; }\n\t.CLASS button:hover { background-color: #F8F8F8; }\n\t.CLASS button:active { background-color: #E0E0E0; }\n\t.ui-dark .CLASS button { border-color: #404040; color: #FFF; background-color: #222; }\n\t.ui-dark .CLASS button:hover { background-color: #303030; }\n\t.ui-dark .CLASS button:active { background-color: #404040; }\n</style>\n\n<settings>\n\t<div class=\"padding\">\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col-md-3 m\">\n\t\t\t\t<ui-component name=\"input\" path=\"?.interval\" config=\"type:number;required:1\">Interval</ui-component>\n\t\t\t\t<div class=\"help\">In milliseconds</div>\n\t\t\t</div>\n\t\t\t<div class=\"col-md-9 m\">\n\t\t\t\t<ui-component name=\"input\" path=\"?.type\" config=\"dirsource:string|String,number|Number,boolean|Boolean,date|Date,object|Object,buffer|Buffer as Base64;required:1\">Type</ui-component>\n\t\t\t</div>\n\t\t</div>\n\t\t<hr />\n\t\t<div class=\"m\">\n\t\t\t<ui-component name=\"input\" path=\"?.random\" config=\"type:checkbox\">Random data</ui-component>\n\t\t</div>\n\t\t<ui-bind path=\"?.random\" config=\"hide\" class=\"hidden block\">\n\t\t\t<hr />\n\t\t\t<ui-component name=\"input\" path=\"?.data\" config=\"required:1\">Data</ui-component>\n\t\t</ui-bind>\n\t</div>\n</settings>\n\n<readme>\nThe component triggers data into the Flow in the specified interval.\n</readme>\n\n<body>\n\t<header>\n\t\t<i class=\"ICON\"></i>NAME\n\t</header>\n\t<div class=\"padding\">\n\t\t<button class=\"exec\" data-exec=\"FUNC.ftimer_exec\">Run</button>\n\t\t<div class=\"help\">Interval: <ui-bind path=\"CONFIG.interval\" config=\"text;empty\"></ui-bind> ms</div>\n\t</div>\n</body>",
+		"consolelog": "<script total>\n\n\texports.id = 'consolelog';\n\texports.name = 'console.log()';\n\texports.icon = 'ti ti-print';\n\texports.author = 'Total.js';\n\texports.version = '1';\n\texports.group = 'Common';\n\texports.config = {};\n\texports.inputs = [{ id: 'input', name: 'Input' }];\n\n\texports.make = function(instance) {\n\t\tinstance.message = function($) {\n\t\t\tconsole.log($.data);\n\t\t\t$.destroy();\n\t\t};\n\t};\n\n</script>\n\n<readme>\nThis component prints a message into the console.\n</readme>\n\n<body>\n\t<header>\n\t\t<i class=\"ICON\"></i>NAME\n\t</header>\n</body>",
+		"trigger": "<script total>\n\n\texports.id = 'trigger';\n\texports.name = 'Trigger';\n\texports.group = 'Triggers';\n\texports.version = '3';\n\texports.icon = 'ti ti-bullhorn';\n\texports.author = 'Total.js';\n\texports.config = { random: true, type: 'string', data: '', restart: false };\n\texports.outputs = [{ id: 'output', name: 'Output' }];\n\texports.kind = 'trigger';\n\n\texports.make = function(instance, config) {\n\n\t\tinstance.trigger = function() {\n\n\t\t\tvar val;\n\n\t\t\tswitch (config.type) {\n\t\t\t\tcase 'number':\n\t\t\t\t\tval = config.random ? U.random() : config.data.parseFloat();\n\t\t\t\t\tbreak;\n\t\t\t\tcase 'buffer':\n\t\t\t\t\ttry {\n\t\t\t\t\t\tval = config.random ? Buffer.from(U.random_string()) : Buffer.from(config.data, 'base64');\n\t\t\t\t\t} catch (e) {\n\t\t\t\t\t\tinstance.throw(e);\n\t\t\t\t\t}\n\t\t\t\t\tbreak;\n\t\t\t\tcase 'date':\n\t\t\t\t\tval = config.random ? NOW.add('-' + U.random(500, 10) + ' seconds') : config.data.parseDate();\n\t\t\t\t\tbreak;\n\t\t\t\tcase 'object':\n\t\t\t\t\ttry {\n\t\t\t\t\t\tval = config.random ? {} : (new Function('return ' + config.data))();\n\t\t\t\t\t} catch (e) {\n\t\t\t\t\t\tinstance.throw(e);\n\t\t\t\t\t}\n\t\t\t\t\tbreak;\n\t\t\t\tcase 'boolean':\n\t\t\t\t\tval = config.random ? U.random() % 2 === 0 : config.data === 'true' || config.data === 'on' || config.data === '1';\n\t\t\t\t\tbreak;\n\t\t\t\tdefault:\n\t\t\t\t\tval = config.random ? U.random_string(20) : config.data;\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tinstance.send('output', val);\n\t\t};\n\n\t\tconfig.restart && setTimeout(() => instance.trigger(), 5000);\n\t};\n\n</script>\n\n<style>\n\t.CLASS .padding { padding: 0 10px 10px; }\n\t.CLASS button { width: 100%; height: 24px; border: 1px solid #E0E0E0; border-radius: var(--radius); color: #000; background-color: #F0F0F0; margin: 0; }\n\t.CLASS button:hover { background-color: #F8F8F8; }\n\t.CLASS button:active { background-color: #E0E0E0; }\n\t.ui-dark .CLASS button { border-color: #404040; color: #FFF; background-color: #222; }\n\t.ui-dark .CLASS button:hover { background-color: #303030; }\n\t.ui-dark .CLASS button:active { background-color: #404040; }\n</style>\n\n<settings>\n\t<div class=\"padding\">\n\t\t<ui-component name=\"input\" path=\"?.type\" config=\"dirsource:string|String,number|Number,boolean|Boolean,date|Date,object|Object,buffer|Buffer as Base64;required:1\">Type</ui-component>\n\t\t<div class=\"mt10 m\">\n\t\t\t<ui-component name=\"input\" path=\"?.restart\" config=\"type:checkbox\">Trigger 5s after initialization.</ui-component>\n\t\t\t<ui-component name=\"input\" path=\"?.random\" config=\"type:checkbox\">Random data</ui-component>\n\t\t</div>\n\t\t<ui-bind path=\"?.random\" config=\"hide\" class=\"hidden\">\n\t\t\t<hr />\n\t\t\t<ui-component name=\"input\" path=\"?.data\" config=\"required:1;height:250;type:multiline;maxlength:100000;monospace:1\">Data</ui-component>\n\t\t</ui-bind>\n\t</div>\n</settings>\n\n<readme>\nThe component triggers data into the Flow.\n</readme>\n\n<body>\n\t<header>\n\t\t<i class=\"ICON\"></i>NAME\n\t</header>\n\t<div class=\"padding\">\n\t\t<button class=\"exec\" data-exec=\"FUNC.trigger\">Run</button>\n\t</div>\n</body>"
+	},
+	"design": {
+		"ilorkiur0": {
+			"id": "ilorkiur0",
+			"connections": {
+				"output": [
+					{
+						"id": "ilorkiv8e",
+						"index": "input"
+					}
+				]
+			},
+			"config": {
+				"random": true,
+				"type": "string",
+				"data": "",
+				"interval": 1000
+			},
+			"component": "timer",
+			"x": 242,
+			"y": 182,
+			"connected": true
+		},
+		"ilorkiv8e": {
+			"id": "ilorkiv8e",
+			"connections": {},
+			"config": {},
+			"component": "consolelog",
+			"x": 544,
+			"y": 295,
+			"connected": true
+		},
+		"ilorkk519": {
+			"id": "ilorkk519",
+			"connections": {
+				"output": [
+					{
+						"id": "ilorkiv8e",
+						"index": "input"
+					}
+				]
+			},
+			"config": {
+				"random": false,
+				"type": "string",
+				"data": "---\nYou can edit the `timer.flow` file at https://floweditor.totaljs.com (drag & drop it).\n---",
+				"restart": true
+			},
+			"component": "trigger",
+			"x": 174,
+			"y": 473,
+			"connected": true
+		}
+	},
+	"variables": {},
+	"readme": "",
+	"name": "FlowStream",
+	"cloning": true
+}
