@@ -6,7 +6,7 @@
 	"dependencies": {
 		"@graphql-tools/schema": "^7.1.5",
 		"express-graphql": "^0.12.0",
-		"total4": "^0.0.44"
+		"total4": "^0.0.81"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
