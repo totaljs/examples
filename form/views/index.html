@@ -25,27 +25,28 @@
 
 	</style>
 </head>
-<body data---="exec">
+<body class="exec">
 
-	<div data---="LAZY message"></div>
-
+	<ui-component name="LAZY message"></ui-component>
 	<div class="maxwidth">
 
 		<h2>Form</h2>
 
 		<!-- All data from the form will be stored on the path: "window.usersform" -->
 		<div data-scope="usersform">
-			<div data---="input__?.name__required:1;innerlabel:1;placeholder:Enter user name" class="invisible m">Name</div>
-			<div data---="input__?.email__required:1;innerlabel:1;type:email__'@'" class="invisible">E-mail address</div>
-			<div data---="validate__?" style="margin-top:15px">
+			<ui-component name="input" path="?.name" config="required:1;innerlabel:1;placeholder:Enter user name" class="invisible m">Name</ui-component>
+			<ui-component name="input" path="?.email" config="required:1;innerlabel:1;type:email" default="@" class="invisible">Email</ui-component>
+			
+			<ui-component name="validate" path="?" style="margin-top:15px">
 				<button name="submit" class="exec b" data-exec="?/submit" disabled><i class="fa fa-check-circle green"></i>INSERT</button>
-			</div>
+
+			</ui-component>
 		</div>
 
 		<hr />
 		<h2>List of users</h2>
 		<div data-scope="users">
-			<div data-bind="!?.list__template" class="users">
+			<ui-bind path="!?.list" config="template" class="users">
 				<script type="text/html">
 					{{ foreach m in value }}
 						<div data-id="{{ m.id }}">
@@ -54,7 +55,8 @@
 						</div>
 					{{ end }}
 				</script>
-			</div>
+			</ui-bind>
+	
 		</div>
 
 	</div>

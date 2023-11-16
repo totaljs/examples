@@ -6,44 +6,61 @@ NEWSCHEMA('Users', function (schema) {
 	schema.define('phone', 'Phone');
 
 	schema.setQuery(function ($) {
-		var builder = NOSQL('users').find();
-		$.query.search && builder.search('search', $.query.search);
-		builder.fields('id,firstname,lastname,dtcreated');
-		builder.sort('dtcreated_desc');
-		builder.callback($.callback);
+		
 	});
 
-	schema.setRead(function ($) {
-
-		// Reads the user
-		NOSQL('users').one().error(404).where('id', $.id).callback($.callback);
-
+	schema.action('query', {
+		name: 'Query the list of Users',
+		query: 'search:String',
+		action: function($) {
+			var builder = NOSQL('users').find();
+			$.query.search && builder.search('search', $.query.search);
+			builder.fields('id,firstname,lastname,dtcreated');
+			builder.sort('dtcreated_desc');
+			builder.callback($.callback);
+		}
 	});
 
-	schema.setInsert(function ($, model) {
-
-		model.id = UID();
-		model.dtcreated = NOW;
-		model.search = (model.firstname + ' ' + model.lastname).toSearch();
-
-		// Inserts data
-		NOSQL('users').insert(model).callback($.done(model.id));
-
+	schema.action('read', {
+		name: 'Read specific user info',
+		params: '*id:UID',
+		action: function($) {
+			// Reads the user
+			NOSQL('users').one().error(404).where('id', $.params.id).callback($.callback);
+		}
 	});
 
-	schema.setUpdate(function ($, model) {
 
-		model.dtupdated = NOW;
-
-		// Modifies data
-		NOSQL('users').modify(model).where('id', $.id).callback($.done($.id));
-
+	schema.action('insert', {
+		name: 'Insert new user',
+		action: function($, model) {
+			model.id = UID();
+			model.dtcreated = NOW;
+			model.search = (model.firstname + ' ' + model.lastname).toSearch();
+	
+			// Inserts data
+			NOSQL('users').insert(model).callback($.done(model.id));
+		}
 	});
 
-	schema.setRemove(function ($) {
+	schema.action('update', {
+		name: 'Update user information',
+		params: '*id:UID',
+		action: function($, model) {
+			model.dtupdated = NOW;
 
-		// Removes the user
-		NOSQL('users').remove().where('id', $.id).callback($.done($.id));
+			// Modifies data
+			NOSQL('users').modify(model).where('id', $.params.id).callback($.done($.params.id));
+	
+		}
+	});
 
+	schema.action('remove', {
+		name: 'Remove a specific user',
+		params: '*id:UID',
+		action: function($) {
+			// Removes the user
+			NOSQL('users').remove().where('id', $.params.id).callback($.done($.params.id));
+		}
 	});
 });

@@ -1,7 +1,7 @@
 <div data-scope="dashboard">
-	<div data---="viewbox__common.page__parent:window;margin:60;scrollbar:1;visibleY:1">
-		<div data---="dashboard__?.design__$id:dashboard;ondrop:?/drop;padding:15;parent:.ui-scrollbar-area"></div>
-	</div>
+	<ui-component name="viewbox" path="common.page" config="parent:window;margin:60;scrollbar:1;visibleY:1">
+		<ui-component name="dashboard" path="?.design" config="$id:dashboard;ondrop:?/drop;padding:15;parent:.ui-scrollbar-area"></ui-component>
+	</ui-component>
 </div>
 
 <div class="virtualwire" data-if="dashboard">
@@ -14,15 +14,15 @@
 		@BODY@
 	</div>
 </script>
-
-<div data---="largeform__common.form__if:dashboardsettings;width:700;visibleY:1;icon:fa fa-cog;submit:dashboard/settings_submit;$id:dashboardsettings" class="hidden invisible">
+<ui-component name="largeform" path="common.form" config="if:dashboardsettings;width:700;visibleY:1;icon:fa fa-cog;submit:dashboard/settings_submit;$id:dashboardsettings" class="hidden invisible">
 	<div id="dashboard_settings"></div>
-	<nav data---="validation__settings__$id:dashboardsettingsvalidation">
-		<button name="submit"><i class="far fa-check-circle"></i>@(APPLY)</button>
-		<button name="cancel">@(Cancel)</button>
-	</nav>
-</div>
-
+	<ui-component name="validation" path="settings" config="$id:dashboardsettingsvalidation">
+		<nav>
+			<button name="submit"><i class="far fa-check-circle"></i>@(APPLY)</button>
+			<button name="cancel">@(Cancel)</button>
+		</nav>
+	</ui-component>
+</ui-component>
 <div id="dashboard_repo" class="hidden"></div>
 
 <script>

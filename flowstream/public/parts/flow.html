@@ -1,8 +1,8 @@
 <div data-scope="flow">
-	<div data---="viewbox__null__parent:window;visibleX:true;visibleY:true;scrollbar:true;margin:90">
-		<div data---="flow__?.data__width:6000;height:6000;grid:16;horizontal:1;infopath:?.info;undopath:?.undo;redopath:?.redo;ondrop:?/drop;contextmenu:?/contextmenu;dblclick:?/settings"></div>
-	</div>
-	<div class="stats"><i class="fa fa-refresh fa-spin mr5"></i> @(Processed messages:) <b data-bind="?.stats.messages__text__empty__format:0"></b> / pending <span class="gray" data-bind="?.stats.pending__text__empty__format:0"></span></div>
+	<ui-component name="viewbox" path="null" config="parent:window;visibleX:true;visibleY:true;scrollbar:true;margin:90">
+		<ui-component name="flow" path="?.data" config="width:6000;height:6000;grid:16;horizontal:1;infopath:?.info;undopath:?.undo;redopath:?.redo;ondrop:?/drop;contextmenu:?/contextmenu;dblclick:?/settings"></ui-component>
+	</ui-component>
+	<div class="stats"><i class="fa fa-refresh fa-spin mr5"></i> @(Processed messages:) <b><ui-bind path="?.stats.messages" config="text;format:0"></ui-bind></b> / pending <span class="gray"> <ui-bind path="?.stats.pending" config="text;format:0"></ui-bind></span></div>
 </div>
 
 <div class="virtualwire" data-if="flow">
@@ -16,13 +16,15 @@
 	</div>
 </script>
 
-<div data---="largeform__common.form__if:settings;width:700;visibleY:1;icon:fa fa-cog;submit:flow/settings_submit;$id:flowsettings" class="hidden invisible">
+<ui-component name="largeform" path="common.form" config="if:settings;width:700;visibleY:1;icon:fa fa-cog;submit:flow/settings_submit;$id:flowsettings" class="hidden invisible">
 	<div id="flow_settings"></div>
-	<nav data---="validation__settings__$id:settingsvalidation">
-		<button name="submit"><i class="far fa-check-circle"></i>@(APPLY)</button>
-		<button name="cancel">@(Cancel)</button>
-	</nav>
-</div>
+	<ui-component name="validation" path="settings" config="1id:settingsvalidation">
+		<nav>
+			<button name="submit"><i class="far fa-check-circle"></i>@(APPLY)</button>
+			<button name="cancel">@(Cancel)</button>
+		</nav>
+	</ui-component>
+</ui-component>
 
 <!-- A temporary repository for components settings -->
 <div id="flow_repo" class="hidden"></div>

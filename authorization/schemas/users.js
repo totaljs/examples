@@ -11,7 +11,6 @@ NEWSCHEMA('Users', function(schema) {
 			builder.where('email', model.email);
 			builder.where('password', model.password);
 			builder.callback(function(err, user) {
-
 				if (!user) {
 					$.invalid('error-users-404');
 					return;
@@ -39,5 +38,4 @@ NEWSCHEMA('Users', function(schema) {
 		$.redirect('/');
 		}
 	});
-
 });
