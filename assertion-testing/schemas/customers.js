@@ -1,11 +1,17 @@
-NEWSCHEMA('Customers', function(schema) {
+NEWSCHEMA('Customers', function (schema) {
 
-	schema.setQuery(function($) {
-		$.callback([]);
+	schema.action('query', {
+		name: 'Query',
+		action: function ($) {
+			$.callback([]);
+		}
 	});
 
-	schema.setRead(function($) {
-		$.invalid('somet-error');
+	schema.action('read', {
+		name: 'Read',
+		action: function ($) {
+			$.invalid('somet-error');
+		}
 	});
 
 });

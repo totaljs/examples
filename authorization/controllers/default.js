@@ -5,8 +5,8 @@ exports.install = function() {
 	ROUTE('GET  /', view_unlogged);
 
 	// Operations are defined in /schemas/users.js
-	ROUTE('POST /login/        *Users --> @login',  ['unauthorize']);
-	ROUTE('GET  /logout/       *Users --> @logout', ['authorize']);
+	ROUTE('POST /login/        *Users --> login',  ['unauthorize']);
+	ROUTE('GET  /logout/       *Users --> logout', ['authorize']);
 
 };
 
