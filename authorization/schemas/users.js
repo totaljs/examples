@@ -3,16 +3,14 @@ NEWSCHEMA('Users', function(schema) {
 	schema.define('email', 'Email', true);
 	schema.define('password', 'String(30)', true);
 
-	
+	// Performs login
 	schema.action('login', {
-		name: 'Performs login',
-		action: function($, model) {
-
+		name: 'Login',
+		action: function($, model){
 			var builder = NOSQL('users').one();
 			builder.where('email', model.email);
 			builder.where('password', model.password);
 			builder.callback(function(err, user) {
-	
 				if (!user) {
 					$.invalid('error-users-404');
 					return;
@@ -28,15 +26,16 @@ NEWSCHEMA('Users', function(schema) {
 		}
 	});
 
+	// Performs logout
 	schema.action('logout', {
-		name: 'Performs logout',
+		name: 'Logout',
 		action: function($) {
-			// Removes session
-			MAIN.session.logout($);
 
-			// Performs a redirect
-			$.redirect('/');
+		// Removes session
+		MAIN.session.logout($);
 
+		// Performs a redirect
+		$.redirect('/');
 		}
 	});
 });

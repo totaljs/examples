@@ -12,10 +12,10 @@
 	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@19.css" />
 	<style type="text/css">
 		body { padding: 50px; margin: 0; font:normal 12px Arial; color: gray; }
-		.button { background-color: #4285F4; border: 0; color: white; cursor: pointer; outline: 0; width: 100%; border-radius: 3px; height: 34px; text-transform: uppercase; font-family: Arial; font-weight: bold; }
-		.button:hover { box-shadow: 0 2px 5px rgba(0,0,0,0.1); opacity: 0.9; }
-		.button:disabled { background-color: #E0E0E0; color: silver; cursor: not-allowed; box-shadow: none; opacity: 1; }
-		.button i { margin-right: 5px; }
+		.ui-button button { background-color: #4285F4 !important; border: 0; color: white !important; cursor: pointer; outline: 0; width: 100%; border-radius: 3px; height: 34px; text-transform: uppercase; font-family: Arial; font-weight: bold; }
+		.ui-button button:hover { box-shadow: 0 2px 5px rgba(0,0,0,0.1); opacity: 0.9; }
+		.ui-button button:disabled { background-color: #E0E0E0 !important; color: silver !important; cursor: not-allowed; box-shadow: none; opacity: 1; }
+		.ui-button button i { margin-right: 5px; }
 	</style>
 </head>
 <body>
@@ -23,12 +23,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-4">
-
-				<ui-component name="input" path="loginform.email" config="type:email;maxlength:200;autofill:1;required:1" default="@" class="m">Email address</ui-component>
-				<ui-component name="input" path="loginform.password" config="type:password;maxlength:30;autofill:1;required:1" class="m">Password</ui-component>
-				<ui-component name="error" path="loginform.response" config="null"></ui-component>
+				<ui-component name="input" path="loginform.email" config="type:email;required:1;autofill:1;maxlength:200;placeholder:@;" class="m"> Email address</ui-component>
+				<ui-component name="input" path="loginform.password" config="type:password;required:1;autofill:1;maxlength:30" class="m"> Password</ui-component>
+				<ui-component name="error" path="loginform.response" class="block"></ui-component>
 				<ui-component name="validation" path="loginform">
-					<button name="submit" class="button" disabled data-bind="null__click:loginform/submit">Sign-in</button>
+					<ui-component name="button" path="loginform" config="exec:loginform/submit;icon:null;" class="hidden button" disabled>SEND</ui-component>
 				</ui-component>
 			</div>
 		</div>
@@ -38,7 +37,7 @@
 		PLUGIN('loginform', function(exports) {
 			exports.submit = function() {
 				// "?" means "loginform", it's obtained automatically from name of plugin
-				AJAX('POST /login/', GETR('?'), function(response) {
+				AJAX('POST /login/', GET('?'), function(response) {
 					// Is logged?
 					if (response.success)
 						location.reload(true);
