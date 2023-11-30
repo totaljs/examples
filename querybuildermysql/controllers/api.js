@@ -1,19 +1,19 @@
 
-// Exporting the 'install' function, which sets up API routes for products.
 exports.install = function() {
-    
-    ROUTE('GET       /api/products/                         *Products --> list');   // Handling GET request to retrieve a list of products.
-    ROUTE('GET       /api/products/read/{id}/               *Products --> read');   // Handling GET request to read details of a specific product by ID.
-    ROUTE('POST      /api/products/create/                  *Products --> create'); // Handling POST request to create a new product.
-    ROUTE('PUT       /api/products/update/{id}/             *Products --> update'); // Handling PUT request to update details of a specific product by ID.
-    ROUTE('DELETE    /api/products/delete/{id}/             *Products --> delete'); // Handling DELETE request to delete a specific product by ID.
-    ROUTE('GET       /api/products/publish/toggle/{id}/     *Products --> toggle'); // Handling GET request to toggle the publish status of a specific product by ID.
+    ROUTE('GET /', function() {
+        this.plain('Querybuilder Mysql example');
+    });
+    // Handling HTTP requests for user-related operations
+    ROUTE('GET     /api/users/                        *Users --> list');    // Retrieve a list of users.
+    ROUTE('GET     /api/users/read/{id}/              *Users --> read');    // Read details of a specific user by ID.
+    ROUTE('POST    /api/users/create/                 *Users --> create');  // Create a new user.
+    ROUTE('PUT     /api/users/update/{id}/            *Users --> update');  // Update details of a specific user by ID.
+    ROUTE('DELETE  /api/users/delete/{id}/            *Users --> delete');  // Delete a specific user by ID.
 
-    ROUTE('API       /api/   -products_list                 *Products --> list');
-    ROUTE('API       /api/   +products_insert               *Products --> insert');
-    ROUTE('API       /api/   -products_read/{id}            *Products --> read');
-    ROUTE('API       /api/   +products_update/{id}          *Products --> update');
-    ROUTE('API       /api/   -products_remove/{id}          *Products --> remove');
-    ROUTE('API       /api/   -products_publish/toggle/{id}  *Products --> toggle');
-
+    // Handling API requests for user-related operations (Total.js API endpoints)
+    ROUTE('API     /api/   -users_list                *Users --> list');
+    ROUTE('API     /api/   +users_insert              *Users --> insert');
+    ROUTE('API     /api/   -users_read/{id}           *Users --> read');
+    ROUTE('API     /api/   +users_update/{id}         *Users --> update');
+    ROUTE('API     /api/   -users_remove/{id}         *Users --> remove');
 }

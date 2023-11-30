@@ -1,1 +1,1 @@
-database           : postgres://user:password@localhost:5432/querybuilderpg
+database           : mysql://user:password@localhost:3306/querybuildermysql
