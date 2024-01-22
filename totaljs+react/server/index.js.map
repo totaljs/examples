@@ -1,0 +1,17 @@
+{
+	"routes": [
+		{
+			"method": "POST",
+			"url": "/",
+			"owner": "controller_api",
+			"schema": "OpenAI",
+			"input": "*message:String"
+		}
+	],
+	"actions": [
+		{
+			"name": "OpenAI --> ask",
+			"input": "*message:String"
+		}
+	]
+}

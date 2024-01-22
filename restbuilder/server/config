@@ -1,0 +1,1 @@
+database           : postgres://postgres:password@localhost:5432/querybuilderpg
