@@ -15,7 +15,7 @@ NEWSCHEMA('ContactForms', function(schema) {
 			model.ip = $.ip;
 			model.ua = ($.headers['user-agent'] || '').parseUA();
 
-			NOSQL('contactforms').insert(model);
+			DATA.insert('nosql/contactforms', model);
 
 			// var mail = MAIL(....);
 			// model.fileid && mail.attachmentfs('files', model.fileid);
