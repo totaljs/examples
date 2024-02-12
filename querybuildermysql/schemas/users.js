@@ -4,7 +4,7 @@ NEWSCHEMA('Users', function(schema) {
     schema.action('list', {
         name: 'List users',
         action: function($) {
-            var builder = DB().list('tbl_user');
+            var builder = DATA.list('tbl_user');
             // Autoquery using QueryBuilderMySQL
             // - Auto-generates query based on provided parameters
             // - Sorts the result by 'dtcreated' in descending order
@@ -23,12 +23,12 @@ NEWSCHEMA('Users', function(schema) {
     schema.action('check', {
         name: 'Check customer before insert',
         action: function($, model) {
-            var db = DB();
+            var builder = DATA.check('tbl_user');
             // Check operation using QueryBuilderMySQL
             // - Checks if a user with the provided phone number already exists
             // - Provides fields 'id' for further processing
             // - Throws an error if the user already exists
-            db.check('tbl_user').where('phone', model.phone).where('isremoved=FALSE').fields('id').error('@(The account already exists)', true).callback($.done());
+            builder.where('phone', model.phone).where('isremoved=FALSE').fields('id').error('@(The account already exists)', true).callback($.done());
         }
     });
     // Action: Create new customer
@@ -37,7 +37,7 @@ NEWSCHEMA('Users', function(schema) {
         input:  'gender:{male|female},fistname:Capitalize(40),lastname:Capitalize(40),role:{collector|buyer},phone:Phone,password:String,pincode:Number,photo:String', // Schema inline validation.
         action: async function($, model) {
             // ... (implementation details for creating a new customer)
-            var db = DB();
+            var db = DATA;
             // Insert operation using QueryBuilderMySQL
             // - Inserts the new customer into the 'tbl_user' table
             await db.insert('tbl_user', model).promise($);
@@ -52,7 +52,7 @@ NEWSCHEMA('Users', function(schema) {
         params: '*id:String',
         action: async function($) {
             var params = $.params;
-            var db = DB();
+            var db = DATA;
             // Update operation using QueryBuilderMySQL
             // - Marks the user as removed in the 'tbl_user' table
             // - Performs error handling, audit logging, and provides a response
