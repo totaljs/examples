@@ -1,0 +1,72 @@
+{
+	"routes": [
+		{
+			"method": "POST",
+			"url": "/api/tutorials/",
+			"owner": "controller_api",
+			"schema": "Tutorials",
+			"input": "*title:String,*description:String"
+		},
+		{
+			"method": "DELETE",
+			"url": "/api/tutorials/",
+			"owner": "controller_api",
+			"schema": "Tutorials"
+		},
+		{
+			"method": "PUT",
+			"url": "/api/tutorials/{id}/",
+			"owner": "controller_api",
+			"params": "*id:UID",
+			"schema": "Tutorials",
+			"input": "*title:String,*description:String"
+		},
+		{
+			"method": "DELETE",
+			"url": "/api/tutorials/{id}/",
+			"owner": "controller_api",
+			"params": "*id:UID",
+			"schema": "Tutorials"
+		},
+		{
+			"method": "GET",
+			"url": "/api/tutorials/",
+			"owner": "controller_api",
+			"schema": "Tutorials",
+			"query": "title:String"
+		},
+		{
+			"method": "GET",
+			"url": "/api/tutorials/{id}/",
+			"owner": "controller_api",
+			"params": "*id:UID",
+			"schema": "Tutorials"
+		}
+	],
+	"actions": [
+		{
+			"name": "Tutorials --> query",
+			"query": "title:String"
+		},
+		{
+			"name": "Tutorials --> read",
+			"params": "*id:UID"
+		},
+		{
+			"name": "Tutorials --> insert",
+			"input": "*title:String,*description:String"
+		},
+		{
+			"name": "Tutorials --> update",
+			"params": "*id:UID",
+			"input": "*title:String,*description:String"
+		},
+		{
+			"name": "Tutorials --> delete_all"
+		},
+		{
+			"name": "Tutorials --> delete",
+			"params": "*id:UID"
+		}
+	]
+}
