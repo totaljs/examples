@@ -92,7 +92,7 @@
 					delete model.file;
 				}
 
-				export.ajax('POST /api/send/', model, function(response) {
+				exports.ajax('POST /api/send/', model, function(response) {
 					if (response.success)
 						exports.set('@default', { response: response });
 					else
