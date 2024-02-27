@@ -7,7 +7,7 @@ NEWSCHEMA('Users', function(schema) {
 	schema.action('login', {
 		name: 'Login',
 		action: function($, model){
-			var builder = NOSQL('users').one();
+			var builder = DATA.read('nosql/users');
 			builder.where('email', model.email);
 			builder.where('password', model.password);
 			builder.callback(function(err, user) {
@@ -15,10 +15,10 @@ NEWSCHEMA('Users', function(schema) {
 					$.invalid('error-users-404');
 					return;
 				}
-	
+
 				// Creates a cookie and session item
 				MAIN.session.authcookie($, UID(), user.id, '3 days');
-	
+
 				// Writes audit
 				$.audit(user.id + ': ' + user.name);
 				$.success();
